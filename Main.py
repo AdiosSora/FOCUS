@@ -1,6 +1,6 @@
 import eel
 import traceback
-import HandPose
+import HandTracking
 import cv2
 import win32gui, win32con
 
@@ -40,7 +40,7 @@ if __name__ == '__main__':
         if(continue_flg == 0):
             try:
                 eel.init("GUI/web")
-                eel.start('html/Start.html',size=(640,320),block=False)
+                eel.start('html/Start.html',size=(800,450),block=False)
                 continue_flg = 1
                 eel.sleep(0.01)
             except:
@@ -61,14 +61,14 @@ if __name__ == '__main__':
                 if(ret is True):
                     if(webcam_flg == 1):
                         eel.windowclose()
-                    print("webcamあったよ！！！！！")
+                    print("【通知】WebCamera検知")
                     break
                 else:
                     if(webcam_flg == 0):
                         eel.init('GUI/web')
                         eel.start('html/connect.html',
                                     mode='chrome',
-                                    size=(500,600),  #サイズ指定（横, 縦）
+                                    size=(800,450),  #サイズ指定（横, 縦）
                                     #position=(width/2-250, height/2-300), #位置指定（left, top）
                                     block=False)
                         eel.sleep(0.01)
@@ -77,12 +77,12 @@ if __name__ == '__main__':
                     else:
                         eel.sleep(0.01)
 
-            print("HandPose.py を実行するよ！！！")
-            HandPose.HandPose_main(keep_flg)    #HandPose.py が終了するまで、 Main.py の以降の処理を行わない
+            print("【実行】HandTracking.py")
+            HandTracking.HandTracking(keep_flg)    #HandPose.py が終了するまで、 Main.py の以降の処理を行わない
             start_flg = 0
         elif(end_flg == 1):
             #「終了」を押下時の処理
-            print("終了するよ！！！")
+            print("【実行】終了処理")
             break
         else:
             eel.sleep(0.01)
@@ -91,4 +91,4 @@ if __name__ == '__main__':
     #     print(i)
     #     i+=1
     #traceback.print_exc()
-    print("終了したよ！！！！")
+    print("【通知】システム終了")

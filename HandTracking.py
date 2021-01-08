@@ -10,6 +10,8 @@ from collections import deque
 import cv2 as cv
 import numpy as np
 import mediapipe as mp
+import eel
+import autopy
 
 from utils import CvFpsCalc
 from model import KeyPointClassifier
@@ -40,9 +42,15 @@ def get_args():
     return args
 
 
-def HandTracking():
+def HandTracking(keep_flg):
     # 引数解析 #################################################################
     args = get_args()
+
+    flg_video = 0   #「1」でカメラが接続されていない
+    flg_break = 0   #「1」で最初のループを抜け終了する⇒正常終了
+    flg_restart = 0 #「1」でリスタートした際に hand_gui.py で eel が2度起動するのを防ぐ
+    flg_start = 0   #「1」で開始時点でのカメラ消失
+    cnt_gui=0   #hand_guiにてeelを動かす用に使用（0:初回起動時、1:2回目以降起動時、2:カメラが切断された際にhtmlを閉じるために使用）
 
     cap_device = args.device
     cap_width = args.width
@@ -53,136 +61,188 @@ def HandTracking():
     min_tracking_confidence = args.min_tracking_confidence
 
     use_brect = True
+    width,height = autopy.screen.size() #eel で立ち上げた際の表示位置を指定するために取得
 
-    # カメラ準備 ###############################################################
-    cap = cv.VideoCapture(cap_device)
-    cap.set(cv.CAP_PROP_FRAME_WIDTH, cap_width)
-    cap.set(cv.CAP_PROP_FRAME_HEIGHT, cap_height)
+    while(True):    #カメラが再度接続するまでループ処理
+        #カメラが接続されていないフラグの場合
+        if(flg_video == 1):
 
-    # モデルロード #############################################################
-    mp_hands = mp.solutions.hands
-    hands = mp_hands.Hands(
-        static_image_mode=use_static_image_mode,
-        max_num_hands=1,
-        min_detection_confidence=min_detection_confidence,
-        min_tracking_confidence=min_tracking_confidence,
-    )
+            if(cnt_gui == 2):
 
-    keypoint_classifier = KeyPointClassifier()
+                eel.init('GUI/web')
+                eel.start('html/connect.html',
+                            mode='chrome',
+                            size=(500,600),  #サイズ指定（横, 縦）
+                            position=(width/2-250, height/2-300), #位置指定（left, top）
+                            block=False)
+                cnt_gui = 0
+                print("connect 接続しているよ！！")
+            try:
+                eel.sleep(0.01)
+            except:
+                print("エラー発生！！！！")
+                traceback.print_exc()
+                continue
+            #カメラが接続されているか確認
+            cap2 = cv2.VideoCapture(0)
+            ret2, frame2 = cap2.read()
+            if(ret2 is True):
+                #カメラが接続されている場合
+                flg_video = 0
+                cnt_gui = 0
+                flg_restart = 1
+                print("webcamあったよ！！")
+                eel.windowclose()
+                continue    #最初の while に戻る
+            else:
+            #カメラが接続されていない場合
+            #print("webcamないよ！！！")
+                continue    #最初の while に戻る
+        #正常終了のフラグの場合
+        elif(flg_break == 1):
+            break   #最初の while を抜けて正常終了
+        # カメラ準備 ###############################################################
+        cap = cv.VideoCapture(cap_device)
+        cap.set(cv.CAP_PROP_FRAME_WIDTH, cap_width)
+        cap.set(cv.CAP_PROP_FRAME_HEIGHT, cap_height)
 
-    point_history_classifier = PointHistoryClassifier()
+        # モデルロード #############################################################
+        mp_hands = mp.solutions.hands
+        hands = mp_hands.Hands(
+            static_image_mode=use_static_image_mode,
+            max_num_hands=1,
+            min_detection_confidence=min_detection_confidence,
+            min_tracking_confidence=min_tracking_confidence,
+        )
 
-    # ラベル読み込み ###########################################################
-    with open('model/keypoint_classifier/keypoint_classifier_label.csv',
-              encoding='utf-8-sig') as f:
-        keypoint_classifier_labels = csv.reader(f)
-        keypoint_classifier_labels = [
-            row[0] for row in keypoint_classifier_labels
-        ]
-    with open(
-            'model/point_history_classifier/point_history_classifier_label.csv',
-            encoding='utf-8-sig') as f:
-        point_history_classifier_labels = csv.reader(f)
-        point_history_classifier_labels = [
-            row[0] for row in point_history_classifier_labels
-        ]
+        keypoint_classifier = KeyPointClassifier()
 
-    # FPS計測モジュール ########################################################
-    cvFpsCalc = CvFpsCalc(buffer_len=10)
+        point_history_classifier = PointHistoryClassifier()
 
-    # 座標履歴 #################################################################
-    history_length = 16
-    point_history = deque(maxlen=history_length)
+        # ラベル読み込み ###########################################################
+        with open('model/keypoint_classifier/keypoint_classifier_label.csv',
+                  encoding='utf-8-sig') as f:
+            keypoint_classifier_labels = csv.reader(f)
+            keypoint_classifier_labels = [
+                row[0] for row in keypoint_classifier_labels
+            ]
+        with open(
+                'model/point_history_classifier/point_history_classifier_label.csv',
+                encoding='utf-8-sig') as f:
+            point_history_classifier_labels = csv.reader(f)
+            point_history_classifier_labels = [
+                row[0] for row in point_history_classifier_labels
+            ]
 
-    # フィンガージェスチャー履歴 ################################################
-    finger_gesture_history = deque(maxlen=history_length)
+        # FPS計測モジュール ########################################################
+        cvFpsCalc = CvFpsCalc(buffer_len=10)
 
-    #  ########################################################################
-    mode = 0
+        # 座標履歴 #################################################################
+        history_length = 16
+        point_history = deque(maxlen=history_length)
 
-    while True:
-        fps = cvFpsCalc.get()
+        # フィンガージェスチャー履歴 ################################################
+        finger_gesture_history = deque(maxlen=history_length)
 
-        # キー処理(ESC：終了) #################################################
-        key = cv.waitKey(10)
-        if key == 27:  # ESC
-            break
-        number, mode = select_mode(key, mode)
+        #  ########################################################################
+        mode = 0
 
-        # カメラキャプチャ #####################################################
-        ret, image = cap.read()
-        if not ret:
-            break
-        image = cv.flip(image, 1)  # ミラー表示
-        debug_image = copy.deepcopy(image)
+        while True:
+            fps = cvFpsCalc.get()
 
-        # 検出実施 #############################################################
-        image = cv.cvtColor(image, cv.COLOR_BGR2RGB)
+            # キー処理(ESC：終了) #################################################
+            key = cv.waitKey(10)
+            if key == 27:  # ESC
+                break
+            number, mode = select_mode(key, mode)
 
-        image.flags.writeable = False
-        results = hands.process(image)
-        image.flags.writeable = True
+            # カメラキャプチャ #####################################################
+            ret, image = cap.read()
+            if not ret:
+                traceback.print_exc()
+                #それぞれのフラグを立てて、システムを終了させ、最初の while に戻る
+                flg_video = 1
+                cnt_gui = 2
+                try:
+                    #webcam が最初から接続されていない場合は except の動作
+                    cnt_gui, flg_end, flg_restart, flg_start, keep_flg = hand_gui.start_gui(cnt_gui, cnt_pose, name_pose, flg_restart, flg_start, keep_flg)
+                except NameError as name_e:
+                    traceback.print_exc()
+                    flg_start = 1
+                    print("【通知】WebCameraが接続されていません。")
+                cap.stop()
+                cv.destroyAllWindows()
+                break
+            image = cv.flip(image, 1)  # ミラー表示
+            debug_image = copy.deepcopy(image)
 
-        #  ####################################################################
-        if results.multi_hand_landmarks is not None:
-            for hand_landmarks, handedness in zip(results.multi_hand_landmarks,
-                                                  results.multi_handedness):
-                # 外接矩形の計算
-                brect = calc_bounding_rect(debug_image, hand_landmarks)
-                # ランドマークの計算
-                landmark_list = calc_landmark_list(debug_image, hand_landmarks)
-                # 相対座標・正規化座標への変換
-                pre_processed_landmark_list = pre_process_landmark(
-                    landmark_list)
-                pre_processed_point_history_list = pre_process_point_history(
-                    debug_image, point_history)
-                # 学習データ保存
-                logging_csv(number, mode, pre_processed_landmark_list,
+            # 検出実施 #############################################################
+            image = cv.cvtColor(image, cv.COLOR_BGR2RGB)
+
+            image.flags.writeable = False
+            results = hands.process(image)
+            image.flags.writeable = True
+
+            #  ####################################################################
+            if results.multi_hand_landmarks is not None:
+                for hand_landmarks, handedness in zip(results.multi_hand_landmarks,
+                                                      results.multi_handedness):
+                    # 外接矩形の計算
+                    brect = calc_bounding_rect(debug_image, hand_landmarks)
+                    # ランドマークの計算
+                    landmark_list = calc_landmark_list(debug_image, hand_landmarks)
+
+                    # 相対座標・正規化座標への変換
+                    pre_processed_landmark_list = pre_process_landmark(
+                        landmark_list)
+                    pre_processed_point_history_list = pre_process_point_history(
+                        debug_image, point_history)
+                    # 学習データ保存
+                    logging_csv(number, mode, pre_processed_landmark_list,
+                                pre_processed_point_history_list)
+
+                    # ハンドサイン分類
+                    hand_sign_id = keypoint_classifier(pre_processed_landmark_list)
+                    x,y = landmark_list[8]
+                    PoseAction.action(hand_sign_id,x,y)
+                    if hand_sign_id == 2:  # 指差しサイン
+                        point_history.append(landmark_list[8])  # 人差指座標
+                    else:
+                        point_history.append([0, 0])
+
+                    # フィンガージェスチャー分類
+                    finger_gesture_id = 0
+                    point_history_len = len(pre_processed_point_history_list)
+                    if point_history_len == (history_length * 2):
+                        finger_gesture_id = point_history_classifier(
                             pre_processed_point_history_list)
 
-                # ハンドサイン分類
-                hand_sign_id = keypoint_classifier(pre_processed_landmark_list)
-                x,y = landmark_list[8]
-                PoseAction.action(hand_sign_id,x,y)
-                if hand_sign_id == 2:  # 指差しサイン
-                    point_history.append(landmark_list[8])  # 人差指座標
-                else:
-                    point_history.append([0, 0])
+                    # 直近検出の中で最多のジェスチャーIDを算出
+                    finger_gesture_history.append(finger_gesture_id)
+                    most_common_fg_id = Counter(
+                        finger_gesture_history).most_common()
 
-                # フィンガージェスチャー分類
-                finger_gesture_id = 0
-                point_history_len = len(pre_processed_point_history_list)
-                if point_history_len == (history_length * 2):
-                    finger_gesture_id = point_history_classifier(
-                        pre_processed_point_history_list)
+                    # 描画
+                    debug_image = draw_bounding_rect(use_brect, debug_image, brect)
+                    debug_image = draw_landmarks(debug_image, landmark_list)
+                    debug_image = draw_info_text(
+                        debug_image,
+                        brect,
+                        handedness,
+                        keypoint_classifier_labels[hand_sign_id],
+                        point_history_classifier_labels[most_common_fg_id[0][0]],
+                    )
+            else:
+                point_history.append([0, 0])
 
-                # 直近検出の中で最多のジェスチャーIDを算出
-                finger_gesture_history.append(finger_gesture_id)
-                most_common_fg_id = Counter(
-                    finger_gesture_history).most_common()
+            debug_image = draw_point_history(debug_image, point_history)
+            debug_image = draw_info(debug_image, fps, mode, number)
 
-                # 描画
-                debug_image = draw_bounding_rect(use_brect, debug_image, brect)
-                debug_image = draw_landmarks(debug_image, landmark_list)
-                debug_image = draw_info_text(
-                    debug_image,
-                    brect,
-                    handedness,
-                    keypoint_classifier_labels[hand_sign_id],
-                    point_history_classifier_labels[most_common_fg_id[0][0]],
-                )
-        else:
-            point_history.append([0, 0])
+            # 画面反映 #############################################################
+            cv.imshow('Hand Gesture Recognition', debug_image)
 
-        debug_image = draw_point_history(debug_image, point_history)
-        debug_image = draw_info(debug_image, fps, mode, number)
-
-        # 画面反映 #############################################################
-        cv.imshow('Hand Gesture Recognition', debug_image)
-
-    cap.release()
-    cv.destroyAllWindows()
-
+        cap.release()
+        cv.destroyAllWindows()
 
 def select_mode(key, mode):
     number = -1
