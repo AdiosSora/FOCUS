@@ -18,8 +18,11 @@ def action(sign_id,x,y):
         #gunの時の処理
 
     if(sign_id==3):
-        autopy.mouse.toggle(autopy.mouse.Button.LEFT,True)
-        autopy.mouse.move(x,y)
+        try:
+            autopy.mouse.toggle(autopy.mouse.Button.LEFT,True)
+            autopy.mouse.move(x,y)
+        except Exception as e:
+            print(e)
     if(sign_id==4):
         autopy.mouse.click(autopy.mouse.Button.RIGHT)
 
