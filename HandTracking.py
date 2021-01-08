@@ -204,7 +204,7 @@ def HandTracking(keep_flg):
                     # ハンドサイン分類
                     hand_sign_id = keypoint_classifier(pre_processed_landmark_list)
                     x,y = landmark_list[8]
-                    PoseAction.action(hand_sign_id,x,y)
+                    CountPose= PoseAction.action(hand_sign_id,x,y,CountPose)
                     if hand_sign_id == 2:  # 指差しサイン
                         point_history.append(landmark_list[8])  # 人差指座標
                     else:
