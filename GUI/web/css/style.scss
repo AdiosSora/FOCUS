@@ -102,3 +102,133 @@ table th,table td{
   width: 25%;
   padding: 25px 0;
 }
+
+
+//conf.html　↓↓↓↓↓↓↓↓↓↓↓↓
+
+.conf_body_title_1{
+  display: inline-block;
+}
+
+.conf_body_img{
+  text-align: right;
+  padding:10px;
+}
+
+.conf_container_1 {
+  width: 50%; /* 要素の幅を50%に定義 */
+  padding: 0.5em 1em;
+  margin: 10px;
+  font-weight: bold;
+  border: solid 3px #000000;
+}
+.box-minmax{
+  margin-top: 10px;
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  color: #1da6d6;
+  span:first-child{
+    margin-left: 10px;
+  }
+}
+.range-slider {
+    margin-top: 10px;
+
+}
+.rs-range {
+    margin-top: 10px;
+    width: 200px;
+    -webkit-appearance: none;
+    &:focus {
+        outline: none;
+    }
+    &::-webkit-slider-runnable-track {
+        width: 30%;
+        height: 1px;
+        cursor: pointer;
+        box-shadow: none;
+        background: #1da6d6;
+        border-radius: 0px;
+        border: 0px solid #010101;
+    }
+    &::-moz-range-track {
+        width: 30%;
+        height: 1px;
+        cursor: pointer;
+        box-shadow: none;
+        background: #1da6d6;
+        border-radius: 0px;
+        border: 0px solid #010101;
+    }
+
+    &::-webkit-slider-thumb {
+        box-shadow: none;
+        border: 0px solid #1da6d6;
+        box-shadow: 0px 10px 10px rgba(0,0,0,0.25);
+        height: 42px;
+        width: 22px;
+        border-radius: 22px;
+        background: rgba(29,166,214,0.8);
+        cursor: pointer;
+        -webkit-appearance: none;
+        margin-top: -20px;
+    }
+  &::-moz-range-thumb{
+        box-shadow: none;
+        border: 0px solid #1da6d6;
+        box-shadow: 0px 10px 10px rgba(0,0,0,0.25);
+        height: 42px;
+        width: 22px;
+        border-radius: 22px;
+        background: rgba(29,166,214,0.8);
+        cursor: pointer;
+        -webkit-appearance: none;
+        margin-top: -20px;
+  }
+  &::-moz-focus-outer {
+    border: 0;
+    }
+}
+.rs-label {
+
+    position: relative;
+    transform-origin: center center;
+    display: block;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border-radius: 50%;
+    line-height: 30px;
+    text-align: center;
+    font-weight: bold;
+    padding-top: 10px;
+    box-sizing: border-box;
+    margin-top: 20px;
+    margin-left: -15px;
+    left: attr(value);
+    color: #1da6d6;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-size: 20px;
+    &::after {
+        content: "";
+        display: block;
+        font-size: 20px;
+        letter-spacing: 0.07em;
+        margin-top: -2px;
+    }
+
+}
+
+.conf_container_2{
+
+}
+
+.conf_footer_btn{
+  text-align: right;
+  padding:20px;
+
+}
