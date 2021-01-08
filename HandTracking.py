@@ -38,7 +38,7 @@ def get_args():
     return args
 
 
-def main():
+def HandTracking():
     # 引数解析 #################################################################
     args = get_args()
 
@@ -442,7 +442,3 @@ def draw_info(image, fps, mode, number):
                        cv.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 1,
                        cv.LINE_AA)
     return image
-
-
-if __name__ == '__main__':
-    main()
