@@ -146,7 +146,7 @@ def HandTracking(keep_flg):
 
         #  ########################################################################
         mode = 0
-
+        CountPose = [0,0,0,0,0,0,0]
         while True:
             fps = cvFpsCalc.get()
 
