@@ -99,6 +99,8 @@ def main():
 
     #  ########################################################################
     mode = 0
+    #各種ポーズを行うにあたってのカウント変数
+    CountPose = [0,0,0,0,0,0,0]
 
     while True:
         fps = cvFpsCalc.get()
@@ -142,8 +144,10 @@ def main():
 
                 # ハンドサイン分類
                 hand_sign_id = keypoint_classifier(pre_processed_landmark_list)
+                #手首の座標をマウス座標のｘ、ｙとして登録
                 x,y = landmark_list[8]
-                PoseAction.action(hand_sign_id,x,y)
+                #各種操作をおこなうPoseActionのactionメソッドを実行
+                CountPose = PoseAction.action(hand_sign_id,x,y,CountPose)
                 if hand_sign_id == 2:  # 指差しサイン
                     point_history.append(landmark_list[8])  # 人差指座標
                 else:
