@@ -2,6 +2,7 @@ import autopy
 
 
 def action(sign_id,x,y,countpose):
+    #画面端まで行くように処理
     x = x * 1.1
     y = y * 1.1
     #palmの時
@@ -13,16 +14,19 @@ def action(sign_id,x,y,countpose):
         except Exception as e:
             print(e)
 
-    if(sign_id==1):
-        #Dangの処理
-        if(countpose[1]<=3):
-            countpose[1] += 1
-        if(countpose[1]==3):
-            autopy.mouse.click(autopy.mouse.Button.LEFT)
+    # if(sign_id==1):
+    #     #Dangの処理
+    #     if(countpose[1]<=3):
+    #         countpose[1] += 1
+    #     if(countpose[1]==3):
+    #         autopy.mouse.click(autopy.mouse.Button.LEFT)
 
-    # if(sign_id==2):
+    if(sign_id==2):
         #gunの時の処理
-
+        if(countpose[2]<=3):
+            countpose[2] += 1
+        if(countpose[2]==3):
+            autopy.mouse.click(autopy.mouse.Button.LEFT)
     if(sign_id==3):
         if(countpose[3]<3):
             countpose[3] += 1
