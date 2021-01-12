@@ -52,6 +52,33 @@ header{
   color: rgb(97, 187, 86);
 }
 
+/* =============  TOPpage strat.html  =====================*/
+.header_button {
+  color: #333;
+  margin: 5px;
+  padding: 0px 10px 0px 10px;
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+}
+.header_button::after {
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  content: '';
+  width: 100%;
+  height: 2px;
+  background: #333;
+  opacity: 0;
+  visibility: hidden;
+  transition: .3s;
+}
+.header_button:hover::after {
+  bottom: -4px;
+  opacity: 1;
+  visibility: visible;
+}
+
 /* =============  終了画面ボタン  =====================*/
 a.btn--OK {
   color: #fff;
