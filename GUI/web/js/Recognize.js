@@ -89,13 +89,13 @@
     eel.expose(focusSwitch);
     function focusSwitch(width, height){
       const headIndex = document.getElementById("headIndex");
-      const endIndex = document.getElementById("endIndex");
-      const focusEnd = document.getElementById("focusEnd");
-      const poseGuage = document.getElementById("poseGuage");
+      //const endIndex = document.getElementById("endIndex");
+      //const focusEnd = document.getElementById("focusEnd");
+      //const poseGuage = document.getElementById("poseGuage");
 
       if(headIndex.style.visibility=="visible"){
-        headIndex.style.visibility ="hidden";
-        window.resizeTo(250, 120)
+        //headIndex.style.visibility ="hidden";
+        window.resizeTo(500, 150)
         window.moveTo(width, height)
       }else{
         headIndex.style.visibility ="visible";
@@ -103,21 +103,21 @@
         window.moveTo(width/4, height/4)
       }
 
-      if(endIndex.style.visibility=="visible"){
-        endIndex.style.visibility ="hidden";
-      }else{
-        endIndex.style.visibility ="visible";
-      }
-
-	    if(focusEnd.style.visibility=="visible" && poseGuage.style.visibility=="visible"){
-		    // hiddenで非表示
-		    focusEnd.style.visibility ="hidden";
-        poseGuage.style.visibility ="hidden";
-	    }else{
-		    // visibleで表示
-        focusEnd.style.visibility ="visible";
-        poseGuage.style.visibility ="visible";
-	    }
+      //if(endIndex.style.visibility=="visible"){
+      //   endIndex.style.visibility ="hidden";
+      // }else{
+      //   endIndex.style.visibility ="visible";
+      // }
+      //
+	    // if(focusEnd.style.visibility=="visible" && poseGuage.style.visibility=="visible"){
+		  //   // hiddenで非表示
+		  //   focusEnd.style.visibility ="hidden";
+      //   poseGuage.style.visibility ="hidden";
+	    // }else{
+		  //   // visibleで表示
+      //   focusEnd.style.visibility ="visible";
+      //   poseGuage.style.visibility ="visible";
+	    // }
     }
 
 /*ここまで試作用、不要になったら削除*/
