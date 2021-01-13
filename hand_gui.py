@@ -88,12 +88,12 @@ def start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg):
         return cnt_gui, flg_sys, flg_restart, flg_start, keep_flg
 
     except: # SystemExit as sys_e:
-        print("000000000000000000000")
+        #print("000000000000000000000")
         traceback.print_exc()
         #print("強制終了！！！！")
         if(cnt_gui == 0 and flg_restart == 0):
             #初回起動時はここに飛ばし、cnt_gui の変更だけ実施
-            print("111111111111111")
+            #print("111111111111111")
             cnt_gui = 1
         #再起動した際にすでに eel が起動しているか判定
         #elif(flg_restart == 1):
@@ -118,7 +118,7 @@ def start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg):
             #     print("33333333333333333333333")
             # else:
             #Recognize.html で × をクリックして終了した場合の例外処理
-            print("4444444444444444444444444")
+            #print("4444444444444444444444444")
 
             #ここから、test.html を使うときに使用
             eel.init("GUI/web")
