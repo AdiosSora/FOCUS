@@ -26,23 +26,32 @@ def action(sign_id,x,y,countpose):
         if(countpose[2]<=3):
             countpose[2] += 1
         if(countpose[2]==3):
-            autopy.mouse.click(autopy.mouse.Button.LEFT)
+            autopy.mouse.click(autopy.mouse.Button.RIGHT)
     if(sign_id==3):
-        if(countpose[3]<3):
+        #peaceの時
+        if(countpose[3]<4):
             countpose[3] += 1
         if(countpose[3]==3):
             autopy.mouse.toggle(autopy.mouse.Button.LEFT,True)
             pointermove(x,y)
+        if(countpose[3]==4):
+            pointermove(x,y)
 
     if(sign_id==4):
+        #rockの時
         if(countpose[4]<=3):
             countpose[4] += 1
         if(countpose[4]==3):
-            autopy.mouse.click(autopy.mouse.Button.RIGHT)
+            autopy.mouse.click(autopy.mouse.Button.LEFT)
 
-    # if(sign_id==5):
-        #OKの
 
+    if(sign_id==5):
+        #Threeの時
+        if(countpose[5]<=3):
+            countpose[5] += 1
+        if(countpose[5]==3):
+            autopy.mouse.click(autopy.mouse.Button.LEFT)
+            autopy.mouse.click(autopy.mouse.Button.LEFT)
     # if(sign_id==6):
         #fourの時の処理
 

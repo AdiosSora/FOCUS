@@ -40,7 +40,7 @@ if __name__ == '__main__':
         if(continue_flg == 0):
             try:
                 eel.init("GUI/web")
-                eel.start('html/Start.html',size=(800,450),block=False)
+                eel.start('html/index.html',size=(800,450),block=False)
                 continue_flg = 1
                 eel.sleep(0.01)
             except:
