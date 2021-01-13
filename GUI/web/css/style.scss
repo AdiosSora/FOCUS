@@ -5,6 +5,10 @@
     transform-origin: 0% 0%;
 }
 
+@media screen and (max-width: 600px) {
+		display: none;
+	}
+
 header{
   padding:20px;
   border-width: 0 0 1px 0;
