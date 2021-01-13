@@ -211,6 +211,9 @@ def HandTracking(keep_flg, focus_flg):
                     hand_sign_id = keypoint_classifier(pre_processed_landmark_list)
                     #人差し指の先の座標を取得
                     x,y = landmark_list[8]
+
+                    #倍率の設定
+                    PoseAction.sensitivity(10)
                     #各種操作の実行
                     CountPose= PoseAction.action(hand_sign_id,x,y,CountPose)
                     if hand_sign_id == 2:  # 指差しサイン
@@ -250,6 +253,9 @@ def HandTracking(keep_flg, focus_flg):
             debug_image = draw_info(debug_image, fps, mode, number)
 
             # 画面反映 #############################################################
+
+            debug_image = cv.resize(debug_image,dsize=(400, 200))
+            cv.imshow('Hand Gesture Recognition', debug_image)
             #cv.imshow('Hand Gesture Recognition', debug_image)
 
             if(focus_flg2 == 1):

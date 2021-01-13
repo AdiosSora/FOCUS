@@ -1,18 +1,24 @@
 import autopy
+import eel
+#倍率
+magnification = 1
 
-
+# @eel.expose
+def sensitivity(value):
+    global magnification
+    magnification = 1 + value*0.1
 def action(sign_id,x,y,countpose):
     #画面端まで行くように処理
-    x = x * 1.1
-    y = y * 1.1
+    global magnification
+    print(magnification)
+    x = x * magnification
+    y = y * magnification
     #palmの時
     if(sign_id==0):
-        try:
-            autopy.mouse.toggle(autopy.mouse.Button.LEFT,False)
-            pointermove(x,y)
-            countpose = [0,0,0,0,0,0,0]
-        except Exception as e:
-            print(e)
+        autopy.mouse.toggle(autopy.mouse.Button.LEFT,False)
+        pointermove(x,y)
+        countpose = [0,0,0,0,0,0,0]
+
 
     # if(sign_id==1):
     #     #Dangの処理
@@ -52,8 +58,15 @@ def action(sign_id,x,y,countpose):
         if(countpose[5]==3):
             autopy.mouse.click(autopy.mouse.Button.LEFT)
             autopy.mouse.click(autopy.mouse.Button.LEFT)
+
     # if(sign_id==6):
-        #fourの時の処理
+    #     #oneの時の処理
+    #     if(countpose[6]<=3):
+    #         countpose[6] += 1
+    #     if(countpose[6]==3):
+    #         autopy.mouse.toggle(autopy.mouse.Button.LEFT,False)
+    #         pointermove(x,y)
+    #         countpose = [0,0,0,0,0,0,0]
 
     return countpose
 
