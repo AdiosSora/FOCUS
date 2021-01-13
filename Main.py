@@ -72,7 +72,7 @@ if __name__ == '__main__':
             try:
                 eel.init("GUI/web")
                 label.master.destroy()
-                eel.start('html/Start.html',size=(800,450),block=False)
+                eel.start('html/index.html',size=(800,450),block=False)
                 continue_flg = 1
                 eel.sleep(0.01)
 
