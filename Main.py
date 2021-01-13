@@ -3,6 +3,9 @@ import traceback
 import HandTracking
 import cv2
 import win32gui, win32con
+from win32api import GetSystemMetrics
+import tkinter as tk
+import math
 
 start_flg = 0   #HandPose.py の開始フラグ、「1」で開始
 end_flg = 0 #システム終了のフラグ、「1」で終了
@@ -25,24 +28,54 @@ def end_flg():
 
 if __name__ == '__main__':
     continue_flg = 0    #Start.html が起動しているか判別、「1」で起動中
-    #eel.init("GUI/web")
 
-#    def my_other_thread():
-#        while True:
-#            print("I'm a thread")
-#            eel.sleep(1.0)                  # Use eel.sleep(), not time.sleep()
+    label = tk.Tk()
+    label.title("splash")
+    label.minsize(870, 490)
 
-#    eel.spawn(my_other_thread)
+    splash = tk.PhotoImage(file="splash.gif")
+    gif_index = 0
 
-    #eel.start('html/Start.html',size=(640,320),block=False)
+    def next_frame():
+        global gif_index
+        try:
+            splash.configure(format="gif -index {}".format(gif_index))
+
+            gif_index += 1
+        except tk.TclError:
+            gif_index = 0
+            return next_frame()
+        else:
+            label.after(1, next_frame)
+
+    label = tk.Canvas(bg="black", width=870, height=490)
+    label.master.overrideredirect(True)
+    label.place(x=0, y=0)
+    label.create_image(0, 0, image=splash, anchor=tk.NW)
+    window_width = 870
+    window_height = 490
+    create_width = math.floor(GetSystemMetrics(0)/2-window_width/2)
+    create_height = math.floor(GetSystemMetrics(1)/2-window_height/2)
+    label.master.geometry(str(window_width) + "x" + str(window_height) + "+" + str(create_width) + "+" + str(create_height))
+    label.master.lift()
+    label.master.wm_attributes("-topmost", True)
+    label.master.wm_attributes("-disabled", True)
+
+    label.pack()
+    label.after(3000, lambda: [print("call_back_funcの実行"), label.quit()])
+    label.after_idle(next_frame)
+    label.mainloop()
+
     while True:
         keep_flg = 0    #HandPose.py 開始前に connect.html を起動したか、「1」で起動済み、 test.html が2つ起動するのを防ぐ
         if(continue_flg == 0):
             try:
                 eel.init("GUI/web")
+                label.master.destroy()
                 eel.start('html/Start.html',size=(800,450),block=False)
                 continue_flg = 1
                 eel.sleep(0.01)
+
             except:
                 #SystemExit および OSError をキャッチ
                 traceback.print_exc()
