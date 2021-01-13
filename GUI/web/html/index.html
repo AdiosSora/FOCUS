@@ -7,9 +7,10 @@
   <script src="../js/Recognize.js"></script>
   <link rel="stylesheet" type="text/css" href="../css/style.min.css">
   <link rel="stylesheet" type="text/css" href="../css/pure.css">
+  <link rel="stylesheet" type="text/css" href="../css/Recognize.css">
 </head>
 
-<header>
+<header id="headIndex">
     <div class="pure-g">
     <div class="pure-u-1-5" style="text-align:center;">
         <a onclick="link('Start.html')"><img src="../images/FOCUS-Logo.svg" width="220px"></a>
@@ -25,14 +26,25 @@
 
 <body>
 
-  <!--ここから試作用、不要になったら削除-->
+  <p id="endIndex">
   <button type="button" name="endbtn" value="end" onclick="test_clickBtn2()">終了(テスト用ボタン)</button>
-  <!--ここまで試作用、不要になったら削除-->
+  </p>
+  <br>
+  <br>
+  <p id="focusEnd" class="focusEnd">
+  <button type="button" name="endbtn" value="end" onclick="endBtn()">FOCUSを終了</button>
+  </P>
+  <p id="poseGuage" class="poseGuage">でふぉると</div>
 
 </body>
 <footer></footer>
 </html>
 <script>
+  document.getElementById("headIndex").style.visibility ="visible";
+  document.getElementById("endIndex").style.visibility ="visible";
+  document.getElementById("focusEnd").style.visibility ="hidden";
+  document.getElementById("poseGuage").style.visibility ="hidden";
+
   function link(target) {
     window.location.href = target;
   }

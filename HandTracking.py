@@ -44,7 +44,7 @@ def get_args():
     return args
 
 
-def HandTracking(keep_flg):
+def HandTracking(keep_flg, focus_flg):
     # 引数解析 #################################################################
     args = get_args()
 
@@ -54,6 +54,7 @@ def HandTracking(keep_flg):
     flg_start = 0   #「1」で開始時点でのカメラ消失
     cnt_gui=0   #hand_guiにてeelを動かす用に使用（0:初回起動時、1:2回目以降起動時、2:カメラが切断された際にhtmlを閉じるために使用）
     name_pose = "Unknown"
+    focus_flg2 = focus_flg
 
     cap_device = args.device
     cap_width = args.width
@@ -249,7 +250,11 @@ def HandTracking(keep_flg):
             debug_image = draw_info(debug_image, fps, mode, number)
 
             # 画面反映 #############################################################
-            cv.imshow('Hand Gesture Recognition', debug_image)
+            #cv.imshow('Hand Gesture Recognition', debug_image)
+
+            if(focus_flg2 == 1):
+                eel.focusSwitch(width, height)
+                focus_flg2 = 0
 
             # eel立ち上げ #############################################################
             cnt_gui, flg_end, flg_restart, flg_start, keep_flg = hand_gui.start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg)
