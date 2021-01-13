@@ -1,10 +1,18 @@
 import autopy
+import eel
+#倍率
+magnification = 1
 
-
+# @eel.expose
+def sensitivity(value):
+    global magnification
+    magnification = 1 + value*0.1
 def action(sign_id,x,y,countpose):
     #画面端まで行くように処理
-    x = x * 1.1
-    y = y * 1.1
+    global magnification
+    print(magnification)
+    x = x * magnification
+    y = y * magnification
     #palmの時
     if(sign_id==0):
         autopy.mouse.toggle(autopy.mouse.Button.LEFT,False)

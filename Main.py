@@ -6,6 +6,7 @@ import win32gui, win32con
 from win32api import GetSystemMetrics
 import tkinter as tk
 import math
+import autopy
 
 start_flg = 0   #HandPose.py の開始フラグ、「1」で開始
 end_flg = 0 #システム終了のフラグ、「1」で終了
@@ -17,6 +18,7 @@ end_flg = 0 #システム終了のフラグ、「1」で終了
 @eel.expose
 def start_flg():
     #起動する場合のフラグを立てる
+    print("【通知】起動ボタン押下")
     global start_flg
     start_flg = 1
 
@@ -32,6 +34,9 @@ def preview_camera():
 
 if __name__ == '__main__':
     continue_flg = 0    #Start.html が起動しているか判別、「1」で起動中
+    focus_flg = 0
+    width,height = autopy.screen.size()
+    #eel.init("GUI/web")
 
     label = tk.Tk()
     label.title("splash")
@@ -70,23 +75,29 @@ if __name__ == '__main__':
     label.after_idle(next_frame)
     label.mainloop()
 
-    while True:
-        keep_flg = 0    #HandPose.py 開始前に connect.html を起動したか、「1」で起動済み、 test.html が2つ起動するのを防ぐ
-        if(continue_flg == 0):
+    #eel.start('html/Start.html',size=(640,320),block=False)
+    if(continue_flg == 0):
+        eel.init("GUI/web")
+        label.master.destroy()
+        eel.start('html/index.html',
+                    size=(800,450),
+                    position=(width/4, height/4),
+                    block=False)
+        focus_flg = 1
+        continue_flg = 1
+        while(True):
             try:
-                eel.init("GUI/web")
-                label.master.destroy()
-                eel.start('html/index.html',size=(800,450),block=False)
-                continue_flg = 1
                 eel.sleep(0.01)
-
+                break
             except:
                 #SystemExit および OSError をキャッチ
                 traceback.print_exc()
                 continue
+    while True:
+        keep_flg = 0    #HandPose.py 開始前に connect.html を起動したか、「1」で起動済み、 test.html が2つ起動するのを防ぐ
         #print("I'm a main loop")
         #eel.sleep(1.0)
-        elif(start_flg == 1):
+        if(start_flg == 1):
             #「起動」を押下時の処理
             continue_flg = 0
             webcam_flg = 0  #connect.html が起動中か判別、「1」で起動中
@@ -116,7 +127,8 @@ if __name__ == '__main__':
                         eel.sleep(0.01)
 
             print("【実行】HandTracking.py")
-            HandTracking.HandTracking(keep_flg,0)    #HandPose.py が終了するまで、 Main.py の以降の処理を行わない
+            HandTracking.HandTracking(keep_flg, focus_flg, 0)    #HandPose.py が終了するまで、 Main.py の以降の処理を行わない
+            eel.focusSwitch(width, height)
             start_flg = 0
         elif(end_flg == 1):
             #「終了」を押下時の処理

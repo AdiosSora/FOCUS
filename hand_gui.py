@@ -14,7 +14,7 @@ def open_endpage():
     #終了画面の、 endpage.html を立ち上げる
     eel.start("html/endpage.html",
                 mode='chrome',
-                size=(500,500),  #サイズ指定（横, 縦）
+                size=(800,450),  #サイズ指定（横, 縦）
                 position=(width/2-250, height/2-250), #位置指定（left, top）
                 block=False
                 )
@@ -32,13 +32,13 @@ def start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg):
         #ここから、簡易的な画面(手の画像なし)の test.html へ遷移
         global flg_sys
         flg_sys = 0
-        eel.init("GUI/web")
-        eel.start("html/test.html",
-                    mode='chrome',
-                    size=(250,100),  #サイズ指定（横, 縦）
-                    position=(width,height), #位置指定（left, top）
-                    block=False
-                    )
+        # eel.init("GUI/web")
+        # eel.start("html/index.html",
+        #             mode='chrome',
+        #             size=(400,75),  #サイズ指定（横, 縦）
+        #             position=(width,height), #位置指定（left, top）
+        #             block=False
+        #             )
         #ここまで test.html 、Recognize.html を使用しない場合はこの範囲をコメントアウト
 
         #ここから、手の画像付きの今までの画面の Recognize.html へ遷移
@@ -80,8 +80,8 @@ def start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg):
         eel.set_posegauge(name_pose)
 
         #ここから、test.html を使うときに使用
-        if(flg_sys == 1):
-            eel.windowclose()
+        #if(flg_sys == 1):
+            #eel.windowclose()
         #ここまで、test.html を使うときに使用
 
         cnt_gui = 1
@@ -123,7 +123,7 @@ def start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg):
             #ここから、test.html を使うときに使用
             eel.init("GUI/web")
             #eel.start("開きたい上記のフォルダ下のファイル名",～
-            eel.start("html/test.html",
+            eel.start("html/index.html",
                         mode='chrome',
                         size=(250,100),  #サイズ指定（横, 縦）
                         position=(width,height), #位置指定（left, top）
@@ -145,7 +145,7 @@ def start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg):
 
 def cam_source():
     eel.init('GUI/web')
-    eel.start('html/Check.html',block=False)
+    eel.start('html/check.html',block=False)
     num = eel.js_function()()
     print(num)
     return int(num)

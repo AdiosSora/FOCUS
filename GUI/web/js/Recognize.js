@@ -13,7 +13,7 @@
       window.close();
     }
 
-    eel.expose(windowclose)
+    eel.expose(windowclose);
     function windowclose(){
       window.close();
     }
@@ -63,7 +63,7 @@
     function test_clickBtn1(){
       /*起動(テスト用ボタン)押下時*/
       eel.start_flg();
-      window.close();
+      // window.close();
     }
 
     /*eel.expose(test_clickBtn2);*/
@@ -84,6 +84,40 @@
 
     function end_no(){
       window.close();
+    }
+
+    eel.expose(focusSwitch);
+    function focusSwitch(width, height){
+      const headIndex = document.getElementById("headIndex");
+      const endIndex = document.getElementById("endIndex");
+      const focusEnd = document.getElementById("focusEnd");
+      const poseGuage = document.getElementById("poseGuage");
+
+      if(headIndex.style.visibility=="visible"){
+        headIndex.style.visibility ="hidden";
+        window.resizeTo(250, 120)
+        window.moveTo(width, height)
+      }else{
+        headIndex.style.visibility ="visible";
+        window.resizeTo(800, 450)
+        window.moveTo(width/4, height/4)
+      }
+
+      if(endIndex.style.visibility=="visible"){
+        endIndex.style.visibility ="hidden";
+      }else{
+        endIndex.style.visibility ="visible";
+      }
+
+	    if(focusEnd.style.visibility=="visible" && poseGuage.style.visibility=="visible"){
+		    // hiddenで非表示
+		    focusEnd.style.visibility ="hidden";
+        poseGuage.style.visibility ="hidden";
+	    }else{
+		    // visibleで表示
+        focusEnd.style.visibility ="visible";
+        poseGuage.style.visibility ="visible";
+	    }
     }
 
 /*ここまで試作用、不要になったら削除*/

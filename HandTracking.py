@@ -44,7 +44,7 @@ def get_args():
     return args
 
 
-def HandTracking(keep_flg,conf_flg = 0):
+def HandTracking(keep_flg,focus_flg,conf_flg = 0):
     # 引数解析 #################################################################
     args = get_args()
 
@@ -210,6 +210,9 @@ def HandTracking(keep_flg,conf_flg = 0):
                     hand_sign_id = keypoint_classifier(pre_processed_landmark_list)
                     #人差し指の先の座標を取得
                     x,y = landmark_list[8]
+
+                    #倍率の設定
+                    PoseAction.sensitivity(10)
                     #各種操作の実行
                     CountPose= PoseAction.action(hand_sign_id,x,y,CountPose)
                     if hand_sign_id == 2:  # 指差しサイン
@@ -247,7 +250,6 @@ def HandTracking(keep_flg,conf_flg = 0):
 
             debug_image = draw_point_history(debug_image, point_history)
             debug_image = draw_info(debug_image, fps, mode, number)
-
             if(conf_flg == 0):
                 # 画面反映 #############################################################
                 debug_image = cv.resize(debug_image,dsize=(400, 200))
@@ -261,6 +263,14 @@ def HandTracking(keep_flg,conf_flg = 0):
                 _, imencode_image = cv.imencode('.jpg', debug_image)
                 base64_image = base64.b64encode(imencode_image)
                 eel.set_base64image("data:image/jpg;base64," + base64_image.decode("ascii"))
+
+            if(focus_flg == 1):
+                eel.focusSwitch(width, height)
+                focus_flg = 0
+
+            # eel立ち上げ #############################################################
+            cnt_gui, flg_end, flg_restart, flg_start, keep_flg = hand_gui.start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg)
+
 
             if(flg_end == 1):
                 flg_break = 1
