@@ -17,7 +17,7 @@
     function windowclose(){
       window.close();
     }
-    
+
     /*
     function window.onbeforeunload(){
       eel.py_sysclose();
@@ -34,13 +34,14 @@
     }
 
     eel.expose(set_posegauge);
-    function set_posegauge(cnt_pose, name_pose){
-      document.getElementById("getPose").innerHTML = name_pose + "取得";
+    function set_posegauge(name_pose){
+      document.getElementById("poseGuage").innerHTML = name_pose + "取得";
 
-      /*７割越えのポーズのゲージのみを取得したい場合はこれ*/
+      /*７割越えのポーズのゲージのみを取得したい場合はこれ
       var target = document.getElementById("poseGuage");
 
       target.innerHTML = cnt_pose + '回，' + name_pose + '<meter max= "100" min= "0" low= "20" high= "80" optimum= "90" value= ' + cnt_pose +'></meter>';
+      */
 
       /*全ポーズのゲージを取得したい場合はこれ
       var target0 = document.getElementById("poseGuage0");
@@ -58,18 +59,31 @@
     }
 
     /*ここから試作用、不要になったら削除*/
-        /*eel.expose(test_clickBtn1);*/
-        function test_clickBtn1(){
-          /*起動(テスト用ボタン)押下時*/
-          eel.start_flg();
-          window.close();
-        }
+    /*eel.expose(test_clickBtn1);*/
+    function test_clickBtn1(){
+      /*起動(テスト用ボタン)押下時*/
+      eel.start_flg();
+      window.close();
+    }
 
-        /*eel.expose(test_clickBtn2);*/
-        function test_clickBtn2(){
-          /*終了(テスト用ボタン)押下時*/
-          eel.end_flg();
-          window.close();
-        }
+    /*eel.expose(test_clickBtn2);*/
+    function test_clickBtn2(){
+      /*終了(テスト用ボタン)押下時*/
+      eel.end_flg();
+      window.close();
+    }
 
-    /*ここまで試作用、不要になったら削除*/
+    function endBtn(){
+      eel.open_endpage();
+    }
+
+    function end_ok(){
+      eel.py_sysclose();
+      window.close();
+    }
+
+    function end_no(){
+      window.close();
+    }
+
+/*ここまで試作用、不要になったら削除*/
