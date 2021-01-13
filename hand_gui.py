@@ -26,7 +26,7 @@ def py_sysclose():
     global flg_sys
     flg_sys = 1
 
-def start_gui(cnt_gui, cnt_pose, name_pose, flg_restart, flg_start, keep_flg):
+def start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg):
     if(cnt_gui == 0):   #初回時のみにeel.init、eel.start起動、以降起動しない（cnt_guiが1と固定になるため）
 
         #ここから、簡易的な画面(手の画像なし)の test.html へ遷移
@@ -77,29 +77,29 @@ def start_gui(cnt_gui, cnt_pose, name_pose, flg_restart, flg_start, keep_flg):
 #            eel.set_base64image("data:image/jpg;base64," +
 #                                        base64_image.decode("ascii"))
         #ここまで、Recognize.html を使うときに使用
-
-        eel.set_posegauge(cnt_pose, name_pose)
+        eel.set_posegauge(name_pose)
 
         #ここから、test.html を使うときに使用
         if(flg_sys == 1):
-            eel.sys_close()
+            eel.windowclose()
         #ここまで、test.html を使うときに使用
 
         cnt_gui = 1
         return cnt_gui, flg_sys, flg_restart, flg_start, keep_flg
 
     except: # SystemExit as sys_e:
+        #print("000000000000000000000")
         traceback.print_exc()
         #print("強制終了！！！！")
         if(cnt_gui == 0 and flg_restart == 0):
             #初回起動時はここに飛ばし、cnt_gui の変更だけ実施
-            #print("1")
+            #print("111111111111111")
             cnt_gui = 1
         #再起動した際にすでに eel が起動しているか判定
-        elif(flg_restart == 1):
+        #elif(flg_restart == 1):
             #HandPose.py 実行中にカメラが切断された際はここに飛ばし、 flg_restart の変更だけ実施
-            #print("2")
-            flg_restart = 0
+            #print("222222222222222222")
+            #flg_restart = 0
             #if(flg_start == 1):
                 #開始時点でカメラが消失していた場合は、
                 #こちらで eel を再起動し、× をクリックした際の動作を実行
@@ -112,35 +112,35 @@ def start_gui(cnt_gui, cnt_pose, name_pose, flg_restart, flg_start, keep_flg):
                 #block=False)
                 #print("再起動！！！！")
         elif(cnt_gui == 1):
-            if(keep_flg == 1):
-                #Main.py で connect.html を立ち上げていた際はここに飛ばし、keep_flg の変更だけ行う
-                keep_flg = 0
-                #print("3")
-            else:
-                #Recognize.html で × をクリックして終了した場合の例外処理
-                #print("4")
+            # if(keep_flg == 1):
+            #     #Main.py で connect.html を立ち上げていた際はここに飛ばし、keep_flg の変更だけ行う
+            #     keep_flg = 0
+            #     print("33333333333333333333333")
+            # else:
+            #Recognize.html で × をクリックして終了した場合の例外処理
+            #print("4444444444444444444444444")
 
-                #ここから、test.html を使うときに使用
-                eel.init("GUI/web")
-                #eel.start("開きたい上記のフォルダ下のファイル名",～
-                eel.start("html/test.html",
-                            mode='chrome',
-                            size=(250,100),  #サイズ指定（横, 縦）
-                            position=(width,height), #位置指定（left, top）
-                            block=False
-                            )
-                #ここまで、test.html を使うときに使用
+            #ここから、test.html を使うときに使用
+            eel.init("GUI/web")
+            #eel.start("開きたい上記のフォルダ下のファイル名",～
+            eel.start("html/test.html",
+                        mode='chrome',
+                        size=(250,100),  #サイズ指定（横, 縦）
+                        position=(width,height), #位置指定（left, top）
+                        block=False
+                        )
+            #ここまで、test.html を使うときに使用
 
-                #ここから、Recognize.html を使うときに使用
-#                eel.init('GUI/web')
-#                eel.start(
-#                'html/Recognize.html',
-#                mode='chrome',
-#                cmdline_args=['--start-fullscreen'],
-#                block=False)
-                #ここまで、Recognize.html を使うときに使用
+            #ここから、Recognize.html を使うときに使用
+            #eel.init('GUI/web')
+            #eel.start(
+            #'html/Recognize.html',
+            #mode='chrome',
+            #cmdline_args=['--start-fullscreen'],
+            #block=False)
+            #ここまで、Recognize.html を使うときに使用
 
-                print("再起動！！！！")
+            print("再起動！！！！")
         return cnt_gui, flg_sys, flg_restart, flg_start, keep_flg
 
 def cam_source():

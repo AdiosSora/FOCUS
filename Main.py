@@ -98,6 +98,7 @@ if __name__ == '__main__':
                     break
                 else:
                     if(webcam_flg == 0):
+                        print("【通知】WebCameraが接続されていません。")
                         eel.init('GUI/web')
                         eel.start('html/connect.html',
                                     mode='chrome',

@@ -5,6 +5,10 @@
     transform-origin: 0% 0%;
 }
 
+@media screen and (max-width: 600px) {
+		display: none;
+	}
+
 header{
   padding:20px;
   border-width: 0 0 1px 0;
@@ -42,6 +46,10 @@ header{
   justify-content: center;
 }
 
+.loader{
+  padding-top: 50px;
+}
+
 //改行することができる
 .row{
   margin: 15px 50px;
@@ -50,6 +58,49 @@ header{
 
 .h2_comp{
   color: rgb(97, 187, 86);
+}
+
+/* =============  TOPpage index.html  =====================*/
+.header_button {
+  color: #333;
+  margin: 5px;
+  padding: 0px 10px 0px 10px;
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+}
+.header_button::after {
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  content: '';
+  width: 100%;
+  height: 2px;
+  background: #333;
+  opacity: 0;
+  visibility: hidden;
+  transition: .3s;
+}
+.header_button:hover::after {
+  bottom: -4px;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* =============  check.html  =====================*/
+#video{
+  display: block;
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.flex{
+  padding: 2.5% 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
 }
 
 /* =============  終了画面ボタン  =====================*/
@@ -112,7 +163,7 @@ table tr:hover{
 table th,table td{
   text-align: center;
   width: 25%;
-  padding: 25px 0;
+  padding: 15px 0;
 }
 
 

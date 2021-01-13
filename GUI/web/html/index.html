@@ -1,13 +1,12 @@
-<!-- 接続完了画面 -->
-<!DOCTYPE html>
-<html lang="ja">
+<!DOCTYPE>
+<html>
 <head>
-  <title>FOCUS</title>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="../css/pure.css">
+  <script type="text/javascript" src="/eel.js"></script>
+  <script src="../js/Recognize.js"></script>
   <link rel="stylesheet" type="text/css" href="../css/style.min.css">
-  <link rel="stylesheet" type="text/css" href="../css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="../css/pure.css">
 </head>
 
 <header>
@@ -25,16 +24,16 @@
     </header>
 
 <body>
-  <div class="pure-g center">
-    <h1 class="pure-u h2_comp body_h1">Complete!!</h1>
-  </div>
-  <div class="pure-g center">
-    <img class="row" src="../images/webcam.svg" width="50px">
-    <img class="row" src="../images/hand.svg" width="150px">
-  </div>
-  <div class="pure-g center">
-    <h4 class="pure-u">手をかざしてください。</h4>
-  </div>
+
+  <!--ここから試作用、不要になったら削除-->
+  <button type="button" name="endbtn" value="end" onclick="test_clickBtn2()">終了(テスト用ボタン)</button>
+  <!--ここまで試作用、不要になったら削除-->
+
 </body>
 <footer></footer>
 </html>
+<script>
+  function link(target) {
+    window.location.href = target;
+  }
+</script>
