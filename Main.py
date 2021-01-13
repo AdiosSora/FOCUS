@@ -28,6 +28,10 @@ def end_flg():
     global end_flg
     end_flg = 1
 
+@eel.expose
+def preview_camera():
+    HandTracking.HandTracking(0,1)
+
 if __name__ == '__main__':
     continue_flg = 0    #Start.html が起動しているか判別、「1」で起動中
     focus_flg = 0
@@ -123,7 +127,7 @@ if __name__ == '__main__':
                         eel.sleep(0.01)
 
             print("【実行】HandTracking.py")
-            HandTracking.HandTracking(keep_flg, focus_flg)    #HandPose.py が終了するまで、 Main.py の以降の処理を行わない
+            HandTracking.HandTracking(keep_flg, focus_flg, 0)    #HandPose.py が終了するまで、 Main.py の以降の処理を行わない
             eel.focusSwitch(width, height)
             start_flg = 0
         elif(end_flg == 1):

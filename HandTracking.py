@@ -12,13 +12,13 @@ import numpy as np
 import mediapipe as mp
 import eel
 import autopy
+import base64
 
 from utils import CvFpsCalc
 from model import KeyPointClassifier
 from model import PointHistoryClassifier
 
 import PoseAction
-
 import hand_gui
 import traceback
 
@@ -44,7 +44,7 @@ def get_args():
     return args
 
 
-def HandTracking(keep_flg, focus_flg):
+def HandTracking(keep_flg,focus_flg,conf_flg = 0):
     # 引数解析 #################################################################
     args = get_args()
 
@@ -54,7 +54,6 @@ def HandTracking(keep_flg, focus_flg):
     flg_start = 0   #「1」で開始時点でのカメラ消失
     cnt_gui=0   #hand_guiにてeelを動かす用に使用（0:初回起動時、1:2回目以降起動時、2:カメラが切断された際にhtmlを閉じるために使用）
     name_pose = "Unknown"
-    focus_flg2 = focus_flg
 
     cap_device = args.device
     cap_width = args.width
@@ -251,16 +250,23 @@ def HandTracking(keep_flg, focus_flg):
 
             debug_image = draw_point_history(debug_image, point_history)
             debug_image = draw_info(debug_image, fps, mode, number)
+            if(conf_flg == 0):
+                # 画面反映 #############################################################
+                debug_image = cv.resize(debug_image,dsize=(400, 200))
+                cv.imshow('Hand Gesture Recognition', debug_image)
+                # cv.imshow('Hand Gesture Recognition',image_test)
 
-            # 画面反映 #############################################################
+                # eel立ち上げ #############################################################
+                cnt_gui, flg_end, flg_restart, flg_start, keep_flg = hand_gui.start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg)
+            elif(conf_flg == 1):
+                flg_end = 0
+                _, imencode_image = cv.imencode('.jpg', debug_image)
+                base64_image = base64.b64encode(imencode_image)
+                eel.set_base64image("data:image/jpg;base64," + base64_image.decode("ascii"))
 
-            debug_image = cv.resize(debug_image,dsize=(400, 200))
-            cv.imshow('Hand Gesture Recognition', debug_image)
-            #cv.imshow('Hand Gesture Recognition', debug_image)
-
-            if(focus_flg2 == 1):
+            if(focus_flg == 1):
                 eel.focusSwitch(width, height)
-                focus_flg2 = 0
+                focus_flg = 0
 
             # eel立ち上げ #############################################################
             cnt_gui, flg_end, flg_restart, flg_start, keep_flg = hand_gui.start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg)

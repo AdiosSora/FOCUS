@@ -49,12 +49,20 @@
       </div>
 
       <script>
+      window.onload = function() {
+        eel.preview_camera()
+      };
+
       var rangeSlider = document.getElementById("rs-range-line");
       var value = rangeSlider.getAttribute('value');
       console.log(value); // 入力内容
-      </script>
 
-    <script src ="../js/range.js"></script>
+      eel.expose(set_base64image);
+      function set_base64image(base64image) {
+          document.getElementById("python_video").src = base64image;
+      }
+      </script>
+      <script src ="../js/range.js"></script>
     </body>
 
     <footer>
