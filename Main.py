@@ -74,6 +74,7 @@ if __name__ == '__main__':
     #eel.start('html/Start.html',size=(640,320),block=False)
     if(continue_flg == 0):
         eel.init("GUI/web")
+        label.master.destroy()
         eel.start('html/index.html',
                     size=(800,450),
                     position=(width/4, height/4),
