@@ -1,5 +1,10 @@
 import autopy
+import eel
 
+
+@eel.expose
+def sensitivity(value):
+    print(value)
 
 def action(sign_id,x,y,countpose):
     #画面端まで行くように処理
