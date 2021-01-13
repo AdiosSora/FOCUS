@@ -12,13 +12,13 @@ import numpy as np
 import mediapipe as mp
 import eel
 import autopy
+import base64
 
 from utils import CvFpsCalc
 from model import KeyPointClassifier
 from model import PointHistoryClassifier
 
 import PoseAction
-
 import hand_gui
 import traceback
 
@@ -44,7 +44,7 @@ def get_args():
     return args
 
 
-def HandTracking(keep_flg):
+def HandTracking(keep_flg,conf_flg = 0):
     # 引数解析 #################################################################
     args = get_args()
 
@@ -248,14 +248,19 @@ def HandTracking(keep_flg):
             debug_image = draw_point_history(debug_image, point_history)
             debug_image = draw_info(debug_image, fps, mode, number)
 
-            # 画面反映 #############################################################
-            debug_image = cv.resize(debug_image,dsize=(400, 200))
-            cv.imshow('Hand Gesture Recognition', debug_image)
-            # cv.imshow('Hand Gesture Recognition',image_test)
+            if(conf_flg == 0):
+                # 画面反映 #############################################################
+                debug_image = cv.resize(debug_image,dsize=(400, 200))
+                cv.imshow('Hand Gesture Recognition', debug_image)
+                # cv.imshow('Hand Gesture Recognition',image_test)
 
-            # eel立ち上げ #############################################################
-            cnt_gui, flg_end, flg_restart, flg_start, keep_flg = hand_gui.start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg)
-
+                # eel立ち上げ #############################################################
+                cnt_gui, flg_end, flg_restart, flg_start, keep_flg = hand_gui.start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg)
+            elif(conf_flg == 1):
+                flg_end = 0
+                _, imencode_image = cv.imencode('.jpg', debug_image)
+                base64_image = base64.b64encode(imencode_image)
+                eel.set_base64image("data:image/jpg;base64," + base64_image.decode("ascii"))
 
             if(flg_end == 1):
                 flg_break = 1
