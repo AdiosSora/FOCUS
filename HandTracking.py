@@ -249,7 +249,9 @@ def HandTracking(keep_flg):
             debug_image = draw_info(debug_image, fps, mode, number)
 
             # 画面反映 #############################################################
+            debug_image = cv.resize(debug_image,dsize=(400, 200))
             cv.imshow('Hand Gesture Recognition', debug_image)
+            # cv.imshow('Hand Gesture Recognition',image_test)
 
             # eel立ち上げ #############################################################
             cnt_gui, flg_end, flg_restart, flg_start, keep_flg = hand_gui.start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg)
