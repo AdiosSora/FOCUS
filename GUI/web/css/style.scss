@@ -42,6 +42,10 @@ header{
   justify-content: center;
 }
 
+.loader{
+  padding-top: 50px;
+}
+
 //改行することができる
 .row{
   margin: 15px 50px;
@@ -52,7 +56,7 @@ header{
   color: rgb(97, 187, 86);
 }
 
-/* =============  TOPpage strat.html  =====================*/
+/* =============  TOPpage index.html  =====================*/
 .header_button {
   color: #333;
   margin: 5px;
@@ -77,6 +81,22 @@ header{
   bottom: -4px;
   opacity: 1;
   visibility: visible;
+}
+
+/* =============  check.html  =====================*/
+#video{
+  display: block;
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.flex{
+  padding: 2.5% 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
 }
 
 /* =============  終了画面ボタン  =====================*/
@@ -139,7 +159,7 @@ table tr:hover{
 table th,table td{
   text-align: center;
   width: 25%;
-  padding: 25px 0;
+  padding: 15px 0;
 }
 
 

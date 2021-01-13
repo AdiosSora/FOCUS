@@ -1,7 +1,7 @@
 .ball-pulse-sync>div, .ball-pulse>div, .ball-scale-random>div, .ball-scale>div {
   background-color: #2c98e3;
   border-radius: 100%;
-  margin: 10px;
+  margin: 15px;
   display: inline-block
 }
 

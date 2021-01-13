@@ -19,6 +19,8 @@ from model import PointHistoryClassifier
 
 import PoseAction
 
+import hand_gui
+import traceback
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -51,6 +53,7 @@ def HandTracking(keep_flg):
     flg_restart = 0 #「1」でリスタートした際に hand_gui.py で eel が2度起動するのを防ぐ
     flg_start = 0   #「1」で開始時点でのカメラ消失
     cnt_gui=0   #hand_guiにてeelを動かす用に使用（0:初回起動時、1:2回目以降起動時、2:カメラが切断された際にhtmlを閉じるために使用）
+    name_pose = "Unknown"
 
     cap_device = args.device
     cap_width = args.width
@@ -84,7 +87,7 @@ def HandTracking(keep_flg):
                 traceback.print_exc()
                 continue
             #カメラが接続されているか確認
-            cap2 = cv2.VideoCapture(0)
+            cap2 = cv.VideoCapture(0)
             ret2, frame2 = cap2.read()
             if(ret2 is True):
                 #カメラが接続されている場合
@@ -159,18 +162,20 @@ def HandTracking(keep_flg):
             # カメラキャプチャ #####################################################
             ret, image = cap.read()
             if not ret:
+                #print("9999999999999999999999999999999999")
                 traceback.print_exc()
                 #それぞれのフラグを立てて、システムを終了させ、最初の while に戻る
                 flg_video = 1
                 cnt_gui = 2
                 try:
                     #webcam が最初から接続されていない場合は except の動作
-                    cnt_gui, flg_end, flg_restart, flg_start, keep_flg = hand_gui.start_gui(cnt_gui, cnt_pose, name_pose, flg_restart, flg_start, keep_flg)
+                    cnt_gui, flg_end, flg_restart, flg_start, keep_flg = hand_gui.start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg)
                 except NameError as name_e:
                     traceback.print_exc()
                     flg_start = 1
                     print("【通知】WebCameraが接続されていません。")
-                cap.stop()
+                #cap.stop()
+                cap.release()
                 cv.destroyAllWindows()
                 break
             image = cv.flip(image, 1)  # ミラー表示
@@ -234,6 +239,9 @@ def HandTracking(keep_flg):
                         keypoint_classifier_labels[hand_sign_id],
                         point_history_classifier_labels[most_common_fg_id[0][0]],
                     )
+
+                    name_pose = keypoint_classifier_labels[hand_sign_id]
+
             else:
                 point_history.append([0, 0])
 
@@ -244,6 +252,14 @@ def HandTracking(keep_flg):
             debug_image = cv.resize(debug_image,dsize=(400, 200))
             cv.imshow('Hand Gesture Recognition', debug_image)
             # cv.imshow('Hand Gesture Recognition',image_test)
+
+            # eel立ち上げ #############################################################
+            cnt_gui, flg_end, flg_restart, flg_start, keep_flg = hand_gui.start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg)
+
+
+            if(flg_end == 1):
+                flg_break = 1
+                break
 
         cap.release()
         cv.destroyAllWindows()
