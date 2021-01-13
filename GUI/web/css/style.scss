@@ -6,7 +6,9 @@
 }
 
 @media screen and (max-width: 600px) {
-		display: none;
+		header{
+      display: none;
+    }
 	}
 
 header{
@@ -45,7 +47,9 @@ header{
   display: flex;
   justify-content: center;
 }
-
+.container{
+  margin-top: 100px;
+}
 .loader{
   padding-top: 50px;
 }
