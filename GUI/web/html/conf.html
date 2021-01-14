@@ -12,13 +12,13 @@
 <header>
     <div class="pure-g">
     <div class="pure-u-1-5" style="text-align:center;">
-        <a onclick="link('Start.html')"><img src="../images/FOCUS-Logo.svg" width="220px"></a>
+        <a onclick="link('Start.html');previewoff()"><img src="../images/FOCUS-Logo.svg" width="220px"></a>
     </div>
     <div class="pure-u-4-5" style="text-align:right;">
-      <a class="header_button" href="index.html">TOP</a>
-      <a class="header_button" href="conf.html">設定</a>
-      <a class="header_button" href="help.html">使い方</a>
-      <a class="pure-button pure-button-primary" onclick="test_clickBtn1()">起動</a>
+      <a class="header_button" href="index.html" onclock="previewoff()">TOP</a>
+      <a class="header_button" href="conf.html" onclock="previewoff()">設定</a>
+      <a class="header_button" href="help.html" onclock="previewoff()">使い方</a>
+      <a class="pure-button pure-button-primary" onclick="test_clickBtn1();previewoff()">起動</a>
     </div>
     </div>
     </header>
@@ -49,12 +49,23 @@
       </div>
 
       <script>
+      window.onload = function() {
+        eel.preview_camera()
+      };
+      function previewoff(){
+        eel.preview_stop()
+      };
+
       var rangeSlider = document.getElementById("rs-range-line");
       var value = rangeSlider.getAttribute('value');
       console.log(value); // 入力内容
-      </script>
 
-    <script src ="../js/range.js"></script>
+      eel.expose(set_base64image);
+      function set_base64image(base64image) {
+          document.getElementById("python_video").src = base64image;
+      }
+      </script>
+      <script src ="../js/range.js"></script>
     </body>
 
     <footer>

@@ -4,30 +4,49 @@
     position: absolute;
     transform-origin: 0% 0%;
 }
-
+/* =============  index.html 小さい状態  =====================*/
+//500px以下で下記のソースが適用される
 @media screen and (max-width: 500px) {
 		header{
       display: none;
     }
 
-    .index_body_btn{
+    .small_index_object{
+      padding-right: 10px;
       text-align: right;
     }
-    .btn-flat-border{
-      display: inline-block;
-      padding: 0.3em 1em;
-      text-decoration: none;
-      color: #ac2e2e;
-      border: solid 2px #ac2e2e;
-      border-radius: 3px;
-      transition: .4s;
+
+    .small_index_btn {
+      min-width: 100px;
+      font-family: inherit;
+      appearance: none;
+      border: 0;
+      border-radius: 5px;
+      background: #4676d7;
+      color: #fff;
+      padding: 8px 16px;
+      font-size: 1rem;
+      cursor: pointer;
     }
 
-    .btn-flat-border:hover {
-      background: #ac2e2e;
-      color: white;
+    .small_index_btn:hover {
+      background: #1d49aa;
     }
-}
+
+    .small_index_btn:focus {
+      outline: none;
+      box-shadow: 0 0 0 4px #cbd6ee;
+    }
+
+    .poseGuage{
+      color: #4676d7;
+      padding-right: 10px;
+      text-align: right;
+    }
+    .small_index_pose_img{
+      display: inline;
+    }
+  }
 
 
 @media screen and (min-width: 500px) {
@@ -38,8 +57,19 @@
       border-style: solid;
       border-color: #afafaf;
     }
+    .small_index_btn{
+      display: none;
+
+    }
+
+    .poseGuage{
+      display:none;
+    }
     .btn-flat-border{
       display:none;
+    }
+    .small_index_pose{
+      display: none;
     }
     .top-menu-content{
       margin:50px 0px;

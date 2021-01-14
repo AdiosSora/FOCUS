@@ -89,26 +89,17 @@
     eel.expose(focusSwitch);
     function focusSwitch(width, height, focus_flg){
       const headIndex = document.getElementById("headIndex");
-      const endIndex = document.getElementById("endIndex");
-      const focusEnd = document.getElementById("focusEnd");
-      const poseGuage = document.getElementById("poseGuage");
+      //const endIndex = document.getElementById("endIndex");
+      //const focusEnd = document.getElementById("focusEnd");
+      //const poseGuage = document.getElementById("poseGuage");
 
-      if(focus_flg == 0){
-        //Main.py で開いた場合
-        focusEnd.style.visibility ="hidden";
-        poseGuage.style.visibility ="hidden";
-        headIndex.style.visibility ="visible";
-        endIndex.style.visibility ="visible";
-        window.resizeTo(800, 450)
-        window.moveTo(width/4, height/4)
-      }else{
-        //HandTracking.py で開いた場合
-        focusEnd.style.visibility ="visible";
-        poseGuage.style.visibility ="visible";
-        headIndex.style.visibility ="hidden";
-        endIndex.style.visibility ="hidden";
-        window.resizeTo(400,75)
+      if(headIndex.style.visibility=="visible"){
+        window.resizeTo(500, 150)
         window.moveTo(width, height)
+      }else{
+        headIndex.style.visibility ="visible";
+        window.resizeTo(800,450)
+        window.moveTo(width/4, height/4)
       }
     }
 

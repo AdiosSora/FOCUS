@@ -1,6 +1,7 @@
 import eel
 import traceback
 import HandTracking
+import PreviewHandTracking
 import cv2
 import win32gui, win32con
 from win32api import GetSystemMetrics
@@ -119,7 +120,7 @@ if __name__ == '__main__':
                         eel.sleep(0.01)
 
             print("【実行】HandTracking.py")
-            HandTracking.HandTracking(keep_flg, width, height)    #HandPose.py が終了するまで、 Main.py の以降の処理を行わない
+            HandTracking.HandTracking(keep_flg, width, height,)    #HandPose.py が終了するまで、 Main.py の以降の処理を行わない
             print("focus_flg:", focus_flg)
             eel.focusSwitch(width, height, focus_flg)
             start_flg = 0

@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
 import csv
 import copy
 import argparse
@@ -18,9 +16,16 @@ from utils import CvFpsCalc
 from model import KeyPointClassifier
 from model import PointHistoryClassifier
 
-import PoseAction
-import hand_gui
-import traceback
+interrupted = False
+
+@eel.expose
+def preview_stop():
+    global interrupted
+    interrupted = True
+
+@eel.expose
+def preview_camera():
+    PreviewHandTracking()
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -44,18 +49,10 @@ def get_args():
     return args
 
 
-def HandTracking(keep_flg, width, height, conf_flg = 0):
+def PreviewHandTracking():
     # 引数解析 #################################################################
+    global interrupted
     args = get_args()
-
-    flg_video = 0   #「1」でカメラが接続されていない
-    flg_break = 0   #「1」で最初のループを抜け終了する⇒正常終了
-    flg_restart = 0 #「1」でリスタートした際に hand_gui.py で eel が2度起動するのを防ぐ
-    flg_start = 0   #「1」で開始時点でのカメラ消失
-    cnt_gui=0   #hand_guiにてeelを動かす用に使用（0:初回起動時、1:2回目以降起動時、2:カメラが切断された際にhtmlを閉じるために使用）
-    name_pose = "Unknown"
-    focus_flg = 1   #index.html の表示・非表示の切り替え、「0」:Main.pyで開いた場合、「1」:HandTracking.pyで開いた場合
-
     cap_device = args.device
     cap_width = args.width
     cap_height = args.height
@@ -65,46 +62,9 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
     min_tracking_confidence = args.min_tracking_confidence
 
     use_brect = True
-    #width,height = autopy.screen.size() #eel で立ち上げた際の表示位置を指定するために取得
+    width,height = autopy.screen.size() #eel で立ち上げた際の表示位置を指定するために取得
 
     while(True):    #カメラが再度接続するまでループ処理
-        #カメラが接続されていないフラグの場合
-        if(flg_video == 1):
-
-            if(cnt_gui == 2):
-
-                eel.init('GUI/web')
-                eel.start('html/connect.html',
-                            mode='chrome',
-                            size=(500,600),  #サイズ指定（横, 縦）
-                            position=(width/2-250, height/2-300), #位置指定（left, top）
-                            block=False)
-                cnt_gui = 0
-                print("connect 接続しているよ！！")
-            try:
-                eel.sleep(0.01)
-            except:
-                print("エラー発生！！！！")
-                traceback.print_exc()
-                continue
-            #カメラが接続されているか確認
-            cap2 = cv.VideoCapture(0)
-            ret2, frame2 = cap2.read()
-            if(ret2 is True):
-                #カメラが接続されている場合
-                flg_video = 0
-                cnt_gui = 0
-                flg_restart = 1
-                print("webcamあったよ！！")
-                eel.windowclose()
-                continue    #最初の while に戻る
-            else:
-            #カメラが接続されていない場合
-            #print("webcamないよ！！！")
-                continue    #最初の while に戻る
-        #正常終了のフラグの場合
-        elif(flg_break == 1):
-            break   #最初の while を抜けて正常終了
         # カメラ準備 ###############################################################
         cap = cv.VideoCapture(cap_device)
         cap.set(cv.CAP_PROP_FRAME_WIDTH, cap_width)
@@ -150,7 +110,7 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
 
         #  ########################################################################
         mode = 0
-        CountPose = [0,0,0,0,0,0,0]
+
         while True:
             fps = cvFpsCalc.get()
 
@@ -163,19 +123,6 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
             # カメラキャプチャ #####################################################
             ret, image = cap.read()
             if not ret:
-                #print("9999999999999999999999999999999999")
-                traceback.print_exc()
-                #それぞれのフラグを立てて、システムを終了させ、最初の while に戻る
-                flg_video = 1
-                cnt_gui = 2
-                try:
-                    #webcam が最初から接続されていない場合は except の動作
-                    cnt_gui, flg_end, flg_restart, flg_start, keep_flg = hand_gui.start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg)
-                except NameError as name_e:
-                    traceback.print_exc()
-                    flg_start = 1
-                    print("【通知】WebCameraが接続されていません。")
-                #cap.stop()
                 cap.release()
                 cv.destroyAllWindows()
                 break
@@ -209,17 +156,7 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
 
                     # ハンドサイン分類
                     hand_sign_id = keypoint_classifier(pre_processed_landmark_list)
-                    #人差し指の先の座標を取得
-                    x,y = landmark_list[8]
-
-                    #倍率の設定
-                    PoseAction.sensitivity(10)
                     #各種操作の実行
-                    CountPose= PoseAction.action(hand_sign_id,x,y,CountPose)
-                    if hand_sign_id == 2:  # 指差しサイン
-                        point_history.append(landmark_list[8])  # 人差指座標
-                    else:
-                        point_history.append([0, 0])
 
                     # フィンガージェスチャー分類
                     finger_gesture_id = 0
@@ -252,28 +189,14 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
             debug_image = draw_point_history(debug_image, point_history)
             debug_image = draw_info(debug_image, fps, mode, number)
 
-            # 画面反映 #############################################################
-            debug_image = cv.resize(debug_image,dsize=(400, 200))
-            cv.imshow('Hand Gesture Recognition', debug_image)
-            # cv.imshow('Hand Gesture Recognition',image_test)
 
-            # eel立ち上げ #############################################################
-            cnt_gui, flg_end, flg_restart, flg_start, keep_flg = hand_gui.start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg)
+            _, imencode_image = cv.imencode('.jpg', debug_image)
+            base64_image = base64.b64encode(imencode_image)
+            eel.set_base64image("data:image/jpg;base64," + base64_image.decode("ascii"))
 
-            if(focus_flg == 1):
-                eel.focusSwitch(width, height, focus_flg)
-                focus_flg = 0
-
-            # eel立ち上げ #############################################################
-            cnt_gui, flg_end, flg_restart, flg_start, keep_flg = hand_gui.start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg)
-
-
-            if(flg_end == 1):
-                flg_break = 1
+            if(interrupted == True):
                 break
-
         cap.release()
-        cv.destroyAllWindows()
 
 def select_mode(key, mode):
     number = -1
