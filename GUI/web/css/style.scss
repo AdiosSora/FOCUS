@@ -118,7 +118,7 @@
       color: rgb(97, 187, 86);
     }
 
-    /* =============  TOPpage index.html  =====================*/
+    /* =============   index.html  =====================*/
     .header_button {
       color: #333;
       margin: 5px;
@@ -161,7 +161,7 @@
 
     }
 
-    /* =============  終了画面ボタン  =====================*/
+    /* =============  endpage.html  =====================*/
     a.btn--OK {
       color: #fff;
       background-color: #c10439;
@@ -201,31 +201,82 @@
       padding: 0;
     }
 
-    /* =============  テーブル  =====================*/
-    //help.html
-    table{
+    /* =============  help.html  =====================*/
+
+    .table_1{
       border-collapse: collapse;
       border-spacing: 0;
-      width: 100%;
+      table-layout: fixed;
+      width:100%;
+      margin-top: 20px;
     }
 
     table tr{
-      border-bottom: solid 1px #eee;
-      cursor: pointer;
+      border-bottom:none;
     }
 
-    table tr:hover{
-      background-color: #d4f0fd;
-    }
-
-    table th,table td{
+    .th_step{
       text-align: center;
-      width: 25%;
-      padding: 15px 0;
+      padding: 7px 0;
+      border-right:solid 1px #ddd;
+      border-left:solid 1px #ddd;
+      color: #0078e7;
+      font-size: 25px;
     }
 
+    .td_img{
+      text-align: center;
+      padding: 30px 0;
+      border-right:solid 1px #ddd;
+      border-left:solid 1px #ddd;
 
-    //conf.html　↓↓↓↓↓↓↓↓↓↓↓↓
+    }
+
+    .td_step_text{
+      text-align: center;
+      padding: 15px;
+      border-right:solid 1px #ddd;
+      border-left:solid 1px #ddd;
+      color: #656565;
+      font-size: 15px;
+
+    }
+
+    .table_2{
+      border-collapse: collapse;
+      border-spacing: 0;
+      table-layout: fixed;
+      margin-top: 20px;
+      width:100%;
+    }
+
+    .th_text{
+      text-align: center;
+      padding: 7px 0;
+      border-right:solid 1px #ddd;
+      border-left:solid 1px #ddd;
+      color: #656565;
+    }
+
+    .td_img{
+      text-align: center;
+      padding: 30px 0;
+      border-right:solid 1px #ddd;
+      border-left:solid 1px #ddd;
+
+    }
+
+    .td_text{
+      text-align: center;
+
+      border-right:solid 1px #ddd;
+      border-left:solid 1px #ddd;
+      color: #656565;
+      font-size: 15px;
+
+    }
+
+    /* =============  conf.html  =====================*/
 
     //タブcss
     .tab-wrap {
@@ -400,7 +451,6 @@
         }
 
     }
-    //ここまで↑↑↑↑↑↑↑↑↑↑↑↑
 
     //中央寄せ
     #python_video{
