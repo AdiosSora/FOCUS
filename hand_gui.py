@@ -20,6 +20,9 @@ def open_endpage():
                 )
     eel.sleep(0.01)
 
+
+
+
 @eel.expose
 def py_sysclose():
     #正常終了する場合のフラグを立てる
