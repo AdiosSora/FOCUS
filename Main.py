@@ -16,30 +16,38 @@ end_flg = 0 #システム終了のフラグ、「1」で終了
 #The_program_to_hide = win32gui.GetForegroundWindow()
 #win32gui.ShowWindow(The_program_to_hide , win32con.SW_HIDE)
 
-
-@eel.expose
-def get_value(value):
-
-    tree = ET.ElementTree(file='conf.xml')
+@eel.expose #Conf.htmlで設定を保存する時に呼ばれるeel関数
+def save_confvalue(value):
+    tree =  ET.parse('conf.xml')
     root = tree.getroot()
-    # XMLファイル書き込み
+    for item in root.iter('mouse_sensitivity'):
+        print(value)
+        item.text = value
     tree.write('conf.xml', encoding='UTF-8')
 
+@eel.expose #Conf.htmlで保存されている設定を初期反映するeel関数
+def set_confvalue():
+    tree =  ET.parse('conf.xml')
+    root = tree.getroot()
+    mouse_sensitivity = ""
+    for item in root.iter('mouse_sensitivity'):
+        print(item.text)
+        mouse_sensitivity = item.text
+    return mouse_sensitivity
 
-@eel.expose
+@eel.expose #手識別機能の起動ボタンを押されたときに呼ばれるeel関数
 def start_flg():
     #起動する場合のフラグを立てる
     print("【通知】起動ボタン押下")
     global start_flg
     start_flg = 1
 
-@eel.expose
+@eel.expose #手識別機能の終了ボタンを押された時のeel関数
 def end_flg():
     #正常終了する場合のフラグを立てる
+    print("【通知】終了ボタン押下")
     global end_flg
     end_flg = 1
-
-
 
 if __name__ == '__main__':
     focus_flg = 0   #index.html の表示・非表示の切り替え、「0」:Main.pyで開いた場合、「1」:HandTracking.pyで開いた場合
