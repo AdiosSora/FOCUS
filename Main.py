@@ -8,6 +8,7 @@ from win32api import GetSystemMetrics
 import tkinter as tk
 import math
 import autopy
+import xml.etree.ElementTree as ET
 
 start_flg = 0   #HandPose.py の開始フラグ、「1」で開始
 end_flg = 0 #システム終了のフラグ、「1」で終了
@@ -15,6 +16,16 @@ end_flg = 0 #システム終了のフラグ、「1」で終了
 #コンソールを消すときはここのコメントアウトを消してください。
 #The_program_to_hide = win32gui.GetForegroundWindow()
 #win32gui.ShowWindow(The_program_to_hide , win32con.SW_HIDE)
+
+
+@eel.expose
+def get_value(value):
+
+    tree = ET.ElementTree(file='conf.xml')
+    root = tree.getroot()
+    # XMLファイル書き込み
+    tree.write('conf.xml', encoding='UTF-8')
+
 
 @eel.expose
 def start_flg():
