@@ -7,6 +7,7 @@
   <script src ="../js/Recognize.js"></script>
   <link rel="stylesheet" type="text/css" href="../css/style.min.css">
   <link rel="stylesheet" type="text/css" href="../css/pure.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" />
 </head>
 <header>
     <div class="pure-g">
@@ -23,38 +24,70 @@
     </header>
 
 <body>
-     <table>
-          <tr align="center">
-            <th>No</th>
-            <th>Name</th>
-            <th>Pose</th>
-            <th>Do</th>
-          </tr>
-          <tr align="center">
-            <td>1</td>
-            <td>パー</td>
-            <td><img src="../images/Hand_Palm.svg"></td>
-            <td>カーソル移動</td>
-          </tr>
-          <tr align="center">
-            <td>2</td>
-            <td>グー</td>
-            <td><img src="../images/Hand_Palm.svg"></td>
-            <td>左クリック</td>
-          </tr>
-          <tr align="center">
-            <td>3</td>
-            <td>グー(保持)</td>
-            <td><img src="../images/Hand_Palm.svg"></td>
-            <td>ドラッグ</td>
-          </tr>
-          <tr align="center">
-            <td>4</td>
-            <td>グーからパー</td>
-            <td><img src="../images/Hand_Palm.svg"></td>
-            <td>ドロップ</td>
-          </tr>
-        </table>
+  <div class="tab-wrap">
+    <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">セットアップ</label>
+    <div class="tab-content">
+
+      <table class="table_1">
+        <tr>
+          <th class="th_step"><i class="fas fa-check"></i> STEP 1</th>
+          <th class="th_step"><i class="fas fa-check"></i> STEP 2</th>
+          <th class="th_step"><i class="fas fa-check"></i> STEP 3</th>
+
+        </tr>
+        <tr>
+
+          <td class="td_img"><img src="../images/step1.png" width="150px"></td>
+          <td class="td_img"><img src="../images/step2.png" width="150px"></td>
+          <td class="td_img"><img src="../images/step3.png" width="150px"></td>
+
+        </tr>
+        <tr>
+          <td class="td_step_text"><h4>右上の起動ボタンを押下して、<br>FOCUSを起動してください。</h4></td>
+          <td class="td_step_text"><h4>WEBカメラを接続してください。<br>複数接続している場合は使用したいWEBカメラを選択してください。</h4></td>
+          <td class="td_step_text"><h4>接続完了！<br>WEBカメラに手をかざしてください。</h4></td>
+
+
+        </tr>
+
+      </table>
+
+    </div>
+    <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">操作方法</label>
+    <div class="tab-content">
+      <table class="table_2">
+        <tr>
+          <th class="th_text">Palm</th>
+          <th class="th_text">Dang</th>
+          <th class="th_text">One</th>
+          <th class="th_text">Rock</th>
+          <th class="th_text">Three</th>
+          <th class="th_text">Three</th>
+        </tr>
+        <tr>
+
+          <td class="td_img"><img src="../images/Hand_Palm.svg" width="100px"></td>
+          <td class="td_img"><img src="../images/Hand_Palm.svg" width="100px"></td>
+          <td class="td_img"><img src="../images/Hand_Palm.svg" width="100px"></td>
+          <td class="td_img"><img src="../images/Hand_Palm.svg" width="100px"></td>
+          <td class="td_img"><img src="../images/Hand_Palm.svg" width="100px"></td>
+          <td class="td_img"><img src="../images/Hand_Palm.svg" width="100px"></td>
+        </tr>
+        <tr>
+          <td class="td_text"><h4>マウス移動</h4></td>
+          <td class="td_text"><h4>クリック</h4></td>
+          <td class="td_text"><h4>右クリック</h4></td>
+          <td class="td_text"><h4>スクロール</h4></td>
+          <td class="td_text"><h4>ドラック</h4></td>
+          <td class="td_text"><h4>ダブルクリック</h4></td>
+        </tr>
+
+      </table>
+
+    </div>
+
+</div>
+
 
 </body>
 <footer></footer>
