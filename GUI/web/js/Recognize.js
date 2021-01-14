@@ -96,10 +96,12 @@
       if(headIndex.style.visibility=="visible"){
         window.resizeTo(500, 150)
         window.moveTo(width, height)
+        console.log("headIndex is visible");
       }else{
         headIndex.style.visibility ="visible";
         window.resizeTo(800,450)
         window.moveTo(width/4, height/4)
+        console.log("headIndex is hidden");
       }
     }
 

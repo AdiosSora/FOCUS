@@ -19,7 +19,8 @@ from model import KeyPointClassifier
 from model import PointHistoryClassifier
 
 import PoseAction
-import hand_gui
+#import hand_gui
+import hand_gui_test
 import traceback
 
 def get_args():
@@ -164,18 +165,19 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
             ret, image = cap.read()
             if not ret:
                 #print("9999999999999999999999999999999999")
-                traceback.print_exc()
+                #traceback.print_exc()
                 #それぞれのフラグを立てて、システムを終了させ、最初の while に戻る
                 flg_video = 1
                 cnt_gui = 2
-                try:
+                #try:
                     #webcam が最初から接続されていない場合は except の動作
-                    cnt_gui, flg_end, flg_restart, flg_start, keep_flg = hand_gui.start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg)
-                except NameError as name_e:
-                    traceback.print_exc()
-                    flg_start = 1
-                    print("【通知】WebCameraが接続されていません。")
+                    #cnt_gui, flg_end, flg_restart, flg_start, keep_flg = hand_gui.start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg)
+                #except NameError as name_e:
+                    #traceback.print_exc()
+                    #flg_start = 1
+                print("【通知】WebCameraが接続されていません。")
                 #cap.stop()
+                eel.windowclose()
                 cap.release()
                 cv.destroyAllWindows()
                 break
@@ -258,14 +260,14 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
             # cv.imshow('Hand Gesture Recognition',image_test)
 
             # eel立ち上げ #############################################################
-            cnt_gui, flg_end, flg_restart, flg_start, keep_flg = hand_gui.start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg)
+            #cnt_gui, flg_end, flg_restart, flg_start, keep_flg = hand_gui.start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg)
 
             if(focus_flg == 1):
                 eel.focusSwitch(width, height, focus_flg)
                 focus_flg = 0
 
             # eel立ち上げ #############################################################
-            cnt_gui, flg_end, flg_restart, flg_start, keep_flg = hand_gui.start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg)
+            cnt_gui, flg_end, flg_restart, flg_start, keep_flg = hand_gui_test.start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg)
 
 
             if(flg_end == 1):
