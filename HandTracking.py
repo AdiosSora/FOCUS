@@ -212,7 +212,7 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
                     x,y = landmark_list[8]
 
                     #倍率の設定
-                    PoseAction.sensitivity(10)
+                    PoseAction.sensitivity(0)
                     #各種操作の実行
                     CountPose= PoseAction.action(hand_sign_id,x,y,CountPose)
                     if hand_sign_id == 2:  # 指差しサイン

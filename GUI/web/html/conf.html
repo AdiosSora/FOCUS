@@ -35,7 +35,7 @@
         遅い　<input id="rs-range-line" class="rs-range" type="range" value="0" min="0" max="10">　速い
       </div>
       <div class="conf_body_btn">
-        <a class="pure-button pure-button-primary" href="#">適用</a>
+        <a class="pure-button pure-button-primary" href="#" onclick="get_value()">適用</a>
       </div>
     </div>
     <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">プレビュー</label>
@@ -47,7 +47,14 @@
         <h4 style="text-align:center">※PCにWEBカメラを接続してください。</h4>
       </div>
     </div>
+    <input id="TAB-03" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-03">ショートカット</label>
+    <div class="tab-content">
+      <div>
+          <input type='checkbox' id='shortcut' class="checkbox" />ショートカットキー有効化
+        <a class="pure-button pure-button-primary" onclick="keyshortcut()">保存</a>
+      </div>
   </div>
+</div>
 </body>
 <footer>
   <div class="conf_footer_btn">
@@ -72,6 +79,11 @@
   function set_base64image(base64image) {
       document.getElementById("python_video").src = base64image;
   }
+  function keyshortcut(){
+    if(shortcut.checked){
+      eel.shortcuton()
+    }
+  };
   </script>
   <script>
   var rangeSlider = document.getElementById("rs-range-line");
@@ -88,18 +100,19 @@
   function link(target) {
     window.location.href = target;
   }
+
+  function get_value() {
+    var value = document.getElementById("rs-range-line").value;
+    console.log(value);
+  }
+
 </script>
-<script>
-  var rangeSlider = document.getElementById("rs-range-line");
-  var value = rangeSlider.getAttribute('value');
-  console.log(value); // 入力内容
-</script>
+
 <script>
 eel.expose(set_base64image);
 function set_base64image(base64image) {
 document.getElementById("python_video").src = base64image;
 }
 </script>
-<script src="../js/range.js"></script>
 
 </html>

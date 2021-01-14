@@ -1,7 +1,6 @@
 import eel
 import traceback
 import HandTracking
-import PreviewHandTracking
 import cv2
 import win32gui, win32con
 from win32api import GetSystemMetrics
@@ -28,6 +27,8 @@ def end_flg():
     #正常終了する場合のフラグを立てる
     global end_flg
     end_flg = 1
+
+
 
 if __name__ == '__main__':
     focus_flg = 0   #index.html の表示・非表示の切り替え、「0」:Main.pyで開いた場合、「1」:HandTracking.pyで開いた場合
@@ -74,6 +75,7 @@ if __name__ == '__main__':
     #eel.start('html/Start.html',size=(640,320),block=False)
     #if(continue_flg == 0):
     eel.init("GUI/web")
+    label.master.destroy()
     eel.start('html/index.html',
                 size=(800,450),
                 position=(width/4, height/4),
@@ -130,6 +132,7 @@ if __name__ == '__main__':
             break
         else:
             eel.sleep(0.01)
+
     # while(i<10000):
     #     eel.sleep(0.01)
     #     print(i)
