@@ -65,44 +65,41 @@ $(function($) {
 });
 
 // // 確認ボタンを押したときにカメラが使用できるか確認
-// $(function($){
-//   $('#check').click(function(){
-//     if(video.srcObject.active == false){
-//       window.alert('カメラの接続を確認してください');
-//     }else{
-//       console.log("seikou");
-//       // window.location.href = 'complete.html';
-//     }
-//   });
-// });
 
 eel.expose(js_function);
 function js_function(){
   return $('#selector option:selected').text().slice(0,1);
 }
-//
-// try{
-//   $(function($){
-//     $('#check').click(function(){
-//       test();
-//     });
-//   });
-// }catch(err){
-//   cons(err);
-// }
-//
-// async function test(){
-//       navigator.mediaDevices.enumerateDevices()
-//       .then(function(devices) {
-//         devices.forEach(function(device) {
-//           if(device.kind == "videoinput"){
-//             var server = device.deviceId;
-//           }
-//         });
-//          // エラー発生時
-//       }).catch(function(err) {
-//         // console.error('カメラの接続に失敗しました', err);
-//     });
-//       let TEST = await eel.test_eel(server);
-//       console.log(TEST);
-// }
+
+function clickBtn1(){
+  eel.open_endpage();
+}
+
+function end_ok(){
+  eel.py_sysclose();
+  window.close();
+}
+
+function end_no(){
+  window.close();
+}
+
+eel.expose(sys_close);
+function sys_close() {
+    window.close();
+}
+
+eel.expose(windowclose)
+function windowclose(){
+  window.close();
+}
+
+eel.expose(set_posegauge);
+function set_posegauge(cnt_pose, name_pose){
+
+  /*７割越えのポーズのゲージのみを取得したい場合はこれ*/
+  var target = document.getElementById("poseGuage");
+
+  target.innerHTML = cnt_pose + '回，' + name_pose + '<meter max= "100" min= "0" low= "20" high= "80" optimum= "90" value= ' + cnt_pose +'></meter>';
+
+}

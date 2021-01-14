@@ -22,10 +22,12 @@ interrupted = False
 def preview_stop():
     global interrupted
     interrupted = True
+    print("プレビューストップ")
 
 @eel.expose
 def preview_camera():
     PreviewHandTracking()
+    print("プレビュースタート")
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -50,8 +52,10 @@ def get_args():
 
 
 def PreviewHandTracking():
+    print("【通知】PreviewHandTracking実行")
     # 引数解析 #################################################################
     global interrupted
+    interrupted = False
     args = get_args()
     cap_device = args.device
     cap_width = args.width
@@ -188,16 +192,17 @@ def PreviewHandTracking():
 
             debug_image = draw_point_history(debug_image, point_history)
             debug_image = draw_info(debug_image, fps, mode, number)
-
+            debug_image = cv.resize(debug_image, dsize=(640, 480))
 
             _, imencode_image = cv.imencode('.jpg', debug_image)
             base64_image = base64.b64encode(imencode_image)
             eel.set_base64image("data:image/jpg;base64," + base64_image.decode("ascii"))
-
-            if(interrupted == True):
+            eel.sleep(0.01)
+            if interrupted:
+                print("break")
                 break
+        eel.sleep(0.01)
         cap.release()
-
 def select_mode(key, mode):
     number = -1
     if 48 <= key <= 57:  # 0 ~ 9

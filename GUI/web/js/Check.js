@@ -67,20 +67,3 @@ $(function($) {
 //フレームレスウィンドウを作成する
 const BrowerWindow = require('electron').BrowserWindow
 var win = new BrowerWindow({width:800, height:600, frame:false , transparent:true, frame:false})
-
-// // 確認ボタンを押したときにカメラが使用できるか確認
-// $(function($){
-//   $('#check').click(function(){
-//     if(video.srcObject.active == false){
-//       window.alert('カメラの接続を確認してください');
-//     }else{
-//       console.log("seikou");
-//       // window.location.href = 'complete.html';
-//     }
-//   });
-// });
-
-// eel.expose(js_function);
-// function js_function(){
-//   return $('#selector option:selected').text().slice(0,1);
-// }
