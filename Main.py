@@ -1,7 +1,6 @@
 import eel
 import traceback
 import HandTracking
-import PreviewHandTracking
 import cv2
 import win32gui, win32con
 from win32api import GetSystemMetrics
@@ -29,10 +28,11 @@ def end_flg():
     global end_flg
     end_flg = 1
 
+
+
 if __name__ == '__main__':
     continue_flg = 0    #Start.html が起動しているか判別、「1」で起動中
     focus_flg = 0
-    interrupted = False
     width,height = autopy.screen.size()
     #eel.init("GUI/web")
 
@@ -79,7 +79,7 @@ if __name__ == '__main__':
         label.master.destroy()
         eel.start('html/index.html',
                     size=(800,450),
-                    position=(width/4, height/4),
+                    position=(width/2-400, height/2-225),
                     block=False)
         focus_flg = 1
         continue_flg = 1
@@ -134,6 +134,7 @@ if __name__ == '__main__':
             break
         else:
             eel.sleep(0.01)
+
     # while(i<10000):
     #     eel.sleep(0.01)
     #     print(i)
