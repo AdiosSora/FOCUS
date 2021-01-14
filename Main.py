@@ -106,6 +106,7 @@ if __name__ == '__main__':
                     break
                 else:
                     if(webcam_flg == 0):
+                        eel.windowclose()
                         print("【通知】WebCameraが接続されていません。")
                         eel.init('GUI/web')
                         eel.start('html/connect.html',
@@ -121,7 +122,6 @@ if __name__ == '__main__':
 
             print("【実行】HandTracking.py")
             HandTracking.HandTracking(keep_flg, width, height,)    #HandPose.py が終了するまで、 Main.py の以降の処理を行わない
-            print("focus_flg:", focus_flg)
             eel.focusSwitch(width, height, focus_flg)
             start_flg = 0
         elif(end_flg == 1):

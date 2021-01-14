@@ -88,20 +88,20 @@
 
     eel.expose(focusSwitch);
     function focusSwitch(width, height, focus_flg){
-      const headIndex = document.getElementById("headIndex");
+      //const headIndex = document.getElementById("headIndex");
       //const endIndex = document.getElementById("endIndex");
       //const focusEnd = document.getElementById("focusEnd");
       //const poseGuage = document.getElementById("poseGuage");
 
-      if(headIndex.style.visibility=="visible"){
+      if(focus_flg == 1){
         window.resizeTo(500, 150)
         window.moveTo(width, height)
-        console.log("headIndex is visible");
+        console.log("focus_flg is 1");
       }else{
-        headIndex.style.visibility ="visible";
+        //headIndex.style.visibility ="visible";
         window.resizeTo(800,450)
         window.moveTo(width/4, height/4)
-        console.log("headIndex is hidden");
+        console.log("focus_flg is 0");
       }
     }
 
