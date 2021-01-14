@@ -6,6 +6,7 @@ magnification = 1
 # @eel.expose
 def sensitivity(value):
     global magnification
+    #倍率を1.0から2.0までの範囲で実装
     magnification = 1 + value*0.1
 def action(sign_id,x,y,countpose):
     #画面端まで行くように処理
@@ -20,12 +21,16 @@ def action(sign_id,x,y,countpose):
         countpose = [0,0,0,0,0,0,0]
 
 
-    # if(sign_id==1):
-    #     #Dangの処理
-    #     if(countpose[1]<=3):
-    #         countpose[1] += 1
-    #     if(countpose[1]==3):
-    #         autopy.mouse.click(autopy.mouse.Button.LEFT)
+    if(sign_id==1):
+        #Dangの処理
+        if(countpose[1]<=10):
+            countpose[1] += 1
+        if(countpose[1]==10):
+            autopy.key.toggle(autopy.key.Code.F4,True,[autopy.key.Modifier.META])
+            autopy.key.toggle(autopy.key.Code.ALT,True,[autopy.key.Modifier.META])
+        if(countpose[1]==15):
+            autopy.key.toggle(autopy.key.Code.F4,False,[autopy.key.Modifier.META])
+            autopy.key.toggle(autopy.key.Code.ALT,False,[autopy.key.Modifier.META])
 
     if(sign_id==2):
         #gunの時の処理
