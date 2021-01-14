@@ -5,7 +5,6 @@
   <title>FOCUS</title>
   <meta charset="UTF-8">
   <script type="text/javascript" src="/eel.js"></script>
-  <script src ="../js/test.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="../css/pure.css">
   <link rel="stylesheet" type="text/css" href="../css/style.min.css">
@@ -25,6 +24,21 @@
       </div>
     </div>
 </section>
+
+
+<script>
+//はいボタン押下時発火、windowを閉じる、systemを終了する
+function end_ok(){
+  eel.py_sysclose();
+  window.close();
+}
+
+//いいえボタン押下時発火、windowを閉じる
+function end_no(){
+  window.close();
+}
+</script>
+
 </body>
 <footer></footer>
 </html>
