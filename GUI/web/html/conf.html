@@ -35,7 +35,7 @@
         遅い　<input id="rs-range-line" class="rs-range" type="range" value="0" min="0" max="10">　速い
       </div>
       <div class="conf_body_btn">
-        <a class="pure-button pure-button-primary" href="#">適用</a>
+        <a class="pure-button pure-button-primary" href="#" onclick="get_value()">適用</a>
       </div>
     </div>
     <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">プレビュー</label>
@@ -88,18 +88,19 @@
   function link(target) {
     window.location.href = target;
   }
+
+  function get_value() {
+    var value = document.getElementById("rs-range-line").value;
+    console.log(value);
+  }
+
 </script>
-<script>
-  var rangeSlider = document.getElementById("rs-range-line");
-  var value = rangeSlider.getAttribute('value');
-  console.log(value); // 入力内容
-</script>
+
 <script>
 eel.expose(set_base64image);
 function set_base64image(base64image) {
 document.getElementById("python_video").src = base64image;
 }
 </script>
-<script src="../js/range.js"></script>
 
 </html>
