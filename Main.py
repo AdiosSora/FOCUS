@@ -32,6 +32,7 @@ def end_flg():
 if __name__ == '__main__':
     continue_flg = 0    #Start.html が起動しているか判別、「1」で起動中
     focus_flg = 0
+    interrupted = False
     width,height = autopy.screen.size()
     #eel.init("GUI/web")
 
