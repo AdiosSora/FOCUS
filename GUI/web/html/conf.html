@@ -47,7 +47,14 @@
         <h4 style="text-align:center">※PCにWEBカメラを接続してください。</h4>
       </div>
     </div>
+    <input id="TAB-03" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-03">ショートカット</label>
+    <div class="tab-content">
+      <div>
+          <input type='checkbox' id='shortcut' class="checkbox" />ショートカットキー有効化
+        <a class="pure-button pure-button-primary" onclick="keyshortcut()">保存</a>
+      </div>
   </div>
+</div>
 </body>
 <footer>
   <div class="conf_footer_btn">
@@ -72,6 +79,11 @@
   function set_base64image(base64image) {
       document.getElementById("python_video").src = base64image;
   }
+  function keyshortcut(){
+    if(shortcut.checked){
+      eel.shortcuton()
+    }
+  };
   </script>
   <script>
   var rangeSlider = document.getElementById("rs-range-line");
