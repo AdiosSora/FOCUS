@@ -132,7 +132,7 @@ if __name__ == '__main__':
                         eel.start('html/connect.html',
                                     mode='chrome',
                                     size=(800,600),  #サイズ指定（横, 縦）
-                                    #position=(width/2-250, height/2-300), #位置指定（left, top）
+                                    position=(width/4, height/4), #位置指定（left, top）
                                     block=False)
                         eel.sleep(0.01)
                         time.sleep(0.01)
@@ -143,6 +143,7 @@ if __name__ == '__main__':
                         time.sleep(0.01)
 
             print("【実行】HandTracking.py")
+            eel.windowclose()
             HandTracking.HandTracking(keep_flg, width, height,)    #HandPose.py が終了するまで、 Main.py の以降の処理を行わない
             cap.release()
             eel.focusSwitch(width, height, focus_flg)

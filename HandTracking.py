@@ -47,6 +47,9 @@ def get_args():
 
 
 def HandTracking(keep_flg, width, height, conf_flg = 0):
+    # cmplete.html 起動#########################################################
+    complete_html(width, height)
+
     # 引数解析 #################################################################
     args = get_args()
 
@@ -75,7 +78,7 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
                 eel.start('html/connect.html',
                             mode='chrome',
                             size=(800,600),  #サイズ指定（横, 縦）
-                            position=(width/2-250, height/2-300), #位置指定（left, top）
+                            position=(width/4, height/4), #位置指定（left, top）
                             block=False)
                 print("connect 接続しているよ！！")
                 flg_restart = 0
@@ -97,6 +100,7 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
                 flg_video = 0
                 print("webcamあったよ！！")
                 eel.windowclose()
+                complete_html(width, height)
                 continue    #最初の while に戻る
             else:
             #カメラが接続されていない場合
@@ -267,7 +271,16 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
             #cnt_gui, flg_end, flg_restart, flg_start, keep_flg = hand_gui.start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg)
 
             if(focus_flg == 1):
-                eel.focusSwitch(width, height, focus_flg)
+                eel.windowclose()
+                eel.init("GUI/web")
+                eel.start("html/index.html",
+                            mode='chrome',
+                            size=(500, 150),  #サイズ指定（横, 縦）
+                            position=(width,height), #位置指定（left, top）
+                            block=False
+                            )
+                eel.sleep(0.01)
+                #eel.focusSwitch(width, height, focus_flg)
                 focus_flg = 0
                 #print("index.html 画面変更！！！！！！！！！！！！！！！！！！！！！！！")
 
@@ -545,3 +558,14 @@ def draw_info(image, fps, mode, number):
                        cv.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 1,
                        cv.LINE_AA)
     return image
+
+
+def complete_html(width, height):
+    eel.init('GUI/web')
+    eel.start('html/complete.html',
+                mode='chrome',
+                size=(800,600),  #サイズ指定（横, 縦）
+                position=(width/4, height/4), #位置指定（left, top）
+                block=False)
+    eel.sleep(1)
+    #time.sleep(0.01)
