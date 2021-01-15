@@ -1,5 +1,6 @@
 <!DOCTYPE>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,6 +25,7 @@
 </header>
 
 <body>
+<div class="big">
 <div class="tab-wrap">
     <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">マウス速度設定</label>
     <div class="tab-content">
@@ -48,12 +50,58 @@
     <input id="TAB-03" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-03">ショートカット</label>
     <div class="tab-content">
       <div>
-          <input type='checkbox' id='shortcut' class="checkbox" />ショートカットキー有効化
+        <input type='checkbox' id='shortcut' class="checkbox" />ショートカットキー有効化
         <a class="pure-button pure-button-primary" onclick="keyshortcut()">保存</a>
       </div>
+    </div>
   </div>
 </div>
+</div>
+
+<div class="small_index_object">
+<button class="small_index_btn" type="button" name="endbtn" value="end" onclick="endBtn()">×</button>
+</div>
+<div class="poseGuage">
+<h4 id="poseGuage"></h4>
+</div>
+
+<div class="small_index_pose">
+
+    <table class="small_table">
+      <tr>
+        <th class="small_th_text">Palm</th>
+        <th class="small_th_text">Dang</th>
+        <th class="small_th_text">One</th>
+        <th class="small_th_text">Rock</th>
+        <th class="small_th_text">Three</th>
+        <th class="small_th_text">Three</th>
+      </tr>
+      <tr>
+
+        <td class="small_td_img"><img src="../images/Hand_Palm.svg" width="50px"></td>
+        <td class="small_td_img"><img src="../images/Hand_Palm.svg" width="50px"></td>
+        <td class="small_td_img"><img src="../images/Hand_Palm.svg" width="50px"></td>
+        <td class="small_td_img"><img src="../images/Hand_Palm.svg" width="50px"></td>
+        <td class="small_td_img"><img src="../images/Hand_Palm.svg" width="50px"></td>
+        <td class="small_td_img"><img src="../images/Hand_Palm.svg" width="50px"></td>
+      </tr>
+      <tr>
+        <td class="small_td_text"><h6>マウス移動</h6></td>
+        <td class="small_td_text"><h6>クリック</h6></td>
+        <td class="small_td_text"><h6>右クリック</h6></td>
+        <td class="small_td_text"><h6>スクロール</h6></td>
+        <td class="small_td_text"><h6>ドラック</h6></td>
+        <td class="small_td_text"><h6>ダブルクリック</h6></td>
+      </tr>
+
+    </table>
+
+  </div>
+
 </body>
+
+
+
 <script>
   //スライダー設定
   var rangeSlider = document.getElementById("rs-range-line");
@@ -63,7 +111,7 @@
 
   function showSliderValue() {
     rangeBullet.innerHTML = rangeSlider.value;
-    var bulletPosition = (rangeSlider.value /rangeSlider.max);
+    var bulletPosition = (rangeSlider.value / rangeSlider.max);
     rangeBullet.style.left = (bulletPosition * 578) + "px";
   }
 
@@ -72,24 +120,28 @@
     window.location.href = target;
   }
 
-  setTimeout(setConfvalue(),50);
+  setTimeout(setConfvalue(), 50);
   //起動時設定ファイルの値をロード
   eel.expose(setConfvalue);
-   function setConfvalue() {
-     var mouse_sensitivity = eel.set_confvalue();
-    document.getElementById("rs-range-line").value = mouse_sensitivity
-    console.log(mouse_sensitivity);
+  function setConfvalue() {
+    var mouse_sensitivity = Promise.resolve(eel.set_confvalue()());
+    mouse_sensitivity.then(function(data) {
+      rangeSlider.value = data
+      rangeBullet.innerHTML = data
+      rangeBullet.style.left = ((data / rangeSlider.max) * 578) + "px";
+    });
   };
   //設定した値をコンフィグに書き込む関数
   eel.expose(saveConfigValue);
-  function saveConfigValue(){
-    console.log(valuedocument.getElementById("rs-range-line").value);
-    eel.save_confvalue(valuedocument.getElementById("rs-range-line").value);
+  function saveConfigValue() {
+    eel.save_confvalue(rangeSlider.value);
   }
-  function keyshortcut(){
-    if(shortcut.checked){
+
+  function keyshortcut() {
+    if (shortcut.checked) {
       eel.shortcuton()
     }
   };
 </script>
+
 </html>

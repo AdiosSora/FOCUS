@@ -22,20 +22,17 @@ end_flg = 0 #システム終了のフラグ、「1」で終了
 def save_confvalue(value):
     tree =  ET.parse('conf.xml')
     root = tree.getroot()
-    for item in root.iter('mouse_sensitivity'):
-        print(value)
-        item.text = value
+    #for item in root.iter('setting'):
+    for item in root:
+        item.find("mouse_sensitivity").text = value
     tree.write('conf.xml', encoding='UTF-8')
 
 @eel.expose #Conf.htmlで保存されている設定を初期反映するeel関数
 def set_confvalue():
     tree =  ET.parse('conf.xml')
     root = tree.getroot()
-    mouse_sensitivity = ""
-    for item in root.iter('mouse_sensitivity'):
-        print(item.text)
-        mouse_sensitivity = item.text
-    return mouse_sensitivity
+    for item in root:
+        return item.find("mouse_sensitivity").text
 
 @eel.expose #手識別機能の起動ボタンを押されたときに呼ばれるeel関数
 def start_flg():
