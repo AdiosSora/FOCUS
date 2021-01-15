@@ -1,6 +1,6 @@
 import autopy
 import eel
-import pyautogui
+import pyautogui as pgui
 
 #倍率
 magnification = 1
@@ -10,11 +10,10 @@ shortcutflag = False
 def shortcuton():
     global shortcutflag
     shortcutflag = True
-# @eel.expose
 def sensitivity(value):
     global magnification
     #倍率を1.0から2.0までの範囲で実装
-    magnification = 1 + value*0.1
+    magnification = 1 + int(value)*0.1
 def action(sign_id,x,y,countpose):
     #画面端まで行くように処理
     global magnification
@@ -32,13 +31,11 @@ def action(sign_id,x,y,countpose):
         #alt+f4押す処理
         global shortcutflag
         if(shortcutflag):
-            if(countpose[1]<=15):
+            if(countpose[1]<=10):
                 countpose[1] += 1
             if(countpose[1]==10):
-                autopy.key.toggle(autopy.key.Code.ALT,True,[autopy.key.Modifier.META])
-            if(countpose[1]==15):
-                autopy.key.tap(autopy.key.Code.F4,[autopy.key.Modifier.META])
-                autopy.key.toggle(autopy.key.Code.ALT,False,[autopy.key.Modifier.META])
+                pgui.hotkey('alt','f4')
+
 
     if(sign_id==2):
         #gunの時の処理
@@ -75,13 +72,10 @@ def action(sign_id,x,y,countpose):
     if(sign_id==6):
         #oneの時の処理
         if(shortcutflag):
-            if(countpose[6]<=15):
+            if(countpose[6]<=10):
                 countpose[6] += 1
             if(countpose[6]==10):
-                autopy.key.toggle(autopy.key.Code.CONTROL,True,[autopy.key.Modifier.META])
-            if(countpose[6]==15):
-                autopy.key.type_string("c",wpm = 0)
-                autopy.key.toggle(autopy.key.Code.CONTROL,False,[autopy.key.Modifier.META])
+                pgui.hotkey('ctrl', 'c')
 
 
     return countpose

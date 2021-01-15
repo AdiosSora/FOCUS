@@ -23,6 +23,7 @@ import PoseAction
 import hand_gui_test
 import traceback
 import time
+import xml.etree.ElementTree as ET
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -45,6 +46,11 @@ def get_args():
 
     return args
 
+def seting_confvalue():
+    tree =  ET.parse('conf.xml')
+    root = tree.getroot()
+    for item in root:
+        return item.find("mouse_sensitivity").text
 
 def HandTracking(keep_flg, width, height, conf_flg = 0):
     # 引数解析 #################################################################
@@ -66,6 +72,8 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
 
     use_brect = True
     #width,height = autopy.screen.size() #eel で立ち上げた際の表示位置を指定するために取得
+    PoseAction.sensitivity(seting_confvalue())
+
 
     while(True):    #カメラが再度接続するまでループ処理
         #カメラが接続されていないフラグの場合
@@ -90,6 +98,7 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
             ret2, frame2 = cap2.read()
             if(ret2 is True):
                 #カメラが接続されている場合
+                cap2.release()
                 eel.sleep(0.01)
                 time.sleep(0.01)
                 flg_restart = 1
@@ -152,7 +161,9 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
         #  ########################################################################
         mode = 0
         CountPose = [0,0,0,0,0,0,0]
+        #i = 1
         while True:
+            #print(i, "回目開始！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！")
             fps = cvFpsCalc.get()
 
             # キー処理(ESC：終了) #################################################
@@ -213,9 +224,6 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
                     hand_sign_id = keypoint_classifier(pre_processed_landmark_list)
                     #人差し指の先の座標を取得
                     x,y = landmark_list[8]
-
-                    #倍率の設定
-                    PoseAction.sensitivity(0)
                     #各種操作の実行
                     CountPose= PoseAction.action(hand_sign_id,x,y,CountPose)
                     if hand_sign_id == 2:  # 指差しサイン
@@ -258,6 +266,7 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
             debug_image = cv.resize(debug_image,dsize=(400, 200))
             cv.imshow('Hand Gesture Recognition', debug_image)
             # cv.imshow('Hand Gesture Recognition',image_test)
+            #print("画面反映！！！！！！！！！！！！！！！！！！！")
 
             # eel立ち上げ #############################################################
             #cnt_gui, flg_end, flg_restart, flg_start, keep_flg = hand_gui.start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg)
@@ -265,17 +274,20 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
             if(focus_flg == 1):
                 eel.focusSwitch(width, height, focus_flg)
                 focus_flg = 0
+                #print("index.html 画面変更！！！！！！！！！！！！！！！！！！！！！！！")
 
             # eel立ち上げ #############################################################
             flg_end, flg_restart, keep_flg = hand_gui_test.start_gui(name_pose, flg_restart, keep_flg)
 
+            #print(i, "回目終了！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！")
+            #i+=1
 
             if(flg_end == 1):
                 flg_break = 1
                 break
 
-        cap.release()
-        cv.destroyAllWindows()
+    cap.release()
+    cv.destroyAllWindows()
 
 def select_mode(key, mode):
     number = -1
