@@ -1,5 +1,6 @@
 <!DOCTYPE>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,7 +25,7 @@
 </header>
 
 <body>
-<div class="tab-wrap">
+  <div class="tab-wrap">
     <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">マウス速度設定</label>
     <div class="tab-content">
       <p>下のスライダーバーの数値を指定し、右下の適用ボタンをクリックして、下のプレビュー画面で設定をテストしてください。</p>
@@ -48,11 +49,11 @@
     <input id="TAB-03" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-03">ショートカット</label>
     <div class="tab-content">
       <div>
-          <input type='checkbox' id='shortcut' class="checkbox" />ショートカットキー有効化
+        <input type='checkbox' id='shortcut' class="checkbox" />ショートカットキー有効化
         <a class="pure-button pure-button-primary" onclick="keyshortcut()">保存</a>
       </div>
+    </div>
   </div>
-</div>
 </body>
 <script>
   //スライダー設定
@@ -63,7 +64,7 @@
 
   function showSliderValue() {
     rangeBullet.innerHTML = rangeSlider.value;
-    var bulletPosition = (rangeSlider.value /rangeSlider.max);
+    var bulletPosition = (rangeSlider.value / rangeSlider.max);
     rangeBullet.style.left = (bulletPosition * 578) + "px";
   }
 
@@ -72,24 +73,30 @@
     window.location.href = target;
   }
 
-  setTimeout(setConfvalue(),50);
+  setTimeout(setConfvalue(), 50);
   //起動時設定ファイルの値をロード
   eel.expose(setConfvalue);
-   function setConfvalue() {
-     var mouse_sensitivity = eel.set_confvalue();
-    document.getElementById("rs-range-line").value = mouse_sensitivity
-    console.log(mouse_sensitivity);
+  function setConfvalue() {
+    var mouse_sensitivity = Promise.resolve(eel.set_confvalue()());
+    mouse_sensitivity.then(function(data) {
+      rangeSlider.value = data
+      rangeBullet.innerHTML = data
+      rangeBullet.style.left = ((data / rangeSlider.max) * 578) + "px";
+    });
   };
   //設定した値をコンフィグに書き込む関数
   eel.expose(saveConfigValue);
-  function saveConfigValue(){
-    console.log(valuedocument.getElementById("rs-range-line").value);
-    eel.save_confvalue(valuedocument.getElementById("rs-range-line").value);
+
+  function saveConfigValue() {
+    console.log(rangeSlider.value);
+    eel.save_confvalue(rangeSlider.value);
   }
-  function keyshortcut(){
-    if(shortcut.checked){
+
+  function keyshortcut() {
+    if (shortcut.checked) {
       eel.shortcuton()
     }
   };
 </script>
+
 </html>
