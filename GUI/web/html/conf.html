@@ -25,7 +25,8 @@
 </header>
 
 <body>
-  <div class="tab-wrap">
+<div class="big">
+<div class="tab-wrap">
     <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">マウス速度設定</label>
     <div class="tab-content">
       <p>下のスライダーバーの数値を指定し、右下の適用ボタンをクリックして、下のプレビュー画面で設定をテストしてください。</p>
@@ -54,7 +55,53 @@
       </div>
     </div>
   </div>
+</div>
+</div>
+
+<div class="small_index_object">
+<button class="small_index_btn" type="button" name="endbtn" value="end" onclick="endBtn()">×</button>
+</div>
+<div class="poseGuage">
+<h4 id="poseGuage"></h4>
+</div>
+
+<div class="small_index_pose">
+
+    <table class="small_table">
+      <tr>
+        <th class="small_th_text">Palm</th>
+        <th class="small_th_text">Dang</th>
+        <th class="small_th_text">One</th>
+        <th class="small_th_text">Rock</th>
+        <th class="small_th_text">Three</th>
+        <th class="small_th_text">Three</th>
+      </tr>
+      <tr>
+
+        <td class="small_td_img"><img src="../images/Hand_Palm.svg" width="50px"></td>
+        <td class="small_td_img"><img src="../images/Hand_Palm.svg" width="50px"></td>
+        <td class="small_td_img"><img src="../images/Hand_Palm.svg" width="50px"></td>
+        <td class="small_td_img"><img src="../images/Hand_Palm.svg" width="50px"></td>
+        <td class="small_td_img"><img src="../images/Hand_Palm.svg" width="50px"></td>
+        <td class="small_td_img"><img src="../images/Hand_Palm.svg" width="50px"></td>
+      </tr>
+      <tr>
+        <td class="small_td_text"><h6>マウス移動</h6></td>
+        <td class="small_td_text"><h6>クリック</h6></td>
+        <td class="small_td_text"><h6>右クリック</h6></td>
+        <td class="small_td_text"><h6>スクロール</h6></td>
+        <td class="small_td_text"><h6>ドラック</h6></td>
+        <td class="small_td_text"><h6>ダブルクリック</h6></td>
+      </tr>
+
+    </table>
+
+  </div>
+
 </body>
+
+
+
 <script>
   //スライダー設定
   var rangeSlider = document.getElementById("rs-range-line");
