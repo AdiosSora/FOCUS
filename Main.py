@@ -51,49 +51,49 @@ def end_flg():
 if __name__ == '__main__':
     focus_flg = 0   #index.html の表示・非表示の切り替え、「0」:Main.pyで開いた場合、「1」:HandTracking.pyで開いた場合
     width,height = autopy.screen.size()
-    #eel.init("GUI/web")
+    eel.init("GUI/web")
 
-    # label = tk.Tk()
-    # label.title("splash")
-    # label.minsize(870, 490)
-    #
-    # splash = tk.PhotoImage(file="splash.gif")
-    # gif_index = 0
-    #
-    # def next_frame():
-    #     global gif_index
-    #     try:
-    #         splash.configure(format="gif -index {}".format(gif_index))
-    #
-    #         gif_index += 1
-    #     except tk.TclError:
-    #         gif_index = 0
-    #         return next_frame()
-    #     else:
-    #         label.after(1, next_frame)
-    #
-    # label = tk.Canvas(bg="black", width=870, height=490)
-    # label.master.overrideredirect(True)
-    # label.place(x=0, y=0)
-    # label.create_image(0, 0, image=splash, anchor=tk.NW)
-    # window_width = 870
-    # window_height = 490
-    # create_width = math.floor(GetSystemMetrics(0)/2-window_width/2)
-    # create_height = math.floor(GetSystemMetrics(1)/2-window_height/2)
-    # label.master.geometry(str(window_width) + "x" + str(window_height) + "+" + str(create_width) + "+" + str(create_height))
-    # label.master.lift()
-    # label.master.wm_attributes("-topmost", True)
-    # label.master.wm_attributes("-disabled", True)
-    #
-    # label.pack()
-    # label.after(3000, lambda: [print("call_back_funcの実行"), label.quit()])
-    # label.after_idle(next_frame)
-    # label.mainloop()
+    label = tk.Tk()
+    label.title("splash")
+    label.minsize(870, 490)
+
+    splash = tk.PhotoImage(file="splash.gif")
+    gif_index = 0
+
+    def next_frame():
+        global gif_index
+        try:
+            splash.configure(format="gif -index {}".format(gif_index))
+
+            gif_index += 1
+        except tk.TclError:
+            gif_index = 0
+            return next_frame()
+        else:
+            label.after(1, next_frame)
+
+    label = tk.Canvas(bg="black", width=870, height=490)
+    label.master.overrideredirect(True)
+    label.place(x=0, y=0)
+    label.create_image(0, 0, image=splash, anchor=tk.NW)
+    window_width = 870
+    window_height = 490
+    create_width = math.floor(GetSystemMetrics(0)/2-window_width/2)
+    create_height = math.floor(GetSystemMetrics(1)/2-window_height/2)
+    label.master.geometry(str(window_width) + "x" + str(window_height) + "+" + str(create_width) + "+" + str(create_height))
+    label.master.lift()
+    label.master.wm_attributes("-topmost", True)
+    label.master.wm_attributes("-disabled", True)
+
+    label.pack()
+    label.after(3000, lambda: [print("call_back_funcの実行"), label.quit()])
+    label.after_idle(next_frame)
+    label.mainloop()
 
     #eel.start('html/Start.html',size=(640,320),block=False)
     #if(continue_flg == 0):
-    eel.init("GUI/web")
-    #label.master.destroy()
+    #eel.init("GUI/web")
+    label.master.destroy()
     eel.start('html/index.html',
                 size=(800,600),
                 position=(width/4, height/4),
@@ -144,6 +144,7 @@ if __name__ == '__main__':
 
             print("【実行】HandTracking.py")
             HandTracking.HandTracking(keep_flg, width, height,)    #HandPose.py が終了するまで、 Main.py の以降の処理を行わない
+            cap.release()
             eel.focusSwitch(width, height, focus_flg)
             start_flg = 0
         elif(end_flg == 1):
