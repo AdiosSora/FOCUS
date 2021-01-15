@@ -31,7 +31,7 @@ def save_confvalue(value):
 def set_confvalue():
     tree =  ET.parse('conf.xml')
     root = tree.getroot()
-    for item in root.iter('setting'):
+    for item in root:
         return item.find("mouse_sensitivity").text
 
 @eel.expose #手識別機能の起動ボタンを押されたときに呼ばれるeel関数
