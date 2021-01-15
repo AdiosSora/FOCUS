@@ -90,6 +90,7 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
             ret2, frame2 = cap2.read()
             if(ret2 is True):
                 #カメラが接続されている場合
+                cap2.release()
                 eel.sleep(0.01)
                 time.sleep(0.01)
                 flg_restart = 1
@@ -152,7 +153,9 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
         #  ########################################################################
         mode = 0
         CountPose = [0,0,0,0,0,0,0]
+        #i = 1
         while True:
+            #print(i, "回目開始！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！")
             fps = cvFpsCalc.get()
 
             # キー処理(ESC：終了) #################################################
@@ -258,6 +261,7 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
             debug_image = cv.resize(debug_image,dsize=(400, 200))
             cv.imshow('Hand Gesture Recognition', debug_image)
             # cv.imshow('Hand Gesture Recognition',image_test)
+            #print("画面反映！！！！！！！！！！！！！！！！！！！")
 
             # eel立ち上げ #############################################################
             #cnt_gui, flg_end, flg_restart, flg_start, keep_flg = hand_gui.start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg)
@@ -265,17 +269,20 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
             if(focus_flg == 1):
                 eel.focusSwitch(width, height, focus_flg)
                 focus_flg = 0
+                #print("index.html 画面変更！！！！！！！！！！！！！！！！！！！！！！！")
 
             # eel立ち上げ #############################################################
             flg_end, flg_restart, keep_flg = hand_gui_test.start_gui(name_pose, flg_restart, keep_flg)
 
+            #print(i, "回目終了！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！")
+            #i+=1
 
             if(flg_end == 1):
                 flg_break = 1
                 break
 
-        cap.release()
-        cv.destroyAllWindows()
+    cap.release()
+    cv.destroyAllWindows()
 
 def select_mode(key, mode):
     number = -1

@@ -1,4 +1,5 @@
 #試作用！！！！！！！！！！##############################
+#うまくいけば、hand_gui.py にそのまま移行予定######################
 
 import eel
 import base64
@@ -29,6 +30,7 @@ def py_sysclose():
     flg_end = 1
 
 def start_gui(name_pose, flg_restart, keep_flg):
+    #print("hand_gui_test.html だよ！！！！！！！！！！！！！！！！！！！！！！")
     if(flg_restart == 1):   #inde.html が立ち上がっているか
         eel.init("GUI/web")
         #eel.start("開きたい上記のフォルダ下のファイル名",～
