@@ -10,10 +10,8 @@ shortcutflag = False
 def shortcuton():
     global shortcutflag
     shortcutflag = True
-@eel.expose
 def sensitivity(value):
     global magnification
-    print(value)
     #倍率を1.0から2.0までの範囲で実装
     magnification = 1 + int(value)*0.1
 def action(sign_id,x,y,countpose):
