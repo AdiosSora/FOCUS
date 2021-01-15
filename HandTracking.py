@@ -23,6 +23,7 @@ import PoseAction
 import hand_gui_test
 import traceback
 import time
+import xml.etree.ElementTree as ET
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -45,6 +46,11 @@ def get_args():
 
     return args
 
+def seting_confvalue():
+    tree =  ET.parse('conf.xml')
+    root = tree.getroot()
+    for item in root:
+        return item.find("mouse_sensitivity").text
 
 def HandTracking(keep_flg, width, height, conf_flg = 0):
     # 引数解析 #################################################################
@@ -66,6 +72,8 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
 
     use_brect = True
     #width,height = autopy.screen.size() #eel で立ち上げた際の表示位置を指定するために取得
+    PoseAction.sensitivity(seting_confvalue())
+
 
     while(True):    #カメラが再度接続するまでループ処理
         #カメラが接続されていないフラグの場合
@@ -213,9 +221,6 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
                     hand_sign_id = keypoint_classifier(pre_processed_landmark_list)
                     #人差し指の先の座標を取得
                     x,y = landmark_list[8]
-
-                    #倍率の設定
-                    PoseAction.sensitivity(0)
                     #各種操作の実行
                     CountPose= PoseAction.action(hand_sign_id,x,y,CountPose)
                     if hand_sign_id == 2:  # 指差しサイン
