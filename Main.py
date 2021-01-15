@@ -57,7 +57,7 @@ if __name__ == '__main__':
     label.title("splash")
     label.minsize(870, 490)
 
-    splash = tk.PhotoImage(file="splash.gif")
+    splash = tk.PhotoImage(file="utils/splash.gif")
     gif_index = 0
 
     def next_frame():
