@@ -1,5 +1,10 @@
 <config>
+<<<<<<< HEAD
   <setting>
     <mouse_sensitivity>5</mouse_sensitivity>
   </setting>
 </config>
+=======
+  <mouse_sensitivity>0</mouse_sensitivity>
+</config>
+>>>>>>> b3f1d07246a6af850dcd2eb6a3b8981d138b7145
