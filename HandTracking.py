@@ -22,6 +22,7 @@ import PoseAction
 #import hand_gui
 import hand_gui_test
 import traceback
+import time
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -90,6 +91,7 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
             if(ret2 is True):
                 #カメラが接続されている場合
                 eel.sleep(0.01)
+                time.sleep(0.01)
                 flg_restart = 1
                 flg_video = 0
                 print("webcamあったよ！！")
@@ -99,6 +101,7 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
             #カメラが接続されていない場合
             #print("webcamないよ！！！")
                 eel.sleep(0.01)
+                time.sleep(0.01)
                 continue    #最初の while に戻る
         elif(flg_break == 1):
             break   #最初の while を抜けて正常終了

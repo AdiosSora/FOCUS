@@ -9,6 +9,8 @@ import math
 import autopy
 import xml.etree.ElementTree as ET
 
+import time
+
 start_flg = 0   #HandPose.py の開始フラグ、「1」で開始
 end_flg = 0 #システム終了のフラグ、「1」で終了
 
@@ -136,10 +138,12 @@ if __name__ == '__main__':
                                     #position=(width/2-250, height/2-300), #位置指定（left, top）
                                     block=False)
                         eel.sleep(0.01)
+                        time.sleep(0.01)
                         webcam_flg = 1
                         keep_flg = 1
                     else:
                         eel.sleep(0.01)
+                        time.sleep(0.01)
 
             print("【実行】HandTracking.py")
             HandTracking.HandTracking(keep_flg, width, height,)    #HandPose.py が終了するまで、 Main.py の以降の処理を行わない
