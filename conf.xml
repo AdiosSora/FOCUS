@@ -1,5 +1,6 @@
 <config>
   <setting>
     <mouse_sensitivity>5</mouse_sensitivity>
+    <poseshortcut>ctrl,z</poseshortcut>
   </setting>
 </config>

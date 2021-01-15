@@ -1,19 +1,27 @@
 import autopy
 import eel
 import pyautogui as pgui
-
+import xml.etree.ElementTree as ET
 #倍率
 magnification = 1
 shortcutflag = False
 
 @eel.expose
-def shortcuton():
+def shortcuton(value):
+    tree =  ET.parse('conf.xml')
+    root = tree.getroot()
+    #for item in root.iter('setting'):
+    for item in root:
+        item.find("poseshortcut").text = value
+    tree.write('conf.xml', encoding='UTF-8')
     global shortcutflag
     shortcutflag = True
+
 def sensitivity(value):
     global magnification
     #倍率を1.0から2.0までの範囲で実装
     magnification = 1 + int(value)*0.1
+
 def action(sign_id,x,y,countpose):
     #画面端まで行くように処理
     global magnification

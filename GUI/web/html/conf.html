@@ -50,7 +50,21 @@
     <input id="TAB-03" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-03">ショートカット</label>
     <div class="tab-content">
       <div>
-        <input type='checkbox' id='shortcut' class="checkbox" />ショートカットキー有効化
+        oneのポーズ
+        <select name="keyconfig" id="keyconfig">
+          <option value="ctrl,c">Ctl+C</option>
+          <option value="ctrl,v">Ctl+V</option>
+          <option value="ctrl,z">Ctl+Z</option>
+        </select>
+        <p></p>
+        dangのポーズ
+        <select name="keyconfig2" id="keyconfig2">
+          <option value="ctrl,c">Ctl+C</option>
+          <option value="ctrl,v">Ctl+V</option>
+          <option value="ctrl,z">Ctl+Z</option>
+        </select>
+        <p></p>
+        ショートカットキー有効化<input type='checkbox' id='shortcut' class="checkbox" />
         <a class="pure-button pure-button-primary" onclick="keyshortcut()">保存</a>
       </div>
     </div>
@@ -139,7 +153,7 @@
 
   function keyshortcut() {
     if (shortcut.checked) {
-      eel.shortcuton()
+      eel.shortcuton(keyconfig2.value)
     }
   };
 </script>

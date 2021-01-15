@@ -32,6 +32,7 @@ def py_sysclose():
 def start_gui(name_pose, flg_restart, keep_flg):
     #print("hand_gui_test.html だよ！！！！！！！！！！！！！！！！！！！！！！")
     if(flg_restart == 1):   #inde.html が立ち上がっているか
+        eel.windowclose()
         eel.init("GUI/web")
         #eel.start("開きたい上記のフォルダ下のファイル名",～
         eel.start("html/index.html",
@@ -45,7 +46,7 @@ def start_gui(name_pose, flg_restart, keep_flg):
     while(True):
         try:    #index.htmlが × をクリックして終了した場合をキャッチ
             eel.sleep(0.01) #コメントアウトするとindex.htmlにつながらないっぽい
-            eel.set_posegauge(name_pose)
+            #eel.set_posegauge(name_pose)
             return flg_end, flg_restart, keep_flg
         # except OSError as os_e:
         #     traceback.print_exc()
