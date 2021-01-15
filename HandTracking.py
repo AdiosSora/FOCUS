@@ -73,7 +73,7 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
                 eel.init('GUI/web')
                 eel.start('html/connect.html',
                             mode='chrome',
-                            size=(500,600),  #サイズ指定（横, 縦）
+                            size=(800,600),  #サイズ指定（横, 縦）
                             position=(width/2-250, height/2-300), #位置指定（left, top）
                             block=False)
                 print("connect 接続しているよ！！")

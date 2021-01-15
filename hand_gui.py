@@ -14,7 +14,7 @@ def open_endpage():
     #終了画面の、 endpage.html を立ち上げる
     eel.start("html/endpage.html",
                 mode='chrome',
-                size=(800,450),  #サイズ指定（横, 縦）
+                size=(800,600),  #サイズ指定（横, 縦）
                 position=(width/2-250, height/2-250), #位置指定（left, top）
                 block=False
                 )
@@ -128,7 +128,7 @@ def start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg):
             #eel.start("開きたい上記のフォルダ下のファイル名",～
             eel.start("html/index.html",
                         mode='chrome',
-                        size=(500, 150),  #サイズ指定（横, 縦）
+                        size=(500, 200),  #サイズ指定（横, 縦）
                         position=(width,height), #位置指定（left, top）
                         block=False
                         )
