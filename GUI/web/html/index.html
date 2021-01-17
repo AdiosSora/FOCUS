@@ -9,6 +9,7 @@
   <link rel="stylesheet" type="text/css" href="../css/style.min.css">
   <link rel="stylesheet" type="text/css" href="../css/pure.css">
   <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+  <link rel="stylesheet" type="text/css" href="../css/all.css">
 </head>
 
 <header id="headIndex">
@@ -17,22 +18,38 @@
       <a onclick="link('Start.html')"><img src="../images/FOCUS-Logo.svg" width="220px" class="header_logo"></a>
     </div>
     <div class="pure-u-4-5" style="text-align:right;">
-      <a class="header_button" href="index.html">TOP</a>
-      <a class="header_button" href="conf.html">設定</a>
-      <a class="header_button" href="help.html">使い方</a>
       <a class="pure-button pure-button-primary" onclick="test_clickBtn1()">起動</a>
     </div>
   </div>
 </header>
 
 <body>
-  <!--
-  <p id="endIndex">
-  <button type="button" name="endbtn" value="end" onclick="test_clickBtn2()">終了(テスト用ボタン)</button>
-</p>-->
+
   <div class="big">
-    <a class="pure-button pure-button-primary" onclick="test_clickBtn1()">起動</a>
+
+  <div class="cp_tab">
+  	<input type="radio" name="cp_tab" id="tab2_1" aria-controls="first_tab02" checked>
+  	<label for="tab2_1" style="text-align:center;">TOP</label>
+  	<input type="radio" name="cp_tab" id="tab2_2" aria-controls="second_tab02">
+  	<label for="tab2_2" style="text-align:center;">CONF</label>
+  	<input type="radio" name="cp_tab" id="tab2_3" aria-controls="third_tab02">
+  	<label for="tab2_3" style="text-align:center;">HELP</label>
+  	<div class="cp_tabpanels">
+  		<div class="cp_tabpanel">
+
+  		</div>
+  		<div class="cp_tabpanel">
+        <object  data="conf.html" style="width:800px;height:600px">
+        </object>
+  		</div>
+  		<div class="cp_tabpanel">
+        <object  data="help.html" style="width:800px;height:600px">
+        </object>
+  		</div>
+  	</div>
   </div>
+</div>
+
 
   <div class="small_index_object">
     <button class="small_index_btn" type="button" name="endbtn" value="end" onclick="endBtn()">×</button>
@@ -90,4 +107,6 @@
   function link(target) {
     window.location.href = target;
   }
+
+
 </script>

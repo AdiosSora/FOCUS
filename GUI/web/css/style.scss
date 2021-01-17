@@ -180,6 +180,78 @@ body {
       visibility: visible;
     }
 
+
+    //縦タブ　
+    .cp_tab *, .cp_tab *:before, .cp_tab *:after {
+    	-webkit-box-sizing: border-box;
+    	        box-sizing: border-box;
+    }
+    .cp_tab {
+    	margin: 1em auto;
+    	position: relative;
+    }
+    .cp_tab input[type='radio'] {
+    	margin: 0;
+    	padding: 0;
+    	border: none;
+    	border-radius: 0;
+    	outline: none;
+    	background: none;
+    	-webkit-appearance: none;
+    	        appearance: none;
+    	display: none;
+    }
+    .cp_tab .cp_tabpanel {
+    	display: none;
+    }
+    .cp_tab > input:first-child:checked ~ .cp_tabpanels > .cp_tabpanel:first-child,
+    .cp_tab > input:nth-child(3):checked ~ .cp_tabpanels > .cp_tabpanel:nth-child(2),
+    .cp_tab > input:nth-child(5):checked ~ .cp_tabpanels > .cp_tabpanel:nth-child(3),
+    .cp_tab > input:nth-child(7):checked ~ .cp_tabpanels > .cp_tabpanel:nth-child(4),
+    .cp_tab > input:nth-child(9):checked ~ .cp_tabpanels > .cp_tabpanel:nth-child(5),
+    .cp_tab > input:nth-child(11):checked ~ .cp_tabpanels > .cp_tabpanel:nth-child(6) {
+    	display: block;
+    }
+    .cp_tab .cp_tabpanels {
+    	position: absolute;
+    	top:0;
+    	left: 10em;
+    	display: block;
+    	height: 320px;
+    }
+    .cp_tab > input + label {
+    	position: relative;
+    	z-index: 100;
+    	top: -15px;
+    	left: 1px;
+    	display: block;
+    	width: 10em;
+    	margin-bottom: 20px;
+    	padding: 15px;
+    	cursor: pointer;
+    	border: 1px solid #cccccc;
+    	border-right: 0;
+    	border-radius: 6px 0 0 6px;
+    }
+    .cp_tab > input + label:last-of-type {
+    	margin-bottom: 100px;
+    }
+    .cp_tab > label:hover,
+    .cp_tab > input:focus + label {
+    	color: #0066cc;
+    }
+    .cp_tab > input:checked + label {
+    	border-color: #cccccc;
+    	border-right: 1px solid #ffffff;/*背景色と同じ*/
+    }
+    .cp_tab .cp_tabpanel {
+    	padding: 0.5em 1em;
+    	border-left: 1px solid #cccccc;
+    	min-height: 320px;
+    }
+
+
+
     /* =============  check.html  =====================*/
     #video{
       display: block;
@@ -319,22 +391,11 @@ body {
       flex-wrap: wrap;
       margin:20px 0;
     }
-    .tab-wrap:after {
-      content: '';
-      width: 100%;
-      height: 3px;
-      background: #0078e7;
-      display: block;
-      order: -1;
-    }
-    .tab-wrap img{
-      stroke: #0078e7;
-    }
+
     .tab-label {
-      color: White;
-      background: LightGray;
+      color: #505050;
+      background: #ffffff;
       font-weight: bold;
-      text-shadow: 0 -1px 0 rgba(0,0,0,.2);
       white-space: nowrap;
       text-align: center;
       padding: 10px .5em;
@@ -342,16 +403,10 @@ body {
       position: relative;
       z-index: 1;
       cursor: pointer;
-      border-radius: 5px 5px 0 0;
       flex: 1;
-    }
-    .tab-label:not(:last-of-type) {
-      margin-right: 5px;
+      border-bottom: inset 0.1px #b9b9b9;
     }
 
-    .tab-icon{
-      hover: #0078e7;
-    }
     .tab-content {
       width: 100%;
       height: 0;
@@ -360,7 +415,9 @@ body {
     }
     /* アクティブなタブ */
     .tab-switch:checked+.tab-label {
-      background: #0078e7;
+      background: #ffffff;
+      color:#0078e7;
+      border-bottom: inset 3px #0078e7;
     }
     .tab-switch:checked+.tab-label+.tab-content {
       height: auto;
@@ -487,23 +544,95 @@ body {
 
     }
 
-    //中央寄せ
-    #python_video{
-      display: block;
-      margin-top: 15px;
-      margin-left: auto;
-      margin-right: auto;
-
-    }
-
     .conf_body_btn{
-      text-align: right;
-      padding:60px 20px 0px 0px;
+      text-align: center;
+      padding:50px;
+
     }
 
     .conf_footer_btn{
-      text-align: right;
-      padding:60px 20px 0px 0px;
+      text-align: left;
+      margin: 15px 20px 30px 100px;
+      padding:60px 0px 0px 0px;
 
     }
+
+    .modal_wrap input{
+      display: none;
+    }
+
+    .modal_overlay{
+      display: flex;
+      justify-content: center;
+      overflow: auto;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9999;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.7);
+      opacity: 0;
+      transition: opacity 0.5s, transform 0s 0.5s;
+      transform: scale(0);
+    }
+
+    .modal_trigger{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    .modal_content{
+      align-self: flex-start;
+      width: 60%;
+      padding: 30px 30px 15px;
+      box-sizing: border-box;
+      background: #fff;
+      line-height: 1.4em;
+      transform: translateY(-100%);
+      transition: 0.5s;
+    }
+
+    .close_button{
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .modal_wrap input:checked ~ .modal_overlay{
+      opacity: 1;
+      transform: scale(1);
+      transition: opacity 0.5s;
+    }
+
+    .modal_wrap input:checked ~ .modal_overlay .modal_content{
+      transform: translateY(20px);
+    }
+
+    .open_button{
+      position: fixed;
+      text-align:center;
+      width: 100px;
+      margin: auto;
+      padding: 10px 10px 8px 10px;
+      color: #444;
+      font-weight: bold;
+      font-family: 'Montserrat', sans-serif;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.6);
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    label.open_button:hover{
+      background-color: #0078e7;
+      color:#ffffff;
+      transition: 0.5s;
+    }
+
+
+
+
+
   }

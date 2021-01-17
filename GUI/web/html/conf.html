@@ -10,22 +10,10 @@
   <link rel="stylesheet" type="text/css" href="../css/pure.css">
 
 </head>
-<header>
-  <div class="pure-g">
-    <div class="pure-u-1-5" style="text-align:center;">
-      <a onclick="link('Start.html');previewoff()"><img src="../images/FOCUS-Logo.svg" width="220px"></a>
-    </div>
-    <div class="pure-u-4-5" style="text-align:right;">
-      <a class="header_button" href="index.html">TOP</a>
-      <a class="header_button" href="conf.html">設定</a>
-      <a class="header_button" href="help.html">使い方</a>
-      <a class="pure-button pure-button-primary" onclick="test_clickBtn1();previewoff()">起動</a>
-    </div>
-  </div>
-</header>
 
 <body>
 <div class="big">
+
 <div class="tab-wrap">
     <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">マウス速度設定</label>
     <div class="tab-content">
@@ -34,20 +22,24 @@
         <span id="rs-bullet" class="rs-label">0</span>
         遅い　<input id="rs-range-line" class="rs-range" type="range" value="0" min="0" max="10">　速い
       </div>
-      <div class="conf_body_btn">
-        <a class="pure-button pure-button-primary" href="#" onclick="saveConfigValue()">適用</a>
+      <div>
+        <!-- <a class="pure-button pure-button-primary" href="#" onclick="saveConfigValue()">適用</a> -->
+        <div class="modal_wrap">
+        <input id="trigger" type="checkbox">
+          <div class="modal_overlay">
+            <label for="trigger" class="modal_trigger"></label>
+            <div class="modal_content">
+              <label for="trigger" class="close_button">✖️</label>
+              <h4 style="text-align:center;">設定を適応しました。</h4>
+            </div>
+          </div>
+        </div>
+        <div class="conf_footer_btn">
+        <label for="trigger" class="open_button" onclick="saveConfigValue()">適応</label>
+        </div>
       </div>
     </div>
-    <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">プレビュー</label>
-    <div class="tab-content">
-      <div>
-        <img id="python_video" src="../images/noimage.png">
-      </div>
-      <div>
-        <h4 style="text-align:center">※PCにWEBカメラを接続してください。</h4>
-      </div>
-    </div>
-    <input id="TAB-03" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-03">ショートカット</label>
+    <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">ショートカット</label>
     <div class="tab-content">
       <div>
         oneのポーズ
