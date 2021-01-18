@@ -296,8 +296,8 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
                 eel.init("GUI/web")
                 eel.start("html/index.html",
                             mode='chrome',
-                            size=(500, 150),  #サイズ指定（横, 縦）
-                            position=(width,height), #位置指定（left, top）
+                            size=(400, 200),  #サイズ指定（横, 縦）
+                            position=(width-400,height-200), #位置指定（left, top）
                             block=False
                             )
                 eel.sleep(0.01)

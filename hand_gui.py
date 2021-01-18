@@ -15,7 +15,7 @@ def open_endpage():
     eel.start("html/endpage.html",
                 mode='chrome',
                 size=(800,600),  #サイズ指定（横, 縦）
-                position=(width/2-250, height/2-250), #位置指定（left, top）
+                position=(width/2-400, height/2-300), #位置指定（left, top）
                 block=False
                 )
     eel.sleep(0.01)
@@ -128,8 +128,8 @@ def start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg):
             #eel.start("開きたい上記のフォルダ下のファイル名",～
             eel.start("html/index.html",
                         mode='chrome',
-                        size=(500, 200),  #サイズ指定（横, 縦）
-                        position=(width,height), #位置指定（left, top）
+                        size=(500, 100),  #サイズ指定（横, 縦）
+                        position=(width-500,height-400), #位置指定（left, top）
                         block=False
                         )
             #ここまで、test.html を使うときに使用
