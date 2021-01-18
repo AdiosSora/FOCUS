@@ -8,9 +8,10 @@
       }
     }
 
-    function sysclose(){
-      eel.py_sysclose();
-      window.close();
+    eel.expose(endSwitch);
+    function endSwitch(){
+      /*FOCUS終了フラグを立てた後、元の値に戻す*/
+      eel.sysclose_switch(0);
     }
 
     eel.expose(windowclose);
