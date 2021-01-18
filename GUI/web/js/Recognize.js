@@ -1,4 +1,4 @@
-      function clickBtn1(){
+    function clickBtn1(){
       const hidden_box = document.getElementById("hidden_box");
 
       if(hidden_box.style.display=="block"){
@@ -37,78 +37,36 @@
     eel.expose(set_posegauge);
     function set_posegauge(name_pose){
       document.getElementById("pose_text").innerHTML = name_pose + "取得";
-      console.log(name_pose);
+      document.getElementById("pose_palm").classList.remove("pose_highlight");
+      document.getElementById("pose_rock").classList.remove("pose_highlight");
+      document.getElementById("pose_gun").classList.remove("pose_highlight");
+      document.getElementById("pose_three").classList.remove("pose_highlight");
+      document.getElementById("pose_peace").classList.remove("pose_highlight");
+      document.getElementById("pose_dang").classList.remove("pose_highlight");
+      document.getElementById("pose_one").classList.remove("pose_highlight");
       switch(name_pose){
-        case 'Palm':
-          document.getElementByClass("pose_palm").style.backgroundColor = "#fffc00"
-          document.getElementByClass("pose_rock").style.backgroundColor = "#ffffff"
-          document.getElementByClass("pose_gun").style.backgroundColor = "#ffffff"
-          document.getElementByClass("pose_three").style.backgroundColor = "#ffffff"
-          document.getElementByClass("pose_peace").style.backgroundColor = "#ffffff"
-          document.getElementByClass("pose_dang").style.backgroundColor = "#ffffff"
-          document.getElementByClass("pose_one").style.backgroundColor = "#ffffff"
+        case "Palm":
+          document.getElementById("pose_palm").classList.add("pose_highlight");
           break;
-
-        case 'Rock':
-          document.getElementByClass("pose_palm").style.backgroundColor = "#ffffff"
-          document.getElementByClass("pose_rock").style.backgroundColor = "#fffc00"
-          document.getElementByClass("pose_gun").style.backgroundColor = "#ffffff"
-          document.getElementByClass("pose_three").style.backgroundColor = "#ffffff"
-          document.getElementByClass("pose_peace").style.backgroundColor = "#ffffff"
-          document.getElementByClass("pose_dang").style.backgroundColor = "#ffffff"
-          document.getElementByClass("pose_one").style.backgroundColor = "#ffffff"
-          break
-
-        case 'Gun':
-          document.getElementByClass("pose_palm").style.backgroundColor = "#ffffff"
-          document.getElementByClass("pose_rock").style.backgroundColor = "#ffffff"
-          document.getElementByClass("pose_gun").style.backgroundColor = "#fffc00"
-          document.getElementByClass("pose_three").style.backgroundColor = "#ffffff"
-          document.getElementByClass("pose_peace").style.backgroundColor = "#ffffff"
-          document.getElementByClass("pose_dang").style.backgroundColor = "#ffffff"
-          document.getElementByClass("pose_one").style.backgroundColor = "#ffffff"
-          break
-
-        case 'Three':
-          document.getElementByClass("pose_palm").style.backgroundColor = "#ffffff"
-          document.getElementByClass("pose_rock").style.backgroundColor = "#ffffff"
-          document.getElementByClass("pose_gun").style.backgroundColor = "#ffffff"
-          document.getElementByClass("pose_three").style.backgroundColor = "#fffc00"
-          document.getElementByClass("pose_peace").style.backgroundColor = "#ffffff"
-          document.getElementByClass("pose_dang").style.backgroundColor = "#ffffff"
-          document.getElementByClass("pose_one").style.backgroundColor = "#ffffff"
-          break
-
-        case 'Peace':
-          document.getElementByClass("pose_palm").style.backgroundColor = "#ffffff"
-          document.getElementByClass("pose_rock").style.backgroundColor = "#ffffff"
-          document.getElementByClass("pose_gun").style.backgroundColor = "#ffffff"
-          document.getElementByClass("pose_three").style.backgroundColor = "#ffffff"
-          document.getElementByClass("pose_peace").style.backgroundColor = "#fffc00"
-          document.getElementByClass("pose_dang").style.backgroundColor = "#ffffff"
-          document.getElementByClass("pose_one").style.backgroundColor = "#ffffff"
-          break
-
-        case 'Dang':
-          document.getElementByClass("pose_palm").style.backgroundColor = "#ffffff"
-          document.getElementByClass("pose_rock").style.backgroundColor = "#ffffff"
-          document.getElementByClass("pose_gun").style.backgroundColor = "#ffffff"
-          document.getElementByClass("pose_three").style.backgroundColor = "#ffffff"
-          document.getElementByClass("pose_peace").style.backgroundColor = "#ffffff"
-          document.getElementByClass("pose_dang").style.backgroundColor = "#fffc00"
-          document.getElementByClass("pose_one").style.backgroundColor = "#ffffff"
-          break
-
-        case 'One':
-          document.getElementByClass("pose_palm").style.backgroundColor = "#ffffff"
-          document.getElementByClass("pose_rock").style.backgroundColor = "#ffffff"
-          document.getElementByClass("pose_gun").style.backgroundColor = "#ffffff"
-          document.getElementByClass("pose_three").style.backgroundColor = "#ffffff"
-          document.getElementByClass("pose_peace").style.backgroundColor = "#ffffff"
-          document.getElementByClass("pose_dang").style.backgroundColor = "#ffffff"
-          document.getElementByClass("pose_one").style.backgroundColor = "#fffc00"
+        case "Rock":
+          document.getElementById("pose_rock").classList.add("pose_highlight");
           break;
-        }
+        case "Gun":
+          document.getElementById("pose_gun").classList.add("pose_highlight");
+          break;
+        case "Three":
+          document.getElementById("pose_three").classList.add("pose_highlight");
+          break;
+        case "Peace":
+          document.getElementById("pose_peace").classList.add("pose_highlight");
+          break;
+        case "Dang":
+          document.getElementById("pose_dang").classList.add("pose_highlight");
+          break;
+        case "One":
+          document.getElementById("pose_one").classList.add("pose_highlight");
+          break;
+      }
     }
 
     /*ここから試作用、不要になったら削除*/
@@ -157,5 +115,3 @@
         console.log("focus_flg is 0");
       }
     }
-
-/*ここまで試作用、不要になったら削除*/
