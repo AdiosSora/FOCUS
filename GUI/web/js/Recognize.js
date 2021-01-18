@@ -36,35 +36,83 @@
 
     eel.expose(set_posegauge);
     function set_posegauge(name_pose){
-      document.getElementById("pose_text").innerHTML = name_pose + "取得";
-      document.getElementById("pose_palm").classList.remove("pose_highlight");
-      document.getElementById("pose_rock").classList.remove("pose_highlight");
-      document.getElementById("pose_gun").classList.remove("pose_highlight");
-      document.getElementById("pose_three").classList.remove("pose_highlight");
-      document.getElementById("pose_peace").classList.remove("pose_highlight");
-      document.getElementById("pose_dang").classList.remove("pose_highlight");
-      document.getElementById("pose_one").classList.remove("pose_highlight");
       switch(name_pose){
         case "Palm":
-          document.getElementById("pose_palm").classList.add("pose_highlight");
+          if(document.getElementById("pose_palm").classList.contains('pose_highlight')==false){
+            document.getElementById("pose_palm").classList.add("pose_highlight");
+            document.getElementById("pose_rock").classList.remove("pose_highlight");
+            document.getElementById("pose_gun").classList.remove("pose_highlight");
+            document.getElementById("pose_three").classList.remove("pose_highlight");
+            document.getElementById("pose_peace").classList.remove("pose_highlight");
+            document.getElementById("pose_dang").classList.remove("pose_highlight");
+            document.getElementById("pose_one").classList.remove("pose_highlight");
+          }
           break;
         case "Rock":
-          document.getElementById("pose_rock").classList.add("pose_highlight");
-          break;
+          if(document.getElementById("pose_rock").classList.contains('pose_highlight')==false){
+            document.getElementById("pose_palm").classList.remove("pose_highlight");
+            document.getElementById("pose_rock").classList.add("pose_highlight");
+            document.getElementById("pose_gun").classList.remove("pose_highlight");
+            document.getElementById("pose_three").classList.remove("pose_highlight");
+            document.getElementById("pose_peace").classList.remove("pose_highlight");
+            document.getElementById("pose_dang").classList.remove("pose_highlight");
+            document.getElementById("pose_one").classList.remove("pose_highlight");
+          }
+            break;
         case "Gun":
-          document.getElementById("pose_gun").classList.add("pose_highlight");
+          if(document.getElementById("pose_gun").classList.contains('pose_highlight')==false){
+            document.getElementById("pose_palm").classList.remove("pose_highlight");
+            document.getElementById("pose_rock").classList.remove("pose_highlight");
+            document.getElementById("pose_gun").classList.add("pose_highlight");
+            document.getElementById("pose_three").classList.remove("pose_highlight");
+            document.getElementById("pose_peace").classList.remove("pose_highlight");
+            document.getElementById("pose_dang").classList.remove("pose_highlight");
+            document.getElementById("pose_one").classList.remove("pose_highlight");
+          }
           break;
         case "Three":
-          document.getElementById("pose_three").classList.add("pose_highlight");
+          if(document.getElementById("pose_three").classList.contains('pose_highlight')==false){
+            document.getElementById("pose_palm").classList.remove("pose_highlight");
+            document.getElementById("pose_rock").classList.remove("pose_highlight");
+            document.getElementById("pose_gun").classList.remove("pose_highlight");
+            document.getElementById("pose_three").classList.add("pose_highlight");
+            document.getElementById("pose_peace").classList.remove("pose_highlight");
+            document.getElementById("pose_dang").classList.remove("pose_highlight");
+            document.getElementById("pose_one").classList.remove("pose_highlight");
+          }
           break;
         case "Peace":
-          document.getElementById("pose_peace").classList.add("pose_highlight");
+          if(document.getElementById("pose_peace").classList.contains('pose_highlight')==false){
+            document.getElementById("pose_palm").classList.remove("pose_highlight");
+            document.getElementById("pose_rock").classList.remove("pose_highlight");
+            document.getElementById("pose_gun").classList.remove("pose_highlight");
+            document.getElementById("pose_three").classList.remove("pose_highlight");
+            document.getElementById("pose_peace").classList.add("pose_highlight");
+            document.getElementById("pose_dang").classList.remove("pose_highlight");
+            document.getElementById("pose_one").classList.remove("pose_highlight");
+          }
           break;
         case "Dang":
-          document.getElementById("pose_dang").classList.add("pose_highlight");
+          if(document.getElementById("pose_dang").classList.contains('pose_highlight')==false){
+            document.getElementById("pose_palm").classList.remove("pose_highlight");
+            document.getElementById("pose_rock").classList.remove("pose_highlight");
+            document.getElementById("pose_gun").classList.remove("pose_highlight");
+            document.getElementById("pose_three").classList.remove("pose_highlight");
+            document.getElementById("pose_peace").classList.remove("pose_highlight");
+            document.getElementById("pose_dang").classList.add("pose_highlight");
+            document.getElementById("pose_one").classList.remove("pose_highlight");
+          }
           break;
         case "One":
-          document.getElementById("pose_one").classList.add("pose_highlight");
+          if(document.getElementById("pose_one").classList.contains('pose_highlight')==false){
+            document.getElementById("pose_palm").classList.remove("pose_highlight");
+            document.getElementById("pose_rock").classList.remove("pose_highlight");
+            document.getElementById("pose_gun").classList.remove("pose_highlight");
+            document.getElementById("pose_three").classList.remove("pose_highlight");
+            document.getElementById("pose_peace").classList.remove("pose_highlight");
+            document.getElementById("pose_dang").classList.remove("pose_highlight");
+            document.getElementById("pose_one").classList.add("pose_highlight");
+          }
           break;
       }
     }
