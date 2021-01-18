@@ -39,7 +39,7 @@
       document.getElementById("pose_text").innerHTML = name_pose + "取得";
       console.log(name_pose);
       switch(name_pose){
-        case 'Palm':
+        case 'Palm':;
           document.getElementByClass("pose_palm").style.backgroundColor = "#fffc00"
           document.getElementByClass("pose_rock").style.backgroundColor = "#ffffff"
           document.getElementByClass("pose_gun").style.backgroundColor = "#ffffff"
@@ -49,7 +49,7 @@
           document.getElementByClass("pose_one").style.backgroundColor = "#ffffff"
           break;
 
-        case 'Rock':
+        case 'Rock':;
           document.getElementByClass("pose_palm").style.backgroundColor = "#ffffff"
           document.getElementByClass("pose_rock").style.backgroundColor = "#fffc00"
           document.getElementByClass("pose_gun").style.backgroundColor = "#ffffff"
@@ -59,7 +59,7 @@
           document.getElementByClass("pose_one").style.backgroundColor = "#ffffff"
           break
 
-        case 'Gun':
+        case 'Gun':;
           document.getElementByClass("pose_palm").style.backgroundColor = "#ffffff"
           document.getElementByClass("pose_rock").style.backgroundColor = "#ffffff"
           document.getElementByClass("pose_gun").style.backgroundColor = "#fffc00"
@@ -69,7 +69,7 @@
           document.getElementByClass("pose_one").style.backgroundColor = "#ffffff"
           break
 
-        case 'Three':
+        case 'Three':;
           document.getElementByClass("pose_palm").style.backgroundColor = "#ffffff"
           document.getElementByClass("pose_rock").style.backgroundColor = "#ffffff"
           document.getElementByClass("pose_gun").style.backgroundColor = "#ffffff"
@@ -79,7 +79,7 @@
           document.getElementByClass("pose_one").style.backgroundColor = "#ffffff"
           break
 
-        case 'Peace':
+        case 'Peace':;
           document.getElementByClass("pose_palm").style.backgroundColor = "#ffffff"
           document.getElementByClass("pose_rock").style.backgroundColor = "#ffffff"
           document.getElementByClass("pose_gun").style.backgroundColor = "#ffffff"
@@ -89,7 +89,7 @@
           document.getElementByClass("pose_one").style.backgroundColor = "#ffffff"
           break
 
-        case 'Dang':
+        case 'Dang':;
           document.getElementByClass("pose_palm").style.backgroundColor = "#ffffff"
           document.getElementByClass("pose_rock").style.backgroundColor = "#ffffff"
           document.getElementByClass("pose_gun").style.backgroundColor = "#ffffff"
@@ -99,7 +99,7 @@
           document.getElementByClass("pose_one").style.backgroundColor = "#ffffff"
           break
 
-        case 'One':
+        case 'One':;
           document.getElementByClass("pose_palm").style.backgroundColor = "#ffffff"
           document.getElementByClass("pose_rock").style.backgroundColor = "#ffffff"
           document.getElementByClass("pose_gun").style.backgroundColor = "#ffffff"
@@ -107,7 +107,8 @@
           document.getElementByClass("pose_peace").style.backgroundColor = "#ffffff"
           document.getElementByClass("pose_dang").style.backgroundColor = "#ffffff"
           document.getElementByClass("pose_one").style.backgroundColor = "#fffc00"
-          break
+          break;
+        }
     }
 
     /*ここから試作用、不要になったら削除*/
