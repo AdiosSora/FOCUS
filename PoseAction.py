@@ -6,16 +6,6 @@ import xml.etree.ElementTree as ET
 magnification = 1
 shortcutflag = False
 
-@eel.expose
-def shortcutondang(value):
-    tree =  ET.parse('conf.xml')
-    root = tree.getroot()
-    #for item in root.iter('setting'):
-    for item in root:
-        item.find("poseshortcut").text = value
-    tree.write('conf.xml', encoding='UTF-8')
-    global shortcutflag
-    shortcutflag = True
 
 @eel.expose
 def shortcutonone(value):
@@ -23,8 +13,20 @@ def shortcutonone(value):
     root = tree.getroot()
     #for item in root.iter('setting'):
     for item in root:
+        item.find("poseshortcut").text = value
+    tree.write('conf.xml', encoding='UTF-8')
+
+@eel.expose
+def shortcutondang(value):
+    tree =  ET.parse('conf.xml')
+    root = tree.getroot()
+    #for item in root.iter('setting'):
+    for item in root:
         item.find("poseshortcut2").text = value
     tree.write('conf.xml', encoding='UTF-8')
+    global shortcutflag
+    shortcutflag = True
+
 
 def sensitivity(value):
     global magnification

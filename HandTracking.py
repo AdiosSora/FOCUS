@@ -51,13 +51,13 @@ def seting_confvalue():
     root = tree.getroot()
     for item in root:
         return item.find("mouse_sensitivity").text
-
+@eel.expose
 def seting_poseshortcut():
     tree =  ET.parse('conf.xml')
     root = tree.getroot()
     for item in root:
         return item.find("poseshortcut").text
-
+@eel.expose
 def seting_poseshortcut2():
     tree =  ET.parse('conf.xml')
     root = tree.getroot()

@@ -2,6 +2,6 @@
   <setting>
     <mouse_sensitivity>7</mouse_sensitivity>
     <poseshortcut>ctrl,v</poseshortcut>
-    <poseshortcut2>ctrl,c</poseshortcut2>
+    <poseshortcut2>ctrl,z</poseshortcut2>
   </setting>
 </config>
