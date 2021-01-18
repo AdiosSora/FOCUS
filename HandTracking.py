@@ -52,9 +52,21 @@ def seting_confvalue():
     for item in root:
         return item.find("mouse_sensitivity").text
 
+def seting_poseshortcut():
+    tree =  ET.parse('conf.xml')
+    root = tree.getroot()
+    for item in root:
+        return item.find("poseshortcut").text
+
+def seting_poseshortcut2():
+    tree =  ET.parse('conf.xml')
+    root = tree.getroot()
+    for item in root:
+        return item.find("poseshortcut2").text
+
 def HandTracking(keep_flg, width, height, conf_flg = 0):
     # complete.html 起動#########################################################
-    #complete_html(width, height)
+    complete_html(width, height)
 
     # 引数解析 #################################################################
     args = get_args()
@@ -108,7 +120,7 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
                 flg_video = 0
                 print("webcamあったよ！！")
                 eel.windowclose()
-                #complete_html(width, height)
+                complete_html(width, height)
                 continue    #最初の while に戻る
             else:
             #カメラが接続されていない場合
@@ -165,11 +177,8 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
         #  ########################################################################
         mode = 0
         CountPose = [0,0,0,0,0,0,0]
-        #i = 1
         while True:
-            #print(i, "回目開始！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！")
             fps = cvFpsCalc.get()
-
             # キー処理(ESC：終了) #################################################
             key = cv.waitKey(10)
             if key == 27:  # ESC
@@ -196,14 +205,18 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
                 cap.release()
                 cv.destroyAllWindows()
                 break
+            #print("1image:", image)
             image = cv.flip(image, 1)  # ミラー表示
             debug_image = copy.deepcopy(image)
+            #print("1debug:", image)
 
             # 検出実施 #############################################################
             image = cv.cvtColor(image, cv.COLOR_BGR2RGB)
+            #print("2image:", image)
 
             image.flags.writeable = False
             results = hands.process(image)
+            #print("1results:", results)
             image.flags.writeable = True
 
             #  ####################################################################
@@ -229,7 +242,7 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
                     #人差し指の先の座標を取得
                     x,y = landmark_list[8]
                     #各種操作の実行
-                    CountPose= PoseAction.action(hand_sign_id,x,y,CountPose)
+                    CountPose= PoseAction.action(hand_sign_id,x,y,CountPose,seting_poseshortcut(),seting_poseshortcut2())
                     if hand_sign_id == 2:  # 指差しサイン
                         point_history.append(landmark_list[8])  # 人差指座標
                     else:
@@ -269,6 +282,7 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
 
             # 画面反映 #############################################################
             debug_image = cv.resize(debug_image,dsize=(400, 200))
+            #print("1debug_image:", debug_image)
             cv.imshow('Hand Gesture Recognition', debug_image)
             # cv.imshow('Hand Gesture Recognition',image_test)
             #print("画面反映！！！！！！！！！！！！！！！！！！！")
@@ -293,15 +307,13 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
             # eel立ち上げ #############################################################
             flg_end, flg_restart, keep_flg = hand_gui_test.start_gui(name_pose, flg_restart, keep_flg)
 
-            #print(i, "回目終了！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！")
-            #i+=1
-
             if(flg_end == 1):
                 flg_break = 1
+                #flg_end の値をもとに戻す関数
+                eel.endSwitch()
+                cap.release()
+                cv.destroyAllWindows()
                 break
-
-    cap.release()
-    cv.destroyAllWindows()
 
 def select_mode(key, mode):
     number = -1
@@ -573,5 +585,4 @@ def complete_html(width, height):
                 size=(800,600),  #サイズ指定（横, 縦）
                 position=(width/4, height/4), #位置指定（left, top）
                 block=False)
-    eel.sleep(1)
-    #time.sleep(0.01)
+    eel.sleep(0.5)

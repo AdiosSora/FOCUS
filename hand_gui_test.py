@@ -24,13 +24,12 @@ def open_endpage():
     eel.sleep(0.01)
 
 @eel.expose
-def py_sysclose():
-    #正常終了する場合のフラグを立てる
+def sysclose_switch(end_switch):
+    #正常終了する場合のフラグを立てる、元の数値（flg_end=0）に戻す
     global flg_end
-    flg_end = 1
+    flg_end = end_switch
 
 def start_gui(name_pose, flg_restart, keep_flg):
-    #print("hand_gui_test.html だよ！！！！！！！！！！！！！！！！！！！！！！")
     if(flg_restart == 1):   #inde.html が立ち上がっているか
         eel.windowclose()
         eel.init("GUI/web")
