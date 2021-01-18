@@ -259,6 +259,7 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
                     )
 
                     name_pose = keypoint_classifier_labels[hand_sign_id]
+                    eel.set_posegauge(str(name_pose))
 
             else:
                 point_history.append([0, 0])
