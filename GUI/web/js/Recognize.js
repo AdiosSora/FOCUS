@@ -35,27 +35,78 @@
 
     eel.expose(set_posegauge);
     function set_posegauge(name_pose){
-      document.getElementById("poseGuage").innerHTML = name_pose + "取得";
+      document.getElementById("pose_text").innerHTML = name_pose + "取得";
+      console.log(name_pose);
+      switch(name_pose){
+        case 'Palm':
+          document.getElementByClass("pose_palm").style.backgroundColor = "#fffc00"
+          document.getElementByClass("pose_rock").style.backgroundColor = "#ffffff"
+          document.getElementByClass("pose_gun").style.backgroundColor = "#ffffff"
+          document.getElementByClass("pose_three").style.backgroundColor = "#ffffff"
+          document.getElementByClass("pose_peace").style.backgroundColor = "#ffffff"
+          document.getElementByClass("pose_dang").style.backgroundColor = "#ffffff"
+          document.getElementByClass("pose_one").style.backgroundColor = "#ffffff"
+          break;
 
-      /*７割越えのポーズのゲージのみを取得したい場合はこれ
-      var target = document.getElementById("poseGuage");
+        case 'Rock':
+          document.getElementByClass("pose_palm").style.backgroundColor = "#ffffff"
+          document.getElementByClass("pose_rock").style.backgroundColor = "#fffc00"
+          document.getElementByClass("pose_gun").style.backgroundColor = "#ffffff"
+          document.getElementByClass("pose_three").style.backgroundColor = "#ffffff"
+          document.getElementByClass("pose_peace").style.backgroundColor = "#ffffff"
+          document.getElementByClass("pose_dang").style.backgroundColor = "#ffffff"
+          document.getElementByClass("pose_one").style.backgroundColor = "#ffffff"
+          break
 
-      target.innerHTML = cnt_pose + '回，' + name_pose + '<meter max= "100" min= "0" low= "20" high= "80" optimum= "90" value= ' + cnt_pose +'></meter>';
-      */
+        case 'Gun':
+          document.getElementByClass("pose_palm").style.backgroundColor = "#ffffff"
+          document.getElementByClass("pose_rock").style.backgroundColor = "#ffffff"
+          document.getElementByClass("pose_gun").style.backgroundColor = "#fffc00"
+          document.getElementByClass("pose_three").style.backgroundColor = "#ffffff"
+          document.getElementByClass("pose_peace").style.backgroundColor = "#ffffff"
+          document.getElementByClass("pose_dang").style.backgroundColor = "#ffffff"
+          document.getElementByClass("pose_one").style.backgroundColor = "#ffffff"
+          break
 
-      /*全ポーズのゲージを取得したい場合はこれ
-      var target0 = document.getElementById("poseGuage0");
-      var target1 = document.getElementById("poseGuage1");
-      var target2 = document.getElementById("poseGuage2");
-      var target3 = document.getElementById("poseGuage3");
-      var target4 = document.getElementById("poseGuage4");
+        case 'Three':
+          document.getElementByClass("pose_palm").style.backgroundColor = "#ffffff"
+          document.getElementByClass("pose_rock").style.backgroundColor = "#ffffff"
+          document.getElementByClass("pose_gun").style.backgroundColor = "#ffffff"
+          document.getElementByClass("pose_three").style.backgroundColor = "#fffc00"
+          document.getElementByClass("pose_peace").style.backgroundColor = "#ffffff"
+          document.getElementByClass("pose_dang").style.backgroundColor = "#ffffff"
+          document.getElementByClass("pose_one").style.backgroundColor = "#ffffff"
+          break
 
-      target0.innerHTML = cnt_pose[0] + '回，Dang<meter max= "100" min= "0" low= "20" high= "80" optimum= "90" value= ' + cnt_pose[0] +'></meter>';
-      target1.innerHTML = cnt_pose[1] + '回，Garbage<meter max= "100" min= "0" low= "20" high= "80" optimum= "90" value= ' + cnt_pose[1] +'></meter>';
-      target2.innerHTML = cnt_pose[2] + '回，Palm<meter max= "100" min= "0" low= "20" high= "80" optimum= "90" value= ' + cnt_pose[2] +'></meter>';
-      target3.innerHTML = cnt_pose[3] + '回，Peace<meter max= "100" min= "0" low= "20" high= "80" optimum= "90" value= ' + cnt_pose[3] +'></meter>';
-      target4.innerHTML = cnt_pose[4] + '回，Rock<meter max= "100" min= "0" low= "20" high= "80" optimum= "90" value= ' + cnt_pose[4] +'></meter>';
-      */
+        case 'Peace':
+          document.getElementByClass("pose_palm").style.backgroundColor = "#ffffff"
+          document.getElementByClass("pose_rock").style.backgroundColor = "#ffffff"
+          document.getElementByClass("pose_gun").style.backgroundColor = "#ffffff"
+          document.getElementByClass("pose_three").style.backgroundColor = "#ffffff"
+          document.getElementByClass("pose_peace").style.backgroundColor = "#fffc00"
+          document.getElementByClass("pose_dang").style.backgroundColor = "#ffffff"
+          document.getElementByClass("pose_one").style.backgroundColor = "#ffffff"
+          break
+
+        case 'Dang':
+          document.getElementByClass("pose_palm").style.backgroundColor = "#ffffff"
+          document.getElementByClass("pose_rock").style.backgroundColor = "#ffffff"
+          document.getElementByClass("pose_gun").style.backgroundColor = "#ffffff"
+          document.getElementByClass("pose_three").style.backgroundColor = "#ffffff"
+          document.getElementByClass("pose_peace").style.backgroundColor = "#ffffff"
+          document.getElementByClass("pose_dang").style.backgroundColor = "#fffc00"
+          document.getElementByClass("pose_one").style.backgroundColor = "#ffffff"
+          break
+
+        case 'One':
+          document.getElementByClass("pose_palm").style.backgroundColor = "#ffffff"
+          document.getElementByClass("pose_rock").style.backgroundColor = "#ffffff"
+          document.getElementByClass("pose_gun").style.backgroundColor = "#ffffff"
+          document.getElementByClass("pose_three").style.backgroundColor = "#ffffff"
+          document.getElementByClass("pose_peace").style.backgroundColor = "#ffffff"
+          document.getElementByClass("pose_dang").style.backgroundColor = "#ffffff"
+          document.getElementByClass("pose_one").style.backgroundColor = "#fffc00"
+          break
     }
 
     /*ここから試作用、不要になったら削除*/

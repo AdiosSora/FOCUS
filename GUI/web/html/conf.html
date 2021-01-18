@@ -130,7 +130,7 @@
   //起動時設定ファイルの値をロード
   eel.expose(setConfvalue);
   function setConfvalue() {
-    var mouse_sensitivity = Promise.resolve(eel.set_confvalue()());
+    var mouse_sensitivity = Promise.resolve(eel.set_confvalue("mouse_sensitivity")());
     mouse_sensitivity.then(function(data) {
       rangeSlider.value = data
       rangeBullet.innerHTML = data
@@ -140,7 +140,7 @@
   //設定した値をコンフィグに書き込む関数
   eel.expose(saveConfigValue);
   function saveConfigValue() {
-    eel.save_confvalue(rangeSlider.value);
+    eel.save_confvalue(rangeSlider.value,"mouse_sensitivity");
   }
 
   function keyshortcut() {
