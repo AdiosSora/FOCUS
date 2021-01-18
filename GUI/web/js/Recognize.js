@@ -107,7 +107,8 @@
           document.getElementByClass("pose_peace").style.backgroundColor = "#ffffff"
           document.getElementByClass("pose_dang").style.backgroundColor = "#ffffff"
           document.getElementByClass("pose_one").style.backgroundColor = "#fffc00"
-          break
+          break;
+        }
     }
 
     /*ここから試作用、不要になったら削除*/
