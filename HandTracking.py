@@ -52,6 +52,18 @@ def seting_confvalue():
     for item in root:
         return item.find("mouse_sensitivity").text
 
+def seting_poseshortcut():
+    tree =  ET.parse('conf.xml')
+    root = tree.getroot()
+    for item in root:
+        return item.find("poseshortcut").text
+
+def seting_poseshortcut2():
+    tree =  ET.parse('conf.xml')
+    root = tree.getroot()
+    for item in root:
+        return item.find("poseshortcut2").text
+
 def HandTracking(keep_flg, width, height, conf_flg = 0):
     # complete.html 起動#########################################################
     complete_html(width, height)
@@ -230,7 +242,7 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
                     #人差し指の先の座標を取得
                     x,y = landmark_list[8]
                     #各種操作の実行
-                    CountPose= PoseAction.action(hand_sign_id,x,y,CountPose)
+                    CountPose= PoseAction.action(hand_sign_id,x,y,CountPose,seting_poseshortcut(),seting_poseshortcut2())
                     if hand_sign_id == 2:  # 指差しサイン
                         point_history.append(landmark_list[8])  # 人差指座標
                     else:
