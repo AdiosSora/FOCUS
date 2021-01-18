@@ -200,8 +200,9 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
                     #traceback.print_exc()
                     #flg_start = 1
                 print("【通知】WebCameraが接続されていません。")
-                #cap.stop()
                 eel.windowclose()
+                #endpage.htmlを閉じる
+                eel.endpage_close()
                 cap.release()
                 cv.destroyAllWindows()
                 break
