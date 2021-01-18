@@ -1,12 +1,7 @@
 <config>
   <setting>
-<<<<<<< HEAD
-    <mouse_sensitivity>2</mouse_sensitivity>
-    <poseshortcut>ctrl,z</poseshortcut>
-=======
-    <mouse_sensitivity>3</mouse_sensitivity>
+    <mouse_sensitivity>7</mouse_sensitivity>
     <poseshortcut>ctrl,v</poseshortcut>
     <poseshortcut2>ctrl,c</poseshortcut2>
->>>>>>> a9c8afc328b41279093ea9a54fa35ca26e0ada85
   </setting>
 </config>
