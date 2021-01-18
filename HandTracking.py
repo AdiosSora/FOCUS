@@ -53,8 +53,8 @@ def seting_confvalue():
         return item.find("mouse_sensitivity").text
 
 def HandTracking(keep_flg, width, height, conf_flg = 0):
-    # cmplete.html 起動#########################################################
-    complete_html(width, height)
+    # complete.html 起動#########################################################
+    #complete_html(width, height)
 
     # 引数解析 #################################################################
     args = get_args()
@@ -108,7 +108,7 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
                 flg_video = 0
                 print("webcamあったよ！！")
                 eel.windowclose()
-                complete_html(width, height)
+                #complete_html(width, height)
                 continue    #最初の while に戻る
             else:
             #カメラが接続されていない場合
