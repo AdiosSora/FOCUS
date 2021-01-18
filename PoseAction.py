@@ -7,7 +7,7 @@ magnification = 1
 shortcutflag = False
 
 @eel.expose
-def shortcuton(value):
+def shortcutondang(value):
     tree =  ET.parse('conf.xml')
     root = tree.getroot()
     #for item in root.iter('setting'):
@@ -17,12 +17,24 @@ def shortcuton(value):
     global shortcutflag
     shortcutflag = True
 
+@eel.expose
+def shortcutonone(value):
+    tree =  ET.parse('conf.xml')
+    root = tree.getroot()
+    #for item in root.iter('setting'):
+    for item in root:
+        item.find("poseshortcut2").text = value
+    tree.write('conf.xml', encoding='UTF-8')
+
 def sensitivity(value):
     global magnification
     #倍率を1.0から2.0までの範囲で実装
     magnification = 1 + int(value)*0.1
 
-def action(sign_id,x,y,countpose):
+def action(sign_id,x,y,countpose,poseshortcut,poseshortcut2):
+    #ショートカットキー読み込み
+    shbutton1,shbutton2=poseshortcut.split(',')
+    shbutton3,shbutton4=poseshortcut2.split(',')
     #画面端まで行くように処理
     global magnification
     x = x * magnification
@@ -42,7 +54,7 @@ def action(sign_id,x,y,countpose):
             if(countpose[1]<=10):
                 countpose[1] += 1
             if(countpose[1]==10):
-                pgui.hotkey('alt','f4')
+                pgui.hotkey(shbutton1,shbutton2)
 
 
     if(sign_id==2):
@@ -83,7 +95,7 @@ def action(sign_id,x,y,countpose):
             if(countpose[6]<=10):
                 countpose[6] += 1
             if(countpose[6]==10):
-                pgui.hotkey('ctrl', 'c')
+                pgui.hotkey(shbutton3,shbutton4)
 
 
     return countpose
