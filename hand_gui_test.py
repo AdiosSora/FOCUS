@@ -18,7 +18,7 @@ def open_endpage():
     eel.start("html/endpage.html",
                 mode='chrome',
                 size=(800,450),  #サイズ指定（横, 縦）
-                position=(width/2-250, height/2-250), #位置指定（left, top）
+                position=(width/4, height/4), #位置指定（left, top）
                 block=False
                 )
     eel.sleep(0.01)
