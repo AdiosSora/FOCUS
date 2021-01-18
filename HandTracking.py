@@ -66,7 +66,7 @@ def seting_poseshortcut2():
 
 def HandTracking(keep_flg, width, height, conf_flg = 0):
     # complete.html 起動#########################################################
-    complete_html(width, height)
+    #complete_html(width, height)
 
     # 引数解析 #################################################################
     args = get_args()
@@ -120,7 +120,7 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
                 flg_video = 0
                 print("webcamあったよ！！")
                 eel.windowclose()
-                complete_html(width, height)
+                #complete_html(width, height)
                 continue    #最初の while に戻る
             else:
             #カメラが接続されていない場合
