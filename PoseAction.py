@@ -4,28 +4,26 @@ import pyautogui as pgui
 import xml.etree.ElementTree as ET
 #倍率
 magnification = 1
-shortcutflag = False
+shortcutflag = 0
 
-
-@eel.expose
-def shortcutonone(value):
-    tree =  ET.parse('conf.xml')
-    root = tree.getroot()
-    #for item in root.iter('setting'):
-    for item in root:
-        item.find("poseshortcut").text = value
-    tree.write('conf.xml', encoding='UTF-8')
-
-@eel.expose
-def shortcutondang(value):
-    tree =  ET.parse('conf.xml')
-    root = tree.getroot()
-    #for item in root.iter('setting'):
-    for item in root:
-        item.find("poseshortcut2").text = value
-    tree.write('conf.xml', encoding='UTF-8')
+@eel.expose()
+def set_shortcutflag():
     global shortcutflag
-    shortcutflag = True
+    tree =  ET.parse('conf.xml')
+    root = tree.getroot()
+    for item in root:
+        shortcutflag = int(item.find("pose_flag").text)
+        return item.find("pose_flag").text
+
+@eel.expose()
+def save_shortcutflag(value):
+    global shortcutflag
+    tree =  ET.parse('conf.xml')
+    root = tree.getroot()
+    shortcutflag = int(value)
+    for item in root:
+        item.find("pose_flag").text = value
+    tree.write('conf.xml', encoding='UTF-8')
 
 
 def sensitivity(value):
@@ -35,8 +33,8 @@ def sensitivity(value):
 
 def action(sign_id,x,y,countpose,poseshortcut,poseshortcut2):
     #ショートカットキー読み込み
-    shbutton1,shbutton2=poseshortcut.split(',')
-    shbutton3,shbutton4=poseshortcut2.split(',')
+    shortcutone1,shortcutone2=poseshortcut.split(',')
+    shortcutdang1,shortcutdang2=poseshortcut2.split(',')
     #画面端まで行くように処理
     global magnification
     x = x * magnification
@@ -56,7 +54,7 @@ def action(sign_id,x,y,countpose,poseshortcut,poseshortcut2):
             if(countpose[1]<=10):
                 countpose[1] += 1
             if(countpose[1]==10):
-                pgui.hotkey(shbutton1,shbutton2)
+                pgui.hotkey(shortcutdang1,shortcutdang2)
 
 
     if(sign_id==2):
@@ -97,7 +95,7 @@ def action(sign_id,x,y,countpose,poseshortcut,poseshortcut2):
             if(countpose[6]<=10):
                 countpose[6] += 1
             if(countpose[6]==10):
-                pgui.hotkey(shbutton3,shbutton4)
+                pgui.hotkey(shortcutone1,shortcutone2)
 
 
     return countpose

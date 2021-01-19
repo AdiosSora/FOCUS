@@ -46,23 +46,52 @@ def get_args():
 
     return args
 
-def seting_confvalue():
+@eel.expose
+def set_confvalue():
     tree =  ET.parse('conf.xml')
     root = tree.getroot()
     for item in root:
         return item.find("mouse_sensitivity").text
 @eel.expose
-def seting_poseshortcut():
+def set_poseshortcut():
     tree =  ET.parse('conf.xml')
     root = tree.getroot()
     for item in root:
         return item.find("poseshortcut").text
 @eel.expose
-def seting_poseshortcut2():
+def set_poseshortcut2():
     tree =  ET.parse('conf.xml')
     root = tree.getroot()
     for item in root:
         return item.find("poseshortcut2").text
+
+
+@eel.expose #Conf.htmlで設定を保存する時に呼ばれるeel関数
+def save_confvalue(value):
+    tree =  ET.parse('conf.xml')
+    root = tree.getroot()
+    #for item in root.iter('setting'):
+    for item in root:
+        item.find("mouse_sensitivity").text = value
+    tree.write('conf.xml', encoding='UTF-8')
+
+@eel.expose
+def shortcutonone(value):
+    tree =  ET.parse('conf.xml')
+    root = tree.getroot()
+    #for item in root.iter('setting'):
+    for item in root:
+        item.find("poseshortcut").text = value
+    tree.write('conf.xml', encoding='UTF-8')
+
+@eel.expose
+def shortcutondang(value):
+    tree =  ET.parse('conf.xml')
+    root = tree.getroot()
+    #for item in root.iter('setting'):
+    for item in root:
+        item.find("poseshortcut2").text = value
+    tree.write('conf.xml', encoding='UTF-8')
 
 def HandTracking(keep_flg, width, height, conf_flg = 0):
     # complete.html 起動#########################################################
@@ -88,7 +117,7 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
 
     use_brect = True
     #width,height = autopy.screen.size() #eel で立ち上げた際の表示位置を指定するために取得
-    PoseAction.sensitivity(seting_confvalue())
+    PoseAction.sensitivity(set_confvalue())
 
 
     while(True):    #カメラが再度接続するまでループ処理
@@ -245,7 +274,7 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
                     #人差し指の先の座標を取得
                     x,y = landmark_list[8]
                     #各種操作の実行
-                    CountPose= PoseAction.action(hand_sign_id,x,y,CountPose,seting_poseshortcut(),seting_poseshortcut2())
+                    CountPose= PoseAction.action(hand_sign_id,x,y,CountPose,set_poseshortcut(),set_poseshortcut2())
                     if hand_sign_id == 2:  # 指差しサイン
                         point_history.append(landmark_list[8])  # 人差指座標
                     else:
