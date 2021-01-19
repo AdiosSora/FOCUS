@@ -1,7 +1,7 @@
 <config>
   <setting>
     <mouse_sensitivity>7</mouse_sensitivity>
-    <poseshortcut>ctrl,v</poseshortcut>
+    <poseshortcut>alt,f4</poseshortcut>
     <poseshortcut2>ctrl,z</poseshortcut2>
   </setting>
 </config>
