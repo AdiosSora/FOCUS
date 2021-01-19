@@ -10,6 +10,7 @@ import autopy
 import xml.etree.ElementTree as ET
 
 import time
+import PoseAction
 
 start_flg = 0   #HandPose.py の開始フラグ、「1」で開始
 end_flg = 0 #システム終了のフラグ、「1」で終了
@@ -18,21 +19,6 @@ end_flg = 0 #システム終了のフラグ、「1」で終了
 #The_program_to_hide = win32gui.GetForegroundWindow()
 #win32gui.ShowWindow(The_program_to_hide , win32con.SW_HIDE)
 
-@eel.expose #Conf.htmlで設定を保存する時に呼ばれるeel関数
-def save_confvalue(value):
-    tree =  ET.parse('conf.xml')
-    root = tree.getroot()
-    #for item in root.iter('setting'):
-    for item in root:
-        item.find("mouse_sensitivity").text = value
-    tree.write('conf.xml', encoding='UTF-8')
-
-@eel.expose #Conf.htmlで保存されている設定を初期反映するeel関数
-def set_confvalue():
-    tree =  ET.parse('conf.xml')
-    root = tree.getroot()
-    for item in root:
-        return item.find("mouse_sensitivity").text
 
 @eel.expose #手識別機能の起動ボタンを押されたときに呼ばれるeel関数
 def start_flg():

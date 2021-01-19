@@ -4,28 +4,26 @@ import pyautogui as pgui
 import xml.etree.ElementTree as ET
 #倍率
 magnification = 1
-shortcutflag = False
+shortcutflag = 0
 
-
-@eel.expose
-def shortcutonone(value):
-    tree =  ET.parse('conf.xml')
-    root = tree.getroot()
-    #for item in root.iter('setting'):
-    for item in root:
-        item.find("poseshortcut").text = value
-    tree.write('conf.xml', encoding='UTF-8')
-
-@eel.expose
-def shortcutondang(value):
-    tree =  ET.parse('conf.xml')
-    root = tree.getroot()
-    #for item in root.iter('setting'):
-    for item in root:
-        item.find("poseshortcut2").text = value
-    tree.write('conf.xml', encoding='UTF-8')
+@eel.expose()
+def set_shortcutflag():
     global shortcutflag
-    shortcutflag = True
+    tree =  ET.parse('conf.xml')
+    root = tree.getroot()
+    for item in root:
+        shortcutflag = int(item.find("pose_flag").text)
+        return item.find("pose_flag").text
+
+@eel.expose()
+def save_shortcutflag(value):
+    global shortcutflag
+    tree =  ET.parse('conf.xml')
+    root = tree.getroot()
+    shortcutflag = int(value)
+    for item in root:
+        item.find("pose_flag").text = value
+    tree.write('conf.xml', encoding='UTF-8')
 
 
 def sensitivity(value):

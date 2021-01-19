@@ -110,10 +110,11 @@
 
 <script>
   //スライダー設定
-  var rangeSlider = document.getElementById("rs-range-line");
-  var rangeBullet = document.getElementById("rs-bullet");
-  var keyselect = document.getElementById("keyconfig");
-  var keyselect2 = document.getElementById("keyconfig2");
+  const rangeSlider = document.getElementById("rs-range-line");
+  const rangeBullet = document.getElementById("rs-bullet");
+  const keyselect = document.getElementById("keyconfig");
+  const keyselect2 = document.getElementById("keyconfig2");
+  const keybox = document.getElementById("shortcut");
 
   rangeSlider.addEventListener("input", showSliderValue, false);
 
@@ -138,13 +139,21 @@
       rangeBullet.innerHTML = data
       rangeBullet.style.left = ((data / rangeSlider.max) * 578) + "px";
       });
-    var keyset1 = Promise.resolve(eel.seting_poseshortcut()());
+    var keyset1 = Promise.resolve(eel.set_poseshortcut()());
     keyset1.then(function(data){
       keyselect.value = data
     });
-    var keyset2 = Promise.resolve(eel.seting_poseshortcut2()());
+    var keyset2 = Promise.resolve(eel.set_poseshortcut2()());
     keyset2.then(function(data){
       keyselect2.value = data
+    });
+    var key_flag = Promise.resolve(eel.set_shortcutflag()());
+    key_flag.then(function(data){
+      if(data==0){
+        shortcut.checked = false;
+      }else{
+        shortcut.checked = true;
+      }
     });
 
   };
@@ -153,14 +162,15 @@
   function saveConfigValue() {
     eel.save_confvalue(rangeSlider.value);
   }
-
   function keyshortcut() {
-    if (shortcut.checked) {
-      eel.shortcutonone(keyconfig.value)
-      eel.shortcutondang(keyconfig2.value)
-
+    eel.shortcutonone(keyconfig.value)
+    eel.shortcutondang(keyconfig2.value)
+    if(shortcut.checked){
+      eel.save_shortcutflag("1");
+    }else{
+      eel.save_shortcutflag("0");
     }
-  };
+  }
 </script>
 
 </html>
