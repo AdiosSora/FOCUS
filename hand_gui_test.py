@@ -10,6 +10,8 @@ import traceback
 import autopy
 
 flg_end = 0 #終了ボタンを押されたかのフラグ
+flg_closePush = 0   #×ボタンを押されたかのフラグ(eelから管理)
+#flg_closePush_py = 0    #×ボタンを押されたかのフラグ(pythonから管理)
 width,height = autopy.screen.size()
 
 @eel.expose
@@ -29,44 +31,50 @@ def sysclose_switch(end_switch):
     global flg_end
     flg_end = end_switch
 
+@eel.expose
+def close_switch(closePush):
+    #×ボタンが押されたフラグの変更(eelから)
+    close_switch_py(closePush)
+
+def close_switch_py(closePush_py):
+    #×ボタンが押されたフラグの変更(pythonから)
+    global flg_closePush
+    flg_closePush = closePush_py
+
 def start_gui(name_pose, flg_restart, keep_flg):
+    print("flg_closePush:", flg_closePush)
     if(flg_restart == 1):   #inde.html が立ち上がっているか
         eel.windowclose()
         eel.init("GUI/web")
         #eel.start("開きたい上記のフォルダ下のファイル名",～
         eel.start("html/index.html",
                     mode='chrome',
-                    size=(500, 150),  #サイズ指定（横, 縦）
+                    size=(400, 200),  #サイズ指定（横, 縦）
                     position=(width,height), #位置指定（left, top）
                     block=False
                     )
         flg_restart = 0
         print("html再スタート！！！")
-    while(True):
-        try:    #index.htmlが × をクリックして終了した場合をキャッチ
-            eel.sleep(0.01) #コメントアウトするとindex.htmlにつながらないっぽい
-            #eel.set_posegauge(name_pose)
-            return flg_end, flg_restart, keep_flg
-        # except OSError as os_e:
-        #     traceback.print_exc()
-        #     continue
-        except SystemExit as sys_e:
-            #print("000000000000000000000")
-            traceback.print_exc()
-            #print("4444444444444444444444444")
 
-            #ここから、test.html を使うときに使用
-            eel.init("GUI/web")
-            #eel.start("開きたい上記のフォルダ下のファイル名",～
-            eel.start("html/index.html",
-                        mode='chrome',
-                        size=(500, 150),  #サイズ指定（横, 縦）
-                        position=(width,height), #位置指定（left, top）
-                        block=False
-                        )
-            eel.sleep(0.01)
-            print("再起動！！！！")
-            return flg_end, flg_restart, keep_flg
+    if(flg_closePush == 1):
+        #×ボタンが押された際の動作
+        eel.init("GUI/web")
+        #eel.start("開きたい上記のフォルダ下のファイル名",～
+        eel.start("html/index.html",
+                    mode='chrome',
+                    size=(400, 200),  #サイズ指定（横, 縦）
+                    position=(width,height), #位置指定（left, top）
+                    block=False
+                    )
+        eel.sleep(0.01)
+        print("再起動！！！！")
+        close_switch_py(0)
+        return flg_end, flg_restart, keep_flg
+    else:
+        #正常動作
+        eel.sleep(0.01)
+        #eel.set_posegauge(name_pose)
+        return flg_end, flg_restart, keep_flg
 
 def cam_source():
     eel.init('GUI/web')

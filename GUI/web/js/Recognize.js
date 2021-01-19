@@ -14,6 +14,12 @@
       eel.sysclose_switch(0);
     }
 
+    eel.expose(closeSwitch);
+    function closeSwitch(){
+      //×ボタンが押されたフラグ(1)を元に戻す(0)
+      eel.close_switch(0);
+    }
+
     eel.expose(windowclose);
     function windowclose(){
       window.close();
@@ -153,7 +159,7 @@
       //const poseGuage = document.getElementById("poseGuage");
 
       if(focus_flg == 1){
-        window.resizeTo(500, 150)
+        window.resizeTo(400, 200)
         window.moveTo(width, height)
         console.log("focus_flg is 1");
       }else{

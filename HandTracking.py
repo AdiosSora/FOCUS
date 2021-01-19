@@ -76,6 +76,7 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
     flg_restart = 0 #「1」で別のeelを立ち上げるフラグ
     name_pose = "Unknown"
     focus_flg = 1   #index.html の表示・非表示の切り替え、「0」:Main.pyで開いた場合、「1」:HandTracking.pyで開いた場合
+    #flg_closePush = 0
 
     cap_device = args.device
     cap_width = args.width
@@ -205,6 +206,7 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
                 eel.endpage_close()
                 cap.release()
                 cv.destroyAllWindows()
+                hand_gui_test.close_switch_py(0)
                 break
             #print("1image:", image)
             image = cv.flip(image, 1)  # ミラー表示
