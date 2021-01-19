@@ -33,8 +33,8 @@ def sensitivity(value):
 
 def action(sign_id,x,y,countpose,poseshortcut,poseshortcut2):
     #ショートカットキー読み込み
-    shbutton1,shbutton2=poseshortcut.split(',')
-    shbutton3,shbutton4=poseshortcut2.split(',')
+    shortcutone1,shortcutone2=poseshortcut.split(',')
+    shortcutdang1,shortcutdang2=poseshortcut2.split(',')
     #画面端まで行くように処理
     global magnification
     x = x * magnification
@@ -54,7 +54,7 @@ def action(sign_id,x,y,countpose,poseshortcut,poseshortcut2):
             if(countpose[1]<=10):
                 countpose[1] += 1
             if(countpose[1]==10):
-                pgui.hotkey(shbutton1,shbutton2)
+                pgui.hotkey(shortcutdang1,shortcutdang2)
 
 
     if(sign_id==2):
@@ -95,7 +95,7 @@ def action(sign_id,x,y,countpose,poseshortcut,poseshortcut2):
             if(countpose[6]<=10):
                 countpose[6] += 1
             if(countpose[6]==10):
-                pgui.hotkey(shbutton3,shbutton4)
+                pgui.hotkey(shortcutone1,shortcutone2)
 
 
     return countpose
