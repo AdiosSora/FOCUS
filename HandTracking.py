@@ -132,7 +132,7 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
                             size=(800,600),  #サイズ指定（横, 縦）
                             position=(width/4, height/4), #位置指定（left, top）
                             block=False)
-                print("connect 接続しているよ！！")
+                print("【実行】connect.html")
                 flg_restart = 0
             # try:
             #     eel.sleep(0.01)
@@ -150,7 +150,7 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
                 time.sleep(0.01)
                 flg_restart = 1
                 flg_video = 0
-                print("webcamあったよ！！")
+                print("【通知】WebCamera検知")
                 eel.windowclose()
                 #×ボタンフラグの初期化
                 hand_gui_test.close_switch_py(0)
@@ -334,10 +334,10 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
                             position=(width-400,height-200), #位置指定（left, top）
                             block=False
                             )
+                print("【実行】index.html")
                 eel.sleep(0.01)
                 #eel.focusSwitch(width, height, focus_flg)
                 focus_flg = 0
-                #print("index.html 画面変更！！！！！！！！！！！！！！！！！！！！！！！")
 
             # eel立ち上げ #############################################################
             flg_end, flg_restart, keep_flg = hand_gui_test.start_gui(name_pose, flg_restart, keep_flg)

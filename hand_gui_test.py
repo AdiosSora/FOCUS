@@ -53,7 +53,7 @@ def start_gui(name_pose, flg_restart, keep_flg):
                     block=False
                     )
         flg_restart = 0
-        print("html再スタート！！！")
+        print("【通知】index.html再スタート")
 
     if(flg_closePush == 1):
         #×ボタンが押された際の動作
@@ -66,7 +66,7 @@ def start_gui(name_pose, flg_restart, keep_flg):
                     block=False
                     )
         eel.sleep(0.01)
-        print("再起動！！！！")
+        print("【通知】index.html再起動")
         #×ボタンのフラグの初期化
         close_switch_py(0)
         return flg_end, flg_restart, keep_flg

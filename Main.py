@@ -81,7 +81,7 @@ if __name__ == '__main__':
     #eel.init("GUI/web")
     label.master.destroy()
     eel.start('html/index.html',
-                size=(800,600),
+                size=(1025,775),
                 position=(width/4, height/4),
                 block=False)
     #while(True):
