@@ -112,7 +112,6 @@ if __name__ == '__main__':
                     break
                 else:
                     if(webcam_flg == 0):
-                        eel.windowclose()
                         print("【通知】WebCameraが接続されていません。")
 
                         eel.overlay_controll(True)
