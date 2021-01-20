@@ -114,12 +114,9 @@ if __name__ == '__main__':
                     if(webcam_flg == 0):
                         eel.windowclose()
                         print("【通知】WebCameraが接続されていません。")
-                        eel.init('GUI/web')
-                        eel.start('html/connect.html',
-                                    mode='chrome',
-                                    size=(800,600),  #サイズ指定（横, 縦）
-                                    position=(width/4, height/4), #位置指定（left, top）
-                                    block=False)
+
+                        eel.overlay_controll(True)
+                        eel.object_change("connect.html")
                         eel.sleep(0.01)
                         time.sleep(0.01)
                         webcam_flg = 1

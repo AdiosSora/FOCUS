@@ -31,9 +31,13 @@
 </header>
 
 <body>
-
-  <div class="big">
-
+  <div id="default_view">
+    <div id="overlay_view">
+      <div id="overlay_window">
+        <object id="overlay_object" data="conf.html" style="width:80vw;height:60vh">
+        </object>
+      </div>
+    </div>
     <div class="cp_tab">
     	<input type="radio" name="cp_tab" id="tab2_1" aria-controls="first_tab02" checked>
     	<label for="tab2_1" style="text-align:center;">TOP</label>
@@ -43,7 +47,6 @@
     	<label for="tab2_3" style="text-align:center;">HELP</label>
     	<div class="cp_tabpanels">
     		<div class="cp_tabpanel">
-
     		</div>
     		<div class="cp_tabpanel">
           <object  data="conf.html" style="width:800px;height:600px">
@@ -57,8 +60,7 @@
     </div>
   </div>
 
-
-  <div class="small_index_object">
+  <div id="small_index_object">
     <button class="small_index_btn" type="button" name="endbtn" value="end" onclick="endBtn()">終了</button>
   </div>
 
@@ -101,17 +103,29 @@
       </div>
     </div>
 </body>
-<footer></footer>
+
 </html>
+
 <script>
   document.getElementById("headIndex").style.visibility = "visible";
-  //document.getElementById("endIndex").style.visibility ="visible";
-  //document.getElementById("focusEnd").style.visibility ="hidden";
-  //document.getElementById("poseGuage").style.visibility ="hidden";
-
+  const overlay = document.getElementById("overlay_view")
   function link(target) {
     window.location.href = target;
   }
+  eel.expose(overlay_controll);
+  function overlay_controll(flag){
+    if(flag){
+      overlay_view.style.display = "block";
+    }else{
+      overlay_view.style.display = "none";
+    }
+  }
 
-
+  eel.expose(object_change);
+  function object_change(url) {
+    var obj = document.getElementById("overlay_object");
+    obj.setAttribute('data', url);
+    var clone = obj.cloneNode(true);
+    obj.parentNode.replaceChild(clone, obj);
+  }
 </script>

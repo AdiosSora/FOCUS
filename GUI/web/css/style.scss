@@ -14,18 +14,17 @@ body {
       display: none;
     }
 
-    .big{
+    #default_view{
       display: none;
     }
 
-    .small_index_object{
+    #small_index_object{
       text-align: right;
     }
 
     .small_index_btn {
       display: inline-block;
       max-width: 180px;
-      text-align: left;
       border: 2px solid #26408e;
       font-size: 16px;
       color: #FFFFFF;
@@ -35,6 +34,7 @@ body {
       padding: 6px 10px;
       border-radius: 4px;
       transition: .4s;
+      text-align: right;
     }
 
     .small_index_btn:hover {
@@ -108,7 +108,19 @@ body {
 
 
 @media screen and (min-width: 500px) {
-
+    #overlay_view{
+      position: absolute;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(255, 255, 255, .8);
+      z-index: 2;
+      display: none;
+    }
+    #overlay_window{
+      margin:20vh 10vw;
+      width:80vw;
+      height:60vh;
+    }
     header{
       padding:20px;
       border-width: 0 0 1px 0;
@@ -121,14 +133,6 @@ body {
     }
     .small_index_btn{
       display: none;
-
-    }
-
-    .poseGuage{
-      display:none;
-    }
-    .btn-flat-border{
-      display:none;
     }
     .small_index_pose{
       display: none;
@@ -216,6 +220,7 @@ body {
     .cp_tab {
     	margin: 1em auto;
     	position: relative;
+      z-index: 0;
     }
     .cp_tab input[type='radio'] {
     	margin: 0;
