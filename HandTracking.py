@@ -97,6 +97,8 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
     # complete.html 起動#########################################################
     #complete_html(width, height)
 
+    # ×ボタンが押されたかのフラグ(hand_gui_test.py内の変数、flg_closePush)の初期化
+    hand_gui_test.close_switch_py(0)
     # 引数解析 #################################################################
     args = get_args()
 
@@ -150,6 +152,8 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
                 flg_video = 0
                 print("webcamあったよ！！")
                 eel.windowclose()
+                #×ボタンフラグの初期化
+                hand_gui_test.close_switch_py(0)
                 #complete_html(width, height)
                 continue    #最初の while に戻る
             else:
@@ -235,7 +239,6 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
                 eel.endpage_close()
                 cap.release()
                 cv.destroyAllWindows()
-                hand_gui_test.close_switch_py(0)
                 break
             #print("1image:", image)
             image = cv.flip(image, 1)  # ミラー表示

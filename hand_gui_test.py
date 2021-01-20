@@ -33,7 +33,7 @@ def sysclose_switch(end_switch):
 
 @eel.expose
 def close_switch(closePush):
-    #×ボタンが押されたフラグの変更(eelから)
+    #×ボタンが押されたフラグ(eelから)を別関数に渡す
     close_switch_py(closePush)
 
 def close_switch_py(closePush_py):
@@ -42,7 +42,6 @@ def close_switch_py(closePush_py):
     flg_closePush = closePush_py
 
 def start_gui(name_pose, flg_restart, keep_flg):
-    print("flg_closePush:", flg_closePush)
     if(flg_restart == 1):   #inde.html が立ち上がっているか
         eel.windowclose()
         eel.init("GUI/web")
@@ -68,6 +67,7 @@ def start_gui(name_pose, flg_restart, keep_flg):
                     )
         eel.sleep(0.01)
         print("再起動！！！！")
+        #×ボタンのフラグの初期化
         close_switch_py(0)
         return flg_end, flg_restart, keep_flg
     else:
