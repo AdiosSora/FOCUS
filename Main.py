@@ -12,7 +12,7 @@ import xml.etree.ElementTree as ET
 import time
 import PoseAction
 
-start_flg = 0   #HandPose.py の開始フラグ、「1」で開始
+start_flg = 0   #HandTracking.py の開始フラグ、「1」で開始
 end_flg = 0 #システム終了のフラグ、「1」で終了
 width,height = autopy.screen.size()
 
@@ -76,39 +76,26 @@ if __name__ == '__main__':
     label.after_idle(next_frame)
     label.mainloop()
 
-    #eel.start('html/Start.html',size=(640,320),block=False)
-    #if(continue_flg == 0):
-    #eel.init("GUI/web")
     label.master.destroy()
     eel.start('html/index.html',
                 port = 0,
                 size=(1025,775),
                 position=(width/4, height/4),
                 block=False)
-    #while(True):
-        #try:
     eel.sleep(0.01)
-            #break
-        #except:
-            #SystemExit および OSError をキャッチ
-            #traceback.print_exc()
-            #continue
+
     while True:
-        keep_flg = 0    #HandPose.py 開始前に connect.html を起動したか、「1」で起動済み、 test.html が2つ起動するのを防ぐ
-        #print("I'm a main loop")
-        #eel.sleep(1.0)
+        #以降「終了」ボタンが押下されるまでループ
         if(start_flg == 1):
             #「起動」を押下時の処理
-            continue_flg = 0
             webcam_flg = 0  #connect.html が起動中か判別、「1」で起動中
 
-            #カメラが接続されているか確認
             while(True):
+                #カメラが接続されるまでループ
                 cap = cv2.VideoCapture(0)
                 ret, frame = cap.read()
                 if(ret is True):
                     if(webcam_flg == 1):
-                        #eel.windowclose()
                         eel.object_change("complete.html", True)
                     else:
                         eel.overlay_controll(True)
@@ -126,14 +113,12 @@ if __name__ == '__main__':
                         eel.sleep(0.01)
                         time.sleep(0.01)
                         webcam_flg = 1
-                        keep_flg = 1
                     else:
                         eel.sleep(0.01)
                         time.sleep(0.01)
 
             print("【実行】HandTracking.py")
-            #eel.windowclose()
-            HandTracking.HandTracking(keep_flg, width, height,)    #HandPose.py が終了するまで、 Main.py の以降の処理を行わない
+            HandTracking.HandTracking(width, height,)    #HandTracking.py が終了するまで、 Main.py の以降の処理を行わない
             eel.focusSwitch(width, height, focus_flg)
             start_flg = 0
         elif(end_flg == 1):
@@ -143,9 +128,4 @@ if __name__ == '__main__':
         else:
             eel.sleep(0.01)
 
-    # while(i<10000):
-    #     eel.sleep(0.01)
-    #     print(i)
-    #     i+=1
-    #traceback.print_exc()
     print("【通知】システム終了")

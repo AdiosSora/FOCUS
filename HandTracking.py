@@ -93,10 +93,7 @@ def shortcutondang(value):
         item.find("poseshortcut2").text = value
     tree.write('conf.xml', encoding='UTF-8')
 
-def HandTracking(keep_flg, width, height, conf_flg = 0):
-    # complete.html 起動#########################################################
-    #complete_html(width, height)
-
+def HandTracking(width, height, conf_flg = 0):
     # ×ボタンが押されたかのフラグ(hand_gui_test.py内の変数、flg_closePush)の初期化
     hand_gui_test.close_switch_py(0)
     # 引数解析 #################################################################
@@ -104,7 +101,6 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
 
     flg_video = 0   #「1」でカメラが接続されていない
     flg_break = 0   #「1」で最初のループを抜け終了する⇒正常終了
-    flg_restart = 0 #「1」で別のeelを立ち上げるフラグ
     name_pose = "Unknown"
     focus_flg = 1   #index.html の表示・非表示の切り替え、「0」:Main.pyで開いた場合、「1」:HandTracking.pyで開いた場合
     #flg_closePush = 0
@@ -134,7 +130,6 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
                 cap2.release()
                 eel.object_change("complete.html", True)
                 eel.sleep(1)
-                flg_restart = 1
                 flg_video = 0
                 print("【通知】WebCamera検知")
                 #×ボタンフラグの初期化
@@ -207,18 +202,10 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
             # カメラキャプチャ #####################################################
             ret, image = cap.read()
             if not ret:
-                #print("9999999999999999999999999999999999")
-                #traceback.print_exc()
                 #それぞれのフラグを立てて、システムを終了させ、最初の while に戻る
-                flg_restart = 1
                 flg_video = 1
                 focus_flg = 0
-                #try:
-                    #webcam が最初から接続されていない場合は except の動作
-                    #cnt_gui, flg_end, flg_restart, flg_start, keep_flg = hand_gui.start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg)
-                #except NameError as name_e:
-                    #traceback.print_exc()
-                    #flg_start = 1
+
                 print("【通知】WebCameraが接続されていません。")
                 eel.focusSwitch(width, height, focus_flg)
                 eel.overlay_controll(True)
@@ -226,18 +213,15 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
                 cap.release()
                 cv.destroyAllWindows()
                 break
-            #print("1image:", image)
+
             image = cv.flip(image, 1)  # ミラー表示
             debug_image = copy.deepcopy(image)
-            #print("1debug:", image)
 
             # 検出実施 #############################################################
             image = cv.cvtColor(image, cv.COLOR_BGR2RGB)
-            #print("2image:", image)
 
             image.flags.writeable = False
             results = hands.process(image)
-            #print("1results:", results)
             image.flags.writeable = True
 
             #  ####################################################################
@@ -303,10 +287,8 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
 
             # 画面反映 #############################################################
             debug_image = cv.resize(debug_image,dsize=(400, 200))
-            #print("1debug_image:", debug_image)
             cv.imshow('Hand Gesture Recognition', debug_image)
             # cv.imshow('Hand Gesture Recognition',image_test)
-            #print("画面反映！！！！！！！！！！！！！！！！！！！")
 
             # eel立ち上げ #############################################################
             #cnt_gui, flg_end, flg_restart, flg_start, keep_flg = hand_gui.start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg)
@@ -315,26 +297,17 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
                 eel.object_change("complete.html", False)
                 eel.overlay_controll(False)
                 eel.focusSwitch(width, height, focus_flg)
-                # eel.windowclose()
-                # eel.init("GUI/web")
-                # eel.start("html/index.html",
-                #             mode='chrome',
-                #             size=(400, 200),  #サイズ指定（横, 縦）
-                #             position=(width-400,height-200), #位置指定（left, top）
-                #             block=False
-                #             )
                 print("【実行】index.html")
                 eel.sleep(0.01)
-                #eel.focusSwitch(width, height, focus_flg)
                 focus_flg = 0
 
             # eel立ち上げ #############################################################
-            flg_end, flg_restart, keep_flg = hand_gui_test.start_gui(name_pose, flg_restart, keep_flg)
+            flg_end = hand_gui_test.start_gui()
 
             if(flg_end == 1):
+                #正常に終了する処理(中間のループを抜ける)
                 flg_break = 1
-                #flg_end の値をもとに戻す関数
-                eel.endSwitch()
+                eel.endSwitch() #flg_end の値をもとに戻す関数
                 cap.release()
                 cv.destroyAllWindows()
                 eel.overlay_controll(False)
@@ -602,13 +575,3 @@ def draw_info(image, fps, mode, number):
                        cv.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 1,
                        cv.LINE_AA)
     return image
-
-
-def complete_html(width, height):
-    eel.init('GUI/web')
-    eel.start('html/complete.html',
-                mode='chrome',
-                size=(800,600),  #サイズ指定（横, 縦）
-                position=(width/4, height/4), #位置指定（left, top）
-                block=False)
-    eel.sleep(0.5)

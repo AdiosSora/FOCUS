@@ -22,22 +22,8 @@
 
     eel.expose(windowclose);
     function windowclose(){
+      // pythonからwindowを閉じる関数
       window.close();
-    }
-
-    /*
-    function window.onbeforeunload(){
-      eel.py_sysclose();
-    }
-    */
-    eel.expose(set_elapsedtime);
-    function set_elapsedtime(elapsedtime) {
-        document.getElementById("elapsedtime").innerHTML = "elapsedtime:" + elapsedtime + "s";
-    }
-
-    eel.expose(set_base64image);
-    function set_base64image(base64image) {
-        document.getElementById("python_video").src = base64image;
     }
 
     eel.expose(set_posegauge);
@@ -142,28 +128,13 @@
       eel.open_endpage();
     }
 
-    function end_ok(){
-      eel.py_sysclose();
-      window.close();
-    }
-
-    function end_no(){
-      window.close();
-    }
-
     eel.expose(focusSwitch);
     function focusSwitch(width, height, focus_flg){
-      //const headIndex = document.getElementById("headIndex");
-      //const endIndex = document.getElementById("endIndex");
-      //const focusEnd = document.getElementById("focusEnd");
-      //const poseGuage = document.getElementById("poseGuage");
-
       if(focus_flg == 1){
         window.resizeTo(400, 200)
         window.moveTo(width-400,height-200)
         console.log("focus_flg is 1");
       }else{
-        //headIndex.style.visibility ="visible";
         window.resizeTo(1025,775)
         window.moveTo(width/4, height/4)
         console.log("focus_flg is 0");
