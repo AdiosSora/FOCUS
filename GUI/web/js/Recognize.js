@@ -164,7 +164,7 @@
         console.log("focus_flg is 1");
       }else{
         //headIndex.style.visibility ="visible";
-        window.resizeTo(800,450)
+        window.resizeTo(1025,775)
         window.moveTo(width/4, height/4)
         console.log("focus_flg is 0");
       }
