@@ -7,6 +7,39 @@
 body {
   background-color: #fff;
 }
+
+h1 {
+  animation: fadeIn 0.2s ease 0.3s 1 normal;
+  position: relative;
+  display: inline-block;
+  padding: 0 55px;
+  font-size: 40px;
+  color:#2f2f2f;
+}
+
+h2 {
+  position: relative;
+  display: inline-block;
+  padding: 0 55px;
+  color:#2f2f2f;
+}
+
+h2:before, h2:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  display: inline-block;
+  width: 45px;
+  height: 1px;
+  background-color: #2f2f2f;
+}
+
+h2:before {
+  left:0;
+}
+h2:after {
+  right: 0;
+}
 /* =============  index.html 小さい状態  =====================*/
 //500px以下で下記のソースが適用される
 @media screen and (max-width: 500px) {
