@@ -160,11 +160,11 @@
 
       if(focus_flg == 1){
         window.resizeTo(400, 200)
-        window.moveTo(width, height)
+        window.moveTo(width-400,height-200)
         console.log("focus_flg is 1");
       }else{
         //headIndex.style.visibility ="visible";
-        window.resizeTo(800,450)
+        window.resizeTo(1025,775)
         window.moveTo(width/4, height/4)
         console.log("focus_flg is 0");
       }

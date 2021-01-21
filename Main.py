@@ -14,6 +14,7 @@ import PoseAction
 
 start_flg = 0   #HandPose.py の開始フラグ、「1」で開始
 end_flg = 0 #システム終了のフラグ、「1」で終了
+width,height = autopy.screen.size()
 
 #コンソールを消すときはここのコメントアウトを消してください。
 #The_program_to_hide = win32gui.GetForegroundWindow()
@@ -36,7 +37,6 @@ def end_flg():
 
 if __name__ == '__main__':
     focus_flg = 0   #index.html の表示・非表示の切り替え、「0」:Main.pyで開いた場合、「1」:HandTracking.pyで開いた場合
-    width,height = autopy.screen.size()
     eel.init("GUI/web")
 
     label = tk.Tk()
@@ -81,6 +81,7 @@ if __name__ == '__main__':
     #eel.init("GUI/web")
     label.master.destroy()
     eel.start('html/index.html',
+                port = 0,
                 size=(1025,775),
                 position=(width/4, height/4),
                 block=False)
@@ -107,15 +108,21 @@ if __name__ == '__main__':
                 ret, frame = cap.read()
                 if(ret is True):
                     if(webcam_flg == 1):
-                        eel.windowclose()
+                        #eel.windowclose()
+                        eel.object_change("complete.html", True)
+                    else:
+                        eel.overlay_controll(True)
+                        eel.object_change("complete.html", True)
+                    eel.sleep(1)
                     print("【通知】WebCamera検知")
+                    cap.release()
                     break
                 else:
                     if(webcam_flg == 0):
                         print("【通知】WebCameraが接続されていません。")
 
                         eel.overlay_controll(True)
-                        eel.object_change("connect.html")
+                        eel.object_change("connect.html", True)
                         eel.sleep(0.01)
                         time.sleep(0.01)
                         webcam_flg = 1
@@ -125,9 +132,8 @@ if __name__ == '__main__':
                         time.sleep(0.01)
 
             print("【実行】HandTracking.py")
-            eel.windowclose()
+            #eel.windowclose()
             HandTracking.HandTracking(keep_flg, width, height,)    #HandPose.py が終了するまで、 Main.py の以降の処理を行わない
-            cap.release()
             eel.focusSwitch(width, height, focus_flg)
             start_flg = 0
         elif(end_flg == 1):

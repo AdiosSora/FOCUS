@@ -17,12 +17,27 @@ width,height = autopy.screen.size()
 @eel.expose
 def open_endpage():
     #終了画面の、 endpage.html を立ち上げる
-    eel.start("html/endpage.html",
-                mode='chrome',
-                size=(800,450),  #サイズ指定（横, 縦）
-                position=(width/4, height/4), #位置指定（left, top）
-                block=False
-                )
+    eel.overlay_controll(True)
+    eel.object_change("endpage.html", True)
+    # eel.start("html/endpage.html",
+    #             mode='chrome',
+    #             size=(800,450),  #サイズ指定（横, 縦）
+    #             position=(width/4, height/4), #位置指定（left, top）
+    #             block=False
+    #             )
+    eel.sleep(0.01)
+
+@eel.expose
+def close_endpage():
+    #終了画面の、 endpage.html を閉じる
+    eel.overlay_controll(False)
+    eel.object_change("endpage.html", False)
+    # eel.start("html/endpage.html",
+    #             mode='chrome',
+    #             size=(800,450),  #サイズ指定（横, 縦）
+    #             position=(width/4, height/4), #位置指定（left, top）
+    #             block=False
+    #             )
     eel.sleep(0.01)
 
 @eel.expose
@@ -43,15 +58,15 @@ def close_switch_py(closePush_py):
 
 def start_gui(name_pose, flg_restart, keep_flg):
     if(flg_restart == 1):   #inde.html が立ち上がっているか
-        eel.windowclose()
-        eel.init("GUI/web")
-        #eel.start("開きたい上記のフォルダ下のファイル名",～
-        eel.start("html/index.html",
-                    mode='chrome',
-                    size=(400, 200),  #サイズ指定（横, 縦）
-                    position=(width,height), #位置指定（left, top）
-                    block=False
-                    )
+        # eel.windowclose()
+        # eel.init("GUI/web")
+        # eel.start("開きたい上記のフォルダ下のファイル名",～
+        # eel.start("html/index.html",
+        #             mode='chrome',
+        #             size=(400, 200),  #サイズ指定（横, 縦）
+        #             position=(width,height), #位置指定（left, top）
+        #             block=False
+        #             )
         flg_restart = 0
         print("【通知】index.html再スタート")
 
@@ -60,6 +75,7 @@ def start_gui(name_pose, flg_restart, keep_flg):
         eel.init("GUI/web")
         #eel.start("開きたい上記のフォルダ下のファイル名",～
         eel.start("html/index.html",
+                    port = 0,
                     mode='chrome',
                     size=(400, 200),  #サイズ指定（横, 縦）
                     position=(width,height), #位置指定（left, top）

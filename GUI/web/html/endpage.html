@@ -35,14 +35,10 @@ function end_ok(){
 
 //いいえボタン押下時発火、windowを閉じる
 function end_no(){
+  eel.close_endpage()
   window.close();
 }
 
-//endpage.htmlが立ち上がっている際にwebcam切断が発生した場合、windowを閉じる
-eel.expose(endpage_close);
-function endpage_close(){
-  window.close()
-}
 </script>
 
 </body>

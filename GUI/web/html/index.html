@@ -133,10 +133,14 @@
   }
 
   eel.expose(object_change);
-  function object_change(url) {
+  function object_change(url, flag) {
     var obj = document.getElementById("overlay_object");
     obj.setAttribute('data', url);
-    var clone = obj.cloneNode(true);
+    if(flag){
+      var clone = obj.cloneNode(true);
+    }else{
+      var clone = obj.cloneNode(false);
+    }
     obj.parentNode.replaceChild(clone, obj);
   }
   window.onresize = window.resizeTo(200,100);

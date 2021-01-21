@@ -125,33 +125,18 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
     while(True):    #カメラが再度接続するまでループ処理
         #カメラが接続されていないフラグの場合
         if(flg_video == 1):
-            if(flg_restart == 1):
-                eel.init('GUI/web')
-                eel.start('html/connect.html',
-                            mode='chrome',
-                            size=(800,600),  #サイズ指定（横, 縦）
-                            position=(width/4, height/4), #位置指定（left, top）
-                            block=False)
-                print("【実行】connect.html")
-                flg_restart = 0
-            # try:
-            #     eel.sleep(0.01)
-            # except:
-            #     print("エラー発生！！！！")
-            #     traceback.print_exc()
-            #     continue
             #カメラが接続されているか確認
             cap2 = cv.VideoCapture(0)
             ret2, frame2 = cap2.read()
             if(ret2 is True):
                 #カメラが接続されている場合
+                focus_flg = 1
                 cap2.release()
-                eel.sleep(0.01)
-                time.sleep(0.01)
+                eel.object_change("complete.html", True)
+                eel.sleep(1)
                 flg_restart = 1
                 flg_video = 0
                 print("【通知】WebCamera検知")
-                eel.windowclose()
                 #×ボタンフラグの初期化
                 hand_gui_test.close_switch_py(0)
                 #complete_html(width, height)
@@ -227,6 +212,7 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
                 #それぞれのフラグを立てて、システムを終了させ、最初の while に戻る
                 flg_restart = 1
                 flg_video = 1
+                focus_flg = 0
                 #try:
                     #webcam が最初から接続されていない場合は except の動作
                     #cnt_gui, flg_end, flg_restart, flg_start, keep_flg = hand_gui.start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg)
@@ -234,9 +220,9 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
                     #traceback.print_exc()
                     #flg_start = 1
                 print("【通知】WebCameraが接続されていません。")
-                eel.windowclose()
-                #endpage.htmlを閉じる
-                eel.endpage_close()
+                eel.focusSwitch(width, height, focus_flg)
+                eel.overlay_controll(True)
+                eel.object_change("connect.html", True)
                 cap.release()
                 cv.destroyAllWindows()
                 break
@@ -326,14 +312,17 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
             #cnt_gui, flg_end, flg_restart, flg_start, keep_flg = hand_gui.start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg)
 
             if(focus_flg == 1):
-                eel.windowclose()
-                eel.init("GUI/web")
-                eel.start("html/index.html",
-                            mode='chrome',
-                            size=(400, 200),  #サイズ指定（横, 縦）
-                            position=(width-400,height-200), #位置指定（left, top）
-                            block=False
-                            )
+                eel.object_change("complete.html", False)
+                eel.overlay_controll(False)
+                eel.focusSwitch(width, height, focus_flg)
+                # eel.windowclose()
+                # eel.init("GUI/web")
+                # eel.start("html/index.html",
+                #             mode='chrome',
+                #             size=(400, 200),  #サイズ指定（横, 縦）
+                #             position=(width-400,height-200), #位置指定（left, top）
+                #             block=False
+                #             )
                 print("【実行】index.html")
                 eel.sleep(0.01)
                 #eel.focusSwitch(width, height, focus_flg)
@@ -348,6 +337,8 @@ def HandTracking(keep_flg, width, height, conf_flg = 0):
                 eel.endSwitch()
                 cap.release()
                 cv.destroyAllWindows()
+                eel.overlay_controll(False)
+                eel.object_change("endpage.html", False)
                 break
 
 def select_mode(key, mode):
