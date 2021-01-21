@@ -16,6 +16,7 @@ body {
 
     #default_view{
       display: none;
+
     }
 
     #small_index_object{
@@ -134,16 +135,6 @@ body {
     .small_index_btn{
       display: none;
 
-    }
-
-    .index_h2{
-      text-align: center;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .top{
-      display: inline-block;
     }
 
     .poseGuage{
@@ -311,7 +302,24 @@ body {
     	min-height: 320px;
     }
 
-    /*  */
+    /* =============   top.html  =====================*/
+    .top{
+      width:100%;
+    }
+
+    .top_parent div{
+      float: left;
+    }
+
+    .top_child p{
+
+    }
+
+
+    .top_child img{
+      width: 350px;
+      margin: 20px
+    }
 
     /* =============  check.html  =====================*/
     #video{
