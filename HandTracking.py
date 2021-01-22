@@ -103,6 +103,7 @@ def HandTracking(width, height, conf_flg = 0):
     flg_break = 0   #「1」で最初のループを抜け終了する⇒正常終了
     name_pose = "Unknown"
     focus_flg = 1   #index.html の表示・非表示の切り替え、「0」:Main.pyで開いた場合、「1」:HandTracking.pyで開いた場合
+    namePose_flg = 1    #complete_old.htmlの開始・終了フラグ
     #flg_closePush = 0
 
     cap_device = args.device
@@ -126,7 +127,9 @@ def HandTracking(width, height, conf_flg = 0):
             ret2, frame2 = cap2.read()
             if(ret2 is True):
                 #カメラが接続されている場合
+                name_pose = "Unknown"
                 focus_flg = 1
+                namePose_flg = 1
                 cap2.release()
                 eel.object_change("complete.html", True)
                 eel.sleep(1)
@@ -293,8 +296,13 @@ def HandTracking(width, height, conf_flg = 0):
             # eel立ち上げ #############################################################
             #cnt_gui, flg_end, flg_restart, flg_start, keep_flg = hand_gui.start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg)
 
-            if(focus_flg == 1):
-                eel.object_change("complete.html", False)
+            if(namePose_flg == 1):
+                eel.object_change("complete_old.html", True)
+                eel.sleep(0.01)
+                print("【通知】準備完了")
+                namePose_flg = 0
+            elif(focus_flg == 1 and name_pose != 'Unknown'):
+                eel.object_change("complete_old.html", False)
                 eel.overlay_controll(False)
                 eel.focusSwitch(width, height, focus_flg)
                 print("【実行】index.html")
