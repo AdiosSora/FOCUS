@@ -93,7 +93,7 @@ def shortcutondang(value):
         item.find("poseshortcut2").text = value
     tree.write('conf.xml', encoding='UTF-8')
 
-def HandTracking(width, height, conf_flg = 0):
+def HandTracking(cap, width, height, conf_flg = 0):
     # ×ボタンが押されたかのフラグ(hand_gui_test.py内の変数、flg_closePush)の初期化
     hand_gui_test.close_switch_py(0)
     # 引数解析 #################################################################
@@ -123,14 +123,14 @@ def HandTracking(width, height, conf_flg = 0):
         #カメラが接続されていないフラグの場合
         if(flg_video == 1):
             #カメラが接続されているか確認
-            cap2 = cv.VideoCapture(0)
-            ret2, frame2 = cap2.read()
-            if(ret2 is True):
+            cap = cv.VideoCapture(cap_device)
+            ret, frame = cap.read()
+            if(ret is True):
                 #カメラが接続されている場合
                 name_pose = "Unknown"
                 focus_flg = 1
                 namePose_flg = 1
-                cap2.release()
+                #cap.release()
                 eel.object_change("complete.html", True)
                 eel.sleep(1)
                 flg_video = 0
@@ -149,7 +149,7 @@ def HandTracking(width, height, conf_flg = 0):
             break   #最初の while を抜けて正常終了
 
         # カメラ準備 ###############################################################
-        cap = cv.VideoCapture(cap_device)
+        #cap = cv.VideoCapture(cap_device)
         cap.set(cv.CAP_PROP_FRAME_WIDTH, cap_width)
         cap.set(cv.CAP_PROP_FRAME_HEIGHT, cap_height)
 
