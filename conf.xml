@@ -1,8 +1,15 @@
 <config>
   <setting>
-    <mouse_sensitivity>7</mouse_sensitivity>
-    <pose_flag>0</pose_flag>
-    <poseshortcut>ctrl,z</poseshortcut>
-    <poseshortcut2>ctrl,z</poseshortcut2>
+    <mouse_sensitivity>0</mouse_sensitivity>
+    <pose_flag>1</pose_flag>
+    <poseshortcut>ctrl,c</poseshortcut>
+    <poseshortcut2>alt,f4</poseshortcut2>
+    <Palm>0</Palm>
+    <Dang>1</Dang>
+    <Gun>2</Gun>
+    <Peace>3</Peace>
+    <Rock>4</Rock>
+    <Three>5</Three>
+    <One>6</One>
   </setting>
 </config>

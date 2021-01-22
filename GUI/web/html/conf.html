@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script type="text/javascript" src="/eel.js"></script>
   <script src="../js/Recognize.js"></script>
+  <script src="../js/jquery-3.5.1.min.js"></script>
+  <script src="../js/Sortable.js"></script>
   <link rel="stylesheet" type="text/css" href="../css/style.min.css">
   <link rel="stylesheet" type="text/css" href="../css/pure.css">
 
@@ -13,65 +15,75 @@
 
 <body>
 <div class="big">
-
-<div class="tab-wrap">
-    <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">マウス速度設定</label>
-    <div class="tab-content">
-      <p>下のスライダーバーの数値を指定し、右下の適用ボタンをクリックして、下のプレビュー画面で設定をテストしてください。</p>
-      <div class="range-slider">
-        <span id="rs-bullet" class="rs-label">0</span>
-        遅い　<input id="rs-range-line" class="rs-range" type="range" value="0" min="0" max="10">　速い
-      </div>
-      <div>
-        <!-- <a class="pure-button pure-button-primary" href="#" onclick="saveConfigValue()">適用</a> -->
-        <div class="modal_wrap">
-        <input id="trigger" type="checkbox">
-          <div class="modal_overlay">
-            <label for="trigger" class="modal_trigger"></label>
-            <div class="modal_content">
-              <label for="trigger" class="close_button">✖️</label>
-              <h4 style="text-align:center;">設定を適応しました。</h4>
+  <div class="tab-wrap">
+      <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">マウス速度設定</label>
+      <div class="tab-content">
+        <p>下のスライダーバーの数値を指定し、右下の適用ボタンをクリックして、下のプレビュー画面で設定をテストしてください。</p>
+        <div class="range-slider">
+          <span id="rs-bullet" class="rs-label">0</span>
+          遅い　<input id="rs-range-line" class="rs-range" type="range" value="0" min="0" max="10">　速い
+        </div>
+        <div>
+          <!-- <a class="pure-button pure-button-primary" href="#" onclick="saveConfigValue()">適用</a> -->
+          <div class="modal_wrap">
+          <input id="trigger" type="checkbox">
+            <div class="modal_overlay">
+              <label for="trigger" class="modal_trigger"></label>
+              <div class="modal_content">
+                <label for="trigger" class="close_button">✖️</label>
+                <h4 style="text-align:center;">設定を適応しました。</h4>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="conf_footer_btn">
-        <label for="trigger" class="open_button" onclick="saveConfigValue()">適応</label>
+          <div class="conf_footer_btn">
+          <label for="trigger" class="open_button" onclick="saveConfigValue()">適応</label>
+          </div>
         </div>
       </div>
-    </div>
-    <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">ショートカット</label>
-    <div class="tab-content">
-      <div>
-        oneのポーズ
-        <select name="keyconfig" id="keyconfig">
-          <option value="ctrl,c">Ctl+C</option>
-          <option value="ctrl,s">Ctl+S</option>
-          <option value="ctrl,v">Ctl+V</option>
-          <option value="ctrl,x">Ctl+X</option>
-          <option value="ctrl,y">Ctl+Y</option>
-          <option value="ctrl,z">Ctl+Z</option>
-          <option value="alt,f4">Alt+F4</option>
-          <option value="alt,tab">Alt+Tab</option>
-        </select>
-        <p></p>
-        dangのポーズ
-        <select name="keyconfig2" id="keyconfig2">
-          <option value="ctrl,c">Ctl+C</option>
-          <option value="ctrl,s">Ctl+S</option>
-          <option value="ctrl,v">Ctl+V</option>
-          <option value="ctrl,x">Ctl+X</option>
-          <option value="ctrl,y">Ctl+Y</option>
-          <option value="ctrl,z">Ctl+Z</option>
-          <option value="alt,f4">Alt+F4</option>
-          <option value="alt,tab">Alt+Tab</option>
-        </select>
-        <p></p>
-        ショートカットキー有効化<input type='checkbox' id='shortcut' class="checkbox" />
-        <a class="pure-button pure-button-primary" onclick="keyshortcut()">保存</a>
+      <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">ショートカット</label>
+      <div class="tab-content">
+        <div>
+          oneのポーズ
+          <select name="keyconfig" id="keyconfig">
+            <option value="ctrl,c">Ctl+C</option>
+            <option value="ctrl,s">Ctl+S</option>
+            <option value="ctrl,v">Ctl+V</option>
+            <option value="ctrl,x">Ctl+X</option>
+            <option value="ctrl,y">Ctl+Y</option>
+            <option value="ctrl,z">Ctl+Z</option>
+            <option value="alt,f4">Alt+F4</option>
+            <option value="alt,tab">Alt+Tab</option>
+          </select>
+          <p></p>
+          dangのポーズ
+          <select name="keyconfig2" id="keyconfig2">
+            <option value="ctrl,c">Ctl+C</option>
+            <option value="ctrl,s">Ctl+S</option>
+            <option value="ctrl,v">Ctl+V</option>
+            <option value="ctrl,x">Ctl+X</option>
+            <option value="ctrl,y">Ctl+Y</option>
+            <option value="ctrl,z">Ctl+Z</option>
+            <option value="alt,f4">Alt+F4</option>
+            <option value="alt,tab">Alt+Tab</option>
+          </select>
+          <p></p>
+          ショートカットキー有効化<input type='checkbox' id='shortcut' class="checkbox" />
+          <a class="pure-button pure-button-primary" onclick="keyshortcut()">保存</a>
+        </div>
+        <div id="listWithHandle">
+          <div>01</div>
+          <div>02</div>
+          <div>03</div>
+          <div>04</div>
+          <div>05</div>
+          <div>06</div>
+          <div>07</div>
+          <div>08</div>
+          <div>09</div>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </div>
 
 <div class="small_index_object">
@@ -127,6 +139,14 @@
   const keybox = document.getElementById("shortcut");
 
   rangeSlider.addEventListener("input", showSliderValue, false);
+
+
+
+  var listGrid = document.getElementById('listWithHandle');
+  let sortable = Sortable.create(listGrid, {
+    group: "hoge",
+    animation: 100
+  });
 
   function showSliderValue() {
     rangeBullet.innerHTML = rangeSlider.value;
