@@ -33,31 +33,31 @@
 </header>
 
 <body>
-  <div id="default_view">
   <div id="overlay_view">
     <div id="overlay_window">
       <object id="overlay_object" data="conf.html" style="width:80vw;height:60vh">
       </object>
     </div>
   </div>
+  <div id="default_view">
 
 
-  <div class="tab-wrap-index">
-    <input id="TAB-1" type="radio" name="TAB" class="tab-switch-index" checked="checked" /><label class="tab-label-index" for="TAB-1"><i class="fas fa-home"></i></label>
-    <div class="tab-content-index">
-      <object class="index_object_top" data="top.html">
-     </object>
-    </div>
-    <input id="TAB-2" type="radio" name="TAB" class="tab-switch-index" /><label class="tab-label-index" for="TAB-2"><i class="fas fa-cog" ></i></label>
-    <div class="tab-content-index">
-      <object  class="index_object_top" data="conf.html">
-     </object>
-    </div>
-    <input id="TAB-3" type="radio" name="TAB" class="tab-switch-index" /><label class="tab-label-index" for="TAB-3"><i class="fas fa-question-circle"></i></label>
-    <div class="tab-content-index">
-      <object  class="index_object_top" data="help.html">
-     </object>
-   </div>
+    <div class="tab-wrap-index">
+      <input id="TAB-1" type="radio" name="TAB" class="tab-switch-index" checked="checked" /><label class="tab-label-index" for="TAB-1"><i class="fas fa-home"></i></label>
+      <div class="tab-content-index">
+        <object class="index_object_top" data="top.html">
+       </object>
+      </div>
+      <input id="TAB-2" type="radio" name="TAB" class="tab-switch-index" /><label class="tab-label-index" for="TAB-2"><i class="fas fa-cog" ></i></label>
+      <div class="tab-content-index">
+        <object  class="index_object_top" data="conf.html">
+       </object>
+      </div>
+      <input id="TAB-3" type="radio" name="TAB" class="tab-switch-index" /><label class="tab-label-index" for="TAB-3"><i class="fas fa-question-circle"></i></label>
+      <div class="tab-content-index">
+        <object  class="index_object_top" data="help.html">
+       </object>
+     </div>
   </div>
 </div>
 
@@ -115,7 +115,7 @@
 
 <script>
   document.getElementById("headIndex").style.visibility = "visible";
-  const overlay = document.getElementById("overlay_view")
+  const overlay_view = document.getElementById("overlay_view")
   function link(target) {
     window.location.href = target;
   }
