@@ -13,23 +13,38 @@
 
 <body>
 <div class="big">
-  <div class="modal_wrap">
-  <input id="trigger" type="checkbox">
-    <div class="modal_overlay">
-      <label for="trigger" class="modal_trigger"></label>
-      <div class="modal_content">
-        <label for="trigger" class="close_button">✖️</label>
-        <h4 style="text-align:center;">設定を適応しました。</h4>
-      </div>
-    </div>
-  </div>
-  <p>下のスライダーバーの数値を指定し、右下の適用ボタンをクリックして、下のプレビュー画面で設定をテストしてください。</p>
+  <h2>マウス感度設定</h2>
+  <p class="detail_text">遅いに近いほど細かい操作がしやすくなり、早いに近いほど少しの動作で画面全体の操作が出来ます。</p>
   <div class="range-slider">
     <span id="rs-bullet" class="rs-label">0</span>
     遅い　<input id="rs-range-line" class="rs-range" type="range" value="0" min="0" max="10">　速い
   </div>
-  <div>
-    <!-- <a class="pure-button pure-button-primary" href="#" onclick="saveConfigValue()">適用</a> -->
+  <h2>ポーズ設定</h2>
+  <p class="detail_text">
+    ポーズを入れ替えることでマウスの操作に対するポーズを変更することが出来ます。<br>
+    手のアイコンをドラッグドロップすることで入れ替えることができます。
+  </p>
+  <br>
+  <!-- <div class="PoseSettinglist">
+    <div id="PoseList" class="listWithHandle">
+      <div class="drag_palm"><img src="../images/Hand_Palm.svg" width="46px"></div>
+      <div class="drag_rock"><img src="../images/Hand_Rock.svg" width="46px"></div>
+      <div class="drag_gun"><img src="../images/Hand_Gun.svg" width="46px"></div>
+      <div class="drag_three"><img src="../images/Hand_Three.svg" width="46px"></div>
+      <div class="drag_peace"><img src="../images/Hand_Peace.svg" width="46px"></div>
+      <div class="drag_dang"><img src="../images/Hand_Dang.svg" width="46px"></div>
+      <div class="drag_one"><img src="../images/Hand_One.svg" width="46px"></div>
+    </div>
+    <div class="listlabel">
+      <div>移動</div>
+      <div>左クリック</div>
+      <div>右クリック</div>
+      <div>ダブルクリック</div>
+      <div>ドラッグ<br>ドロップ</div>
+      <div>1<br/>ショートカット</div>
+      <div>2<br/>ショートカット</div>
+    </div>
+  </div> -->
   <div>
     oneのポーズ
     <select name="keyconfig" id="keyconfig">
@@ -57,11 +72,24 @@
     <p></p>
     ショートカットキー有効化<input type='checkbox' id='shortcut' class="checkbox" />
   </div>
+  <div>
+    <!-- <a class="pure-button pure-button-primary" href="#" onclick="saveConfigValue()">適用</a> -->
+    <div class="modal_wrap">
+    <input id="trigger" type="checkbox">
+      <div class="modal_overlay">
+        <label for="trigger" class="modal_trigger"></label>
+        <div class="modal_content">
+          <label for="trigger" class="close_button">✖️</label>
+          <h4 style="text-align:center;">設定を適応しました。</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a class="pure-button pure-button-primary" onclick="keyshortcut()">保存</a>
   <div class="conf_footer_btn">
   <label for="trigger" class="open_button" onclick="saveConfigValue()">適応</label>
   </div>
 </div>
-
 
 </body>
 
@@ -126,6 +154,7 @@
       eel.save_shortcutflag("0");
     }
   }
+
 </script>
 
 </html>
