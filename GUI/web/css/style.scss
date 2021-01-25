@@ -55,105 +55,165 @@ h2:after {
   width:80vw;
   height:60vh;
 }
+.overlay_content{
+  height:100%;
+  padding:{
+    top:10vh;
+    bottom:10vh;
+  }
+}
 /* =============  index.html 小さい状態  =====================*/
 //500px以下で下記のソースが適用される
 @media screen and (max-width: 500px) {
-		header{
-      display: none;
-    }
+	header{
+    display: none;
+  }
 
-    #default_view{
-      display: none;
+  #default_view{
+    display: none;
 
-    }
+  }
 
-    #small_index_object{
-      text-align: right;
-    }
+  #small_index_object{
+    text-align: right;
+  }
 
-    .small_index_btn {
-      display: inline-block;
-      max-width: 180px;
-      border: 2px solid #26408e;
-      font-size: 16px;
-      color: #FFFFFF;
-      background-color: #26408e;
-      text-decoration: none;
-      font-weight: bold;
-      padding: 6px 10px;
-      border-radius: 4px;
-      transition: .4s;
-      text-align: right;
-    }
+  .small_index_btn {
+    display: inline-block;
+    max-width: 180px;
+    border: 2px solid #26408e;
+    font-size: 16px;
+    color: #FFFFFF;
+    background-color: #26408e;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 6px 10px;
+    border-radius: 4px;
+    transition: .4s;
+    text-align: right;
+  }
 
-    .small_index_btn:hover {
-      background-color: #ffffff;
-      border-color: #394e8e;
-      color: #26408e;
-    }
+  .small_index_btn:hover {
+    background-color: #ffffff;
+    border-color: #394e8e;
+    color: #26408e;
+  }
 
-    .pose_boxs{
-      display: flex;
-      flex-wrap: wrap;
-      margin: 0 auto;
+  .pose_boxs{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+  }
+  .pose_box{
+    box-sizing: border-box;
+    width:calc(100% / 7);
+    background-color: #ffffff;
+    margin:0px;
+    padding:4px 0px;
+  }
+  .pose_name{
+    text-align: center;
+    font-size: 14px;
+    font-style: oblique;
+  }
+  .pose_detail{
+    padding-top: 4px;
+    text-align: center;
+    color: #656565;
+    font-size: 12px;
+  }
+  .pose_highlight {
+    background-color: #ffec88;
+  }
+  .pose_highlight > img{
+  	-webkit-animation:pose_highlight 0.45s both;
+  	-moz-animation:pose_highlight 0.45s both;
+    animation:pose_highlight 0.45s both;
+  }
+  @-webkit-keyframes pose_highlight {
+    0% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
     }
-    .pose_box{
-      box-sizing: border-box;
-      width:calc(100% / 7);
-      background-color: #ffffff;
-      margin:0px;
-      padding:4px 0px;
-    }
-    .pose_name{
-      text-align: center;
-      font-size: 14px;
-      font-style: oblique;
-    }
-    .pose_detail{
-      padding-top: 4px;
-      text-align: center;
-      color: #656565;
-      font-size: 12px;
-    }
-    .pose_highlight {
-      background-color: #ffec88;
-    }
-    .pose_highlight > img{
-    	-webkit-animation:pose_highlight 0.45s both;
-    	-moz-animation:pose_highlight 0.45s both;
-      animation:pose_highlight 0.45s both;
-    }
-    @-webkit-keyframes pose_highlight {
-      0% {
-        -webkit-transform: scale(1);
-                transform: scale(1);
-      }
-      100% {
-        -webkit-transform: scale(1.2);
-                transform: scale(1.2);
-      }
-    }
-    @-moz-keyframes pose_highlight {
-      0% {
-        -webkit-transform: scale(1);
-                transform: scale(1);
-      }
-      100% {
-        -webkit-transform: scale(1.2);
-                transform: scale(1.2);
-      }
-    }
-    @keyframes pose_highlight {
-      0% {
-        -webkit-transform: scale(1);
-                transform: scale(1);
-      }
-      100% {
-        -webkit-transform: scale(1.2);
-                transform: scale(1.2);
-      }
+    100% {
+      -webkit-transform: scale(1.2);
+              transform: scale(1.2);
     }
   }
+  @-moz-keyframes pose_highlight {
+    0% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+    100% {
+      -webkit-transform: scale(1.2);
+              transform: scale(1.2);
+    }
+  }
+  @keyframes pose_highlight {
+    0% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+    }
+    100% {
+      -webkit-transform: scale(1.2);
+              transform: scale(1.2);
+    }
+  }
+
+      //----- Endpage用CSS -----//
+  .end_title{
+    font: {
+      size:14px;
+    }
+    text-align: center;
+    width:100%;
+  }
+
+  .btn{
+    margin:{
+      left:10%;
+      right:10%;
+    }
+    padding: 0;
+    width:30%;
+    height:45px;
+    text-align: center;
+    border-radius: 5%;
+    line-height: 45px;
+  }
+
+  a.btn--OK {
+    color: #fff;
+    background-color: #c10439;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+  }
+
+  a.btn--OK:hover {
+    color: #fff;
+    background: #d90139;
+  }
+
+  a.btn--NO {
+    color: #fff;
+    background-color: #0442c1;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+  }
+
+  a.btn--NO:hover {
+    color: #fff;
+    background: #0148d9;
+  }
+
+  a.btn--shadow {
+    -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+  }
+}
 
 
 @media screen and (min-width: 500px) {
@@ -593,7 +653,14 @@ h2:after {
       }
 
     //ここまで↑↑↑↑↑↑↑↑↑↑↑↑
-
+    #listWithHandle div {
+      width: 100px;	
+      height: 100px;
+      background-color: #fff;
+      border: solid 1px rgba(0,0,0,0.2);
+      padding: 10px;
+      margin: 12px;
+    }
     //スライダーバー↓↓↓↓↓↓↓↓↓↓↓↓
     .conf_body_title_1{
       display: inline-block;
