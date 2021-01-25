@@ -11,6 +11,7 @@ import xml.etree.ElementTree as ET
 
 import time
 import PoseAction
+import argparse
 
 start_flg = 0   #HandTracking.py の開始フラグ、「1」で開始
 end_flg = 0 #システム終了のフラグ、「1」で終了
@@ -35,7 +36,30 @@ def end_flg():
     global end_flg
     end_flg = 1
 
+def get_args():
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument("--device", type=int, default=0)
+    parser.add_argument("--width", help='cap width', type=int, default=1920)
+    parser.add_argument("--height", help='cap height', type=int, default=1080)
+
+    parser.add_argument('--use_static_image_mode', action='store_true')
+    parser.add_argument("--min_detection_confidence",
+                        help='min_detection_confidence',
+                        type=float,
+                        default=0.7)
+    parser.add_argument("--min_tracking_confidence",
+                        help='min_tracking_confidence',
+                        type=int,
+                        default=0.5)
+
+    args = parser.parse_args()
+
+    return args
+
 if __name__ == '__main__':
+    args = get_args()
+    cap_device = args.device
     focus_flg = 0   #index.html の表示・非表示の切り替え、「0」:Main.pyで開いた場合、「1」:HandTracking.pyで開いた場合
     eel.init("GUI/web")
 
@@ -88,27 +112,26 @@ if __name__ == '__main__':
         #以降「終了」ボタンが押下されるまでループ
         if(start_flg == 1):
             #「起動」を押下時の処理
+            eel.overlay_controll(True)
+            eel.object_change("complete.html", True)
+            eel.sleep(1)
             webcam_flg = 0  #connect.html が起動中か判別、「1」で起動中
 
             while(True):
                 #カメラが接続されるまでループ
-                cap = cv2.VideoCapture(0)
+                cap = cv2.VideoCapture(cap_device)
                 ret, frame = cap.read()
                 if(ret is True):
                     if(webcam_flg == 1):
                         eel.object_change("complete.html", True)
-                    else:
-                        eel.overlay_controll(True)
-                        eel.object_change("complete.html", True)
-                    eel.sleep(1)
+                        eel.sleep(1)
                     print("【通知】WebCamera検知")
-                    cap.release()
+                    #cap.release()
                     break
                 else:
                     if(webcam_flg == 0):
                         print("【通知】WebCameraが接続されていません。")
-
-                        eel.overlay_controll(True)
+                        cap.release()
                         eel.object_change("connect.html", True)
                         eel.sleep(0.01)
                         time.sleep(0.01)
@@ -118,11 +141,13 @@ if __name__ == '__main__':
                         time.sleep(0.01)
 
             print("【実行】HandTracking.py")
-            HandTracking.HandTracking(width, height,)    #HandTracking.py が終了するまで、 Main.py の以降の処理を行わない
+            HandTracking.HandTracking(cap, width, height,)    #HandTracking.py が終了するまで、 Main.py の以降の処理を行わない
             eel.focusSwitch(width, height, focus_flg)
+            cap.release()
             start_flg = 0
         elif(end_flg == 1):
             #「終了」を押下時の処理
+            cap.release()
             print("【実行】終了処理")
             break
         else:
