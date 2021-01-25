@@ -67,30 +67,14 @@ def set_poseshortcut2():
 
 
 @eel.expose #Conf.htmlで設定を保存する時に呼ばれるeel関数
-def save_confvalue(value):
+def save_confvalue(value,shortcut_value1,shortcut_value2):
     tree =  ET.parse('conf.xml')
     root = tree.getroot()
     #for item in root.iter('setting'):
     for item in root:
         item.find("mouse_sensitivity").text = value
-    tree.write('conf.xml', encoding='UTF-8')
-
-@eel.expose
-def shortcutonone(value):
-    tree =  ET.parse('conf.xml')
-    root = tree.getroot()
-    #for item in root.iter('setting'):
-    for item in root:
-        item.find("poseshortcut").text = value
-    tree.write('conf.xml', encoding='UTF-8')
-
-@eel.expose
-def shortcutondang(value):
-    tree =  ET.parse('conf.xml')
-    root = tree.getroot()
-    #for item in root.iter('setting'):
-    for item in root:
-        item.find("poseshortcut2").text = value
+        item.find("poseshortcut").text = shortcut_value1
+        item.find("poseshortcut2").text = shortcut_value2
     tree.write('conf.xml', encoding='UTF-8')
 
 def HandTracking(cap, width, height, conf_flg = 0):
