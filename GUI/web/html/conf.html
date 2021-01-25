@@ -13,83 +13,106 @@
 
 <body>
 <div class="big">
-  <h2>マウス感度設定</h2>
-  <p class="detail_text">遅いに近いほど細かい操作がしやすくなり、早いに近いほど少しの動作で画面全体の操作が出来ます。</p>
-  <div class="range-slider">
-    <span id="rs-bullet" class="rs-label">0</span>
-    遅い　<input id="rs-range-line" class="rs-range" type="range" value="0" min="0" max="10">　速い
-  </div>
-  <h2>ポーズ設定</h2>
-  <p class="detail_text">
-    ポーズを入れ替えることでマウスの操作に対するポーズを変更することが出来ます。<br>
-    手のアイコンをドラッグドロップすることで入れ替えることができます。
-  </p>
-  <br>
-  <div class="PoseSettinglist">
-    <div id="PoseList" class="listWithHandle">
-      <div class="drag_palm"><img src="../images/Hand_Palm.svg" width="46px"></div>
-      <div class="drag_rock"><img src="../images/Hand_Rock.svg" width="46px"></div>
-      <div class="drag_gun"><img src="../images/Hand_Gun.svg" width="46px"></div>
-      <div class="drag_three"><img src="../images/Hand_Three.svg" width="46px"></div>
-      <div class="drag_peace"><img src="../images/Hand_Peace.svg" width="46px"></div>
-      <div class="drag_dang"><img src="../images/Hand_Dang.svg" width="46px"></div>
-      <div class="drag_one"><img src="../images/Hand_One.svg" width="46px"></div>
-    </div>
-    <div class="listlabel">
-      <div>移動</div>
-      <div>左クリック</div>
-      <div>右クリック</div>
-      <div>ダブルクリック</div>
-      <div>ドラッグ<br>ドロップ</div>
-      <div>1<br/>ショートカット</div>
-      <div>2<br/>ショートカット</div>
-    </div>
-  </div>
-  <div>
-    oneのポーズ
-    <select name="keyconfig" id="keyconfig">
-      <option value="ctrl,c">Ctl+C</option>
-      <option value="ctrl,s">Ctl+S</option>
-      <option value="ctrl,v">Ctl+V</option>
-      <option value="ctrl,x">Ctl+X</option>
-      <option value="ctrl,y">Ctl+Y</option>
-      <option value="ctrl,z">Ctl+Z</option>
-      <option value="alt,f4">Alt+F4</option>
-      <option value="alt,tab">Alt+Tab</option>
-    </select>
-    <p></p>
-    dangのポーズ
-    <select name="keyconfig2" id="keyconfig2">
-      <option value="ctrl,c">Ctl+C</option>
-      <option value="ctrl,s">Ctl+S</option>
-      <option value="ctrl,v">Ctl+V</option>
-      <option value="ctrl,x">Ctl+X</option>
-      <option value="ctrl,y">Ctl+Y</option>
-      <option value="ctrl,z">Ctl+Z</option>
-      <option value="alt,f4">Alt+F4</option>
-      <option value="alt,tab">Alt+Tab</option>
-    </select>
-    <p></p>
-    ショートカットキー有効化<input type='checkbox' id='shortcut' class="checkbox" />
-  </div>
-  <div>
-    <!-- <a class="pure-button pure-button-primary" href="#" onclick="saveConfigValue()">適用</a> -->
-    <div class="modal_wrap">
-    <input id="trigger" type="checkbox">
-      <div class="modal_overlay">
-        <label for="trigger" class="modal_trigger"></label>
-        <div class="modal_content">
-          <label for="trigger" class="close_button">✖️</label>
-          <h4 style="text-align:center;">設定を適応しました。</h4>
+
+<div class="tab-wrap">
+    <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">マウス速度設定</label>
+    <div class="tab-content">
+      <p>下のスライダーバーの数値を指定し、右下の適用ボタンをクリックして、下のプレビュー画面で設定をテストしてください。</p>
+      <div class="range-slider">
+        <span id="rs-bullet" class="rs-label">0</span>
+        遅い　<input id="rs-range-line" class="rs-range" type="range" value="0" min="0" max="10">　速い
+      </div>
+      <div>
+        <!-- <a class="pure-button pure-button-primary" href="#" onclick="saveConfigValue()">適用</a> -->
+        <div class="modal_wrap">
+        <input id="trigger" type="checkbox">
+          <div class="modal_overlay">
+            <label for="trigger" class="modal_trigger"></label>
+            <div class="modal_content">
+              <label for="trigger" class="close_button">✖️</label>
+              <h4 style="text-align:center;">設定を適応しました。</h4>
+            </div>
+          </div>
+        </div>
+        <div class="conf_footer_btn">
+        <label for="trigger" class="open_button" onclick="saveConfigValue()">適応</label>
         </div>
       </div>
     </div>
-  </div>
-  <a class="pure-button pure-button-primary" onclick="keyshortcut()">保存</a>
-  <div class="conf_footer_btn">
-  <label for="trigger" class="open_button" onclick="saveConfigValue()">適応</label>
+    <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">ショートカット</label>
+    <div class="tab-content">
+      <div>
+        oneのポーズ
+        <select name="keyconfig" id="keyconfig">
+          <option value="ctrl,c">Ctl+C</option>
+          <option value="ctrl,s">Ctl+S</option>
+          <option value="ctrl,v">Ctl+V</option>
+          <option value="ctrl,x">Ctl+X</option>
+          <option value="ctrl,y">Ctl+Y</option>
+          <option value="ctrl,z">Ctl+Z</option>
+          <option value="alt,f4">Alt+F4</option>
+          <option value="alt,tab">Alt+Tab</option>
+        </select>
+        <p></p>
+        dangのポーズ
+        <select name="keyconfig2" id="keyconfig2">
+          <option value="ctrl,c">Ctl+C</option>
+          <option value="ctrl,s">Ctl+S</option>
+          <option value="ctrl,v">Ctl+V</option>
+          <option value="ctrl,x">Ctl+X</option>
+          <option value="ctrl,y">Ctl+Y</option>
+          <option value="ctrl,z">Ctl+Z</option>
+          <option value="alt,f4">Alt+F4</option>
+          <option value="alt,tab">Alt+Tab</option>
+        </select>
+        <p></p>
+        ショートカットキー有効化<input type='checkbox' id='shortcut' class="checkbox" />
+        <a class="pure-button pure-button-primary" onclick="keyshortcut()">保存</a>
+      </div>
+    </div>
   </div>
 </div>
+</div>
+
+<div class="small_index_object">
+<button class="small_index_btn" type="button" name="endbtn" value="end" onclick="endBtn()">×</button>
+</div>
+<div class="poseGuage">
+<h4 id="poseGuage"></h4>
+</div>
+
+<div class="small_index_pose">
+
+    <table class="small_table">
+      <tr>
+        <th class="small_th_text">Palm</th>
+        <th class="small_th_text">Dang</th>
+        <th class="small_th_text">One</th>
+        <th class="small_th_text">Rock</th>
+        <th class="small_th_text">Three</th>
+        <th class="small_th_text">Three</th>
+      </tr>
+      <tr>
+
+        <td class="small_td_img"><img src="../images/Hand_Palm.svg" width="50px"></td>
+        <td class="small_td_img"><img src="../images/Hand_Palm.svg" width="50px"></td>
+        <td class="small_td_img"><img src="../images/Hand_Palm.svg" width="50px"></td>
+        <td class="small_td_img"><img src="../images/Hand_Palm.svg" width="50px"></td>
+        <td class="small_td_img"><img src="../images/Hand_Palm.svg" width="50px"></td>
+        <td class="small_td_img"><img src="../images/Hand_Palm.svg" width="50px"></td>
+      </tr>
+      <tr>
+        <td class="small_td_text"><h6>マウス移動</h6></td>
+        <td class="small_td_text"><h6>クリック</h6></td>
+        <td class="small_td_text"><h6>右クリック</h6></td>
+        <td class="small_td_text"><h6>スクロール</h6></td>
+        <td class="small_td_text"><h6>ドラック</h6></td>
+        <td class="small_td_text"><h6>ダブルクリック</h6></td>
+      </tr>
+
+    </table>
+
+  </div>
 
 </body>
 
@@ -147,14 +170,17 @@
   //設定した値をコンフィグに書き込む関数
   eel.expose(saveConfigValue);
   function saveConfigValue() {
-    eel.save_confvalue(rangeSlider.value,keyconfig.value,keyconfig2.value);
+    eel.save_confvalue(rangeSlider.value);
+  }
+  function keyshortcut() {
+    eel.shortcutonone(keyconfig.value)
+    eel.shortcutondang(keyconfig2.value)
     if(shortcut.checked){
       eel.save_shortcutflag("1");
     }else{
       eel.save_shortcutflag("0");
     }
   }
-
 </script>
 
 </html>
