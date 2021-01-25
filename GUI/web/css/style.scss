@@ -42,6 +42,19 @@ h2:before {
 h2:after {
   right: 0;
 }
+#overlay_view{
+  position: absolute;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(255, 255, 255, .7);
+  z-index: 2;
+  display: none;
+}
+#overlay_window{
+  margin:20vh 10vw;
+  width:80vw;
+  height:60vh;
+}
 /* =============  index.html 小さい状態  =====================*/
 //500px以下で下記のソースが適用される
 @media screen and (max-width: 500px) {
@@ -144,19 +157,6 @@ h2:after {
 
 
 @media screen and (min-width: 500px) {
-    #overlay_view{
-      position: absolute;
-      left: 0; top: 0;
-      width: 100%; height: 100%;
-      background: rgba(255, 255, 255, .7);
-      z-index: 2;
-      display: none;
-    }
-    #overlay_window{
-      margin:20vh 10vw;
-      width:80vw;
-      height:60vh;
-    }
     header{
       padding:15px;
       background-color: #262626;
