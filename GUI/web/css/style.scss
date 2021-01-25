@@ -1,6 +1,5 @@
 
 
-
 .wrap {
     height: 432px;
     width: 768px;
@@ -8,7 +7,7 @@
     transform-origin: 0% 0%;
 }
 body {
-  background-color: #fff;
+  background-color:#fff ;
 }
 
 h1 {
@@ -42,27 +41,6 @@ h2:before {
 }
 h2:after {
   right: 0;
-}
-#overlay_view{
-  position: absolute;
-  left: 0; top: 0;
-  width: 100%; height: 100%;
-  background: rgba(255, 255, 255, .7);
-  z-index: 2;
-  display: none;
-}
-#overlay_window{
-  margin:20vh 10vw;
-  width:80vw;
-  height:60vh;
-  box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .5);
-}
-.overlay_content{
-  height:100%;
-  padding:{
-    top:10vh;
-    bottom:10vh;
-  }
 }
 /* =============  index.html 小さい状態  =====================*/
 //500px以下で下記のソースが適用される
@@ -100,7 +78,7 @@ h2:after {
       border-color: #394e8e;
       color: #26408e;
     }
-    //----- 識別実行時のリアルタイムビュー用CSS -----//
+
     .pose_boxs{
       display: flex;
       flex-wrap: wrap;
@@ -162,74 +140,28 @@ h2:after {
                 transform: scale(1.2);
       }
     }
-
-    //----- Endpage用CSS -----//
-    .end_title{
-      font: {
-        size:14px;
-      }
-      text-align: center;
-      width:100%;
-    }
-
-    .btn{
-      margin:{
-        left:10%;
-        right:10%;
-      }
-      padding: 0;
-      width:30%;
-      height:45px;
-      text-align: center;
-      border-radius: 5%;
-      line-height: 45px;
-    }
-
-    a.btn--OK {
-      color: #fff;
-      background-color: #c10439;
-      text-align: center;
-      text-decoration: none;
-      font-size: 20px;
-    }
-
-    a.btn--OK:hover {
-      color: #fff;
-      background: #d90139;
-    }
-
-    a.btn--NO {
-      color: #fff;
-      background-color: #0442c1;
-      text-align: center;
-      text-decoration: none;
-      font-size: 20px;
-    }
-
-    a.btn--NO:hover {
-      color: #fff;
-      background: #0148d9;
-    }
-
-    a.btn--shadow {
-      -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
-      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
-    }
   }
 
 
 @media screen and (min-width: 500px) {
-
+    #overlay_view{
+      position: absolute;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(255, 255, 255, .7);
+      z-index: 2;
+      display: none;
+    }
+    #overlay_window{
+      margin:20vh 10vw;
+      width:80vw;
+      height:60vh;
+    }
     header{
-      padding:20px;
-      border-width: 0 0 1px 0;
-      border-style: solid;
-      border-color: #afafaf;
-      background-color: #222;
+      padding:15px;
+      background-color: #262626;
     }
-    .header_logo{
-      fill: #fff;
-    }
+
     .small_index_btn{
       display: none;
 
@@ -292,30 +224,22 @@ h2:after {
     }
 
     /* =============   index.html  =====================*/
-    .header_button {
-      color: #fff;
-      margin: 5px;
-      padding: 0px 10px 0px 10px;
-      position: relative;
+
+    .start-btn {
+      text-align: right;
       display: inline-block;
+      padding: 0.3em 1em;
       text-decoration: none;
+      margin: 0 20px 10px 0;
+      color: #67c5ff;
+      border: solid 2px #67c5ff;
+      border-radius: 3px;
+      transition: .4s;
     }
-    .header_button::after {
-      position: absolute;
-      bottom: 2px;
-      left: 0;
-      content: '';
-      width: 100%;
-      height: 2px;
-      background: #333;
-      opacity: 0;
-      visibility: hidden;
-      transition: .3s;
-    }
-    .header_button:hover::after {
-      bottom: -4px;
-      opacity: 1;
-      visibility: visible;
+
+    .start-btn:hover {
+      background: #67c5ff;
+      color: white;
     }
 
     .top{
@@ -329,76 +253,102 @@ h2:after {
 
     }
 
+    .column_box {
+        display: grid;
+        grid-template-rows: 700px;
+        grid-template-columns:  75px auto;
+        background-color:#ffffff;
+        padding:5px;
+        width:auto;
+    }
+    .column_item1 {
+        background-color:#ffffff;
 
-    //縦タブ　
-    .cp_tab *, .cp_tab *:before, .cp_tab *:after {
-    	-webkit-box-sizing: border-box;
-    	        box-sizing: border-box;
     }
-    .cp_tab {
-    	margin: 1em auto;
-    	position: relative;
-      z-index: 0;
+    .column_item2 {
+        background-color:#ececec;
+        border-radius: 10px;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+
     }
-    .cp_tab input[type='radio'] {
-    	margin: 0;
-    	padding: 0;
-    	border: none;
-    	border-radius: 0;
-    	outline: none;
-    	background: none;
-    	-webkit-appearance: none;
-    	        appearance: none;
-    	display: none;
+
+
+    //縦タブ
+    .tab-wrap-index {
+        height: 100%;
+        min-height: 300px;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+      }
+      .tab-label-index {
+        width: 60px;
+        color: #999999;
+        background-color: #ffffff;
+        // font-weight: bold;
+        white-space: nowrap;
+        text-align: center;
+        // border:1px solid Gray;
+        // border-radius: 4px 0 0 4px;
+        margin: 5px -1px 5px 5px;
+        padding: 23px .5em 23px .5em;
+        order: -1;
+        position: relative;
+        z-index: 1;
+        cursor: pointer;
+        float:left;
+      }
+      label.tab-label-index:hover{
+        background:rgba(0, 191, 255,.1);
+        border-radius: 50%;
+        transition: .5s;
+      }
+
+
+
+
+      .tab-content-index {
+        display:none;
+      }
+      /* アクティブなタブ */
+      .tab-switch-index:checked+.tab-label-index {
+        color: #0078e7;
+        background: White;
+        border-right-color: White;
+      }
+      .tab-switch-index:checked+.tab-label-index+.tab-content-index {
+        width: calc(100% - 150px); /* - ボタン幅 */
+        height: 100%;
+        // padding: 15px;
+        // border-left: 1px solid Gray;
+        display:block;
+      }
+      /* ラジオボタン非表示 */
+      .tab-switch-index {
+        display: none;
+      }
+
+
+
+
+
+    .icon{
+
+      margin: 20px 40px 40px 20px;
+
     }
-    .cp_tab .cp_tabpanel {
-    	display: none;
+
+    .index_object_top{
+      width:95%;
+      height: 80%;
+      padding:30px;
+      margin:30px;
+      border-radius: 10px;
+      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
     }
-    .cp_tab > input:first-child:checked ~ .cp_tabpanels > .cp_tabpanel:first-child,
-    .cp_tab > input:nth-child(3):checked ~ .cp_tabpanels > .cp_tabpanel:nth-child(2),
-    .cp_tab > input:nth-child(5):checked ~ .cp_tabpanels > .cp_tabpanel:nth-child(3),
-    .cp_tab > input:nth-child(7):checked ~ .cp_tabpanels > .cp_tabpanel:nth-child(4),
-    .cp_tab > input:nth-child(9):checked ~ .cp_tabpanels > .cp_tabpanel:nth-child(5),
-    .cp_tab > input:nth-child(11):checked ~ .cp_tabpanels > .cp_tabpanel:nth-child(6) {
-    	display: block;
-    }
-    .cp_tab .cp_tabpanels {
-    	position: absolute;
-    	top:0;
-    	left: 10em;
-    	display: block;
-    	height: 320px;
-    }
-    .cp_tab > input + label {
-    	position: relative;
-    	z-index: 100;
-    	top: -15px;
-    	left: 1px;
-    	display: block;
-    	width: 10em;
-    	margin-bottom: 20px;
-    	padding: 15px;
-    	cursor: pointer;
-    	border: 1px solid #cccccc;
-    	border-right: 0;
-    	border-radius: 6px 0 0 6px;
-    }
-    .cp_tab > input + label:last-of-type {
-    	margin-bottom: 100px;
-    }
-    .cp_tab > label:hover,
-    .cp_tab > input:focus + label {
-    	color: #0066cc;
-    }
-    .cp_tab > input:checked + label {
-    	border-color: #cccccc;
-    	border-right: 1px solid #ffffff;/*背景色と同じ*/
-    }
-    .cp_tab .cp_tabpanel {
-    	padding: 0.5em 1em;
-    	border-left: 1px solid #cccccc;
-    	min-height: 320px;
-    }
+
 
     /* =============   top.html  =====================*/
     .top{
@@ -552,61 +502,95 @@ h2:after {
 
     /* =============  conf.html  =====================*/
 
-    //タブcss
     .tab-wrap {
-      display: flex;
-      flex-wrap: wrap;
-      margin:20px 0;
-    }
+      	background: White;
+      	box-shadow: 0 0 5px rgba(0,0,0,.1);
+      	display: flex;
+      	flex-wrap: wrap;
+      	overflow: hidden;
+      	padding: 0 0 20px;
+      }
 
-    .tab-label {
-      color: #505050;
-      background: #ffffff;
-      font-weight: bold;
-      white-space: nowrap;
-      text-align: center;
-      padding: 10px .5em;
-      order: -1;
-      position: relative;
-      z-index: 1;
-      cursor: pointer;
-      flex: 1;
-      border-bottom: inset 0.1px #b9b9b9;
-    }
+      .tab-label {
+      	color: Gray;
+      	cursor: pointer;
+      	flex: 1;
+      	font-weight: bold;
+      	order: -1;
+      	padding: 12px 24px;
+      	position: relative;
+      	text-align: center;
+      	transition: cubic-bezier(0.4, 0, 0.2, 1) .2s;
+      	user-select: none;
+      	white-space: nowrap;
+      	-webkit-tap-highlight-color: transparent;
+      }
 
-    .tab-content {
-      width: 100%;
-      height: 0;
-      overflow: hidden;
-      opacity: 0;
-    }
-    /* アクティブなタブ */
-    .tab-switch:checked+.tab-label {
-      background: #ffffff;
-      color:#0078e7;
-      border-bottom: inset 3px #0078e7;
-    }
-    .tab-switch:checked+.tab-label+.tab-content {
-      height: auto;
-      overflow: auto;
-      padding: 0px 0px 60px 15px;
-      opacity: 1;
-      transition: .5s opacity;
-      box-shadow: 0 0 3px rgba(0,0,0,.2);
-    }
-    /* ラジオボタン非表示 */
-    .tab-switch {
-      display: none;
-    }
+      .tab-label:hover {
+      	background: rgba(0, 191, 255,.1);
+      }
 
-    #listWithHandle div {
-    	width: 100px;
-    	height: 100px;
-    	background-color: #fff;
-    	border: solid 1px rgba(0,0,0,0.2);
-    	padding: 10px;
-    	margin: 12px;
-    }
+      .tab-switch:checked + .tab-label {
+      	color: #0078e7;
+      }
+
+      .tab-label::after {
+      	background: #0078e7;
+      	bottom: 0;
+      	content: '';
+      	display: block;
+      	height: 3px;
+      	left: 0;
+      	opacity: 0;
+      	pointer-events: none;
+      	position: absolute;
+      	transform: translateX(100%);
+      	transition: cubic-bezier(0.4, 0, 0.2, 1) .2s 80ms;
+      	width: 100%;
+      	z-index: 1;
+      }
+
+      .tab-switch:checked ~ .tab-label::after {
+      	transform: translateX(-100%);
+      }
+
+      .tab-switch:checked + .tab-label::after {
+      	opacity: 1;
+      	transform: translateX(0);
+      }
+
+      .tab-content {
+      	height:0;
+      	opacity:0;
+      	padding: 0 20px;
+      	pointer-events:none;
+      	transform: translateX(-30%);
+      	transition: transform .3s 80ms, opacity .3s 80ms;
+      	width: 100%;
+      }
+
+      .tab-switch:checked ~ .tab-content {
+      	transform: translateX(30%);
+      }
+
+      .tab-switch:checked + .tab-label + .tab-content {
+      	height: auto;
+      	opacity: 1;
+      	order: 1;
+      	pointer-events:auto;
+      	transform: translateX(0);
+      }
+
+      .tab-wrap::after {
+      	content: '';
+      	height: 20px;
+      	order: -1;
+      	width: 100%;
+      }
+
+      .tab-switch {
+      	display: none;
+      }
 
     //ここまで↑↑↑↑↑↑↑↑↑↑↑↑
 

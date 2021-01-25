@@ -20,50 +20,49 @@
 </head>
 
 <header id="headIndex">
-  <div class="pure-g">
-    <div class="pure-u-1-5" style="text-align:center;">
-      <a onclick="link('Start.html')"><img src="../images/FOCUS-Logo.svg" width="220px" class="header_logo"></a>
-    </div>
-    <div class="pure-u-4-5" style="text-align:right;">
-      <a class="pure-button pure-button-primary" onclick="test_clickBtn1()">起動</a>
-    </div>
-  </div>
+
+      <div class="pure-g">
+      <div class="pure-u-1-5" style="text-align:left;">
+          <a onclick="link('Start.html')"><img src="../images/FOCUS-Logo.svg" width="170px"></a>
+      </div>
+      <div class="pure-u-4-5" style="text-align:right;">
+        <a class="pure-button pure-button-primary" onclick="test_clickBtn1()">起動</a>
+      </div>
+      </div>
+
 </header>
 
 <body>
+  <div id="default_view">
   <div id="overlay_view">
     <div id="overlay_window">
       <object id="overlay_object" data="conf.html" style="width:80vw;height:60vh">
       </object>
     </div>
   </div>
-  <div id="default_view">
-    <div class="cp_tab">
-    	<input type="radio" name="cp_tab" id="tab2_1" aria-controls="first_tab02" checked>
-    	<label for="tab2_1" style="text-align:center;">TOP</label>
-    	<input type="radio" name="cp_tab" id="tab2_2" aria-controls="second_tab02">
-    	<label for="tab2_2" style="text-align:center;">CONF</label>
-    	<input type="radio" name="cp_tab" id="tab2_3" aria-controls="third_tab02">
-    	<label for="tab2_3" style="text-align:center;">HELP</label>
-    	<div class="cp_tabpanels">
-    		<div class="cp_tabpanel">
-
-          <object  data="top.html" style="width:800px;height:600px">
-          </object>
 
 
-    		</div>
-    		<div class="cp_tabpanel">
-          <object  data="conf.html" style="width:800px;height:600px">
-          </object>
-    		</div>
-    		<div class="cp_tabpanel">
-          <object  data="help.html" style="width:800px;height:600px">
-          </object>
-    		</div>
-    	</div>
+  <div class="tab-wrap-index">
+    <input id="TAB-1" type="radio" name="TAB" class="tab-switch-index" checked="checked" /><label class="tab-label-index" for="TAB-1"><i class="fas fa-home"></i></label>
+    <div class="tab-content-index">
+      <object class="index_object_top" data="top.html">
+     </object>
     </div>
+    <input id="TAB-2" type="radio" name="TAB" class="tab-switch-index" /><label class="tab-label-index" for="TAB-2"><i class="fas fa-cog" ></i></label>
+    <div class="tab-content-index">
+      <object  class="index_object_top" data="conf.html">
+     </object>
+    </div>
+    <input id="TAB-3" type="radio" name="TAB" class="tab-switch-index" /><label class="tab-label-index" for="TAB-3"><i class="fas fa-question-circle"></i></label>
+    <div class="tab-content-index">
+      <object  class="index_object_top" data="help.html">
+     </object>
+   </div>
   </div>
+</div>
+
+
+
 
   <div id="small_index_object">
     <button class="small_index_btn" type="button" name="endbtn" value="end" onclick="endBtn()">終了</button>
@@ -107,9 +106,12 @@
         <div class="pose_detail">S2</div>
       </div>
     </div>
+  </div>
+
 </body>
 
 </html>
+
 
 <script>
   document.getElementById("headIndex").style.visibility = "visible";
