@@ -235,7 +235,7 @@ def HandTracking(cap, width, height, conf_flg = 0):
                     x,y = landmark_list[8]
                     #各種操作の実行
                     CountPose= PoseAction.action(hand_sign_id,x,y,CountPose,set_poseshortcut(),set_poseshortcut2())
-                    if hand_sign_id == 2:  # 指差しサイン
+                    if hand_sign_id == 1:  # Dangサイン
                         point_history.append(landmark_list[8])  # 人差指座標
                     else:
                         point_history.append([0, 0])
