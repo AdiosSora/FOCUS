@@ -13,8 +13,11 @@
 <body>
   <div class="big">
   <div class="tab-wrap">
-    <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">セットアップ</label>
+    <input id="TAB-01" type="radio" name="TAB" class="tab-switch" checked="checked" /><label class="tab-label" for="TAB-01">起動方法</label>
     <div class="tab-content">
+
+      <h2 class="help_h2">セットアップ</h2>
+      <p style="margin-bottom:40px;">初期起動時はセットアップが必要です。 webカメラが必要ですのでご準備をお願いします。</p>
 
       <table class="table_1">
         <tr>
@@ -43,6 +46,8 @@
     </div>
     <input id="TAB-02" type="radio" name="TAB" class="tab-switch" /><label class="tab-label" for="TAB-02">操作方法</label>
     <div class="tab-content">
+      <h2 class="help_h2">ポーズアクション</h2>
+      <p style="margin-bottom:40px;">webカメラに向かってポーズアクションをすることで各操作を行うことができます。</p>
       <table class="table_2">
         <tr>
           <th class="th_text">Palm</th>
@@ -80,49 +85,6 @@
 </div>
 </div>
 
-<div id="small_index_object">
-  <button class="small_index_btn" type="button" name="endbtn" value="end" onclick="endBtn()">終了</button>
-</div>
-
-<div class="small_index_pose">
-  <div class="pose_boxs">
-    <div id="pose_palm" class="pose_box">
-      <div class="pose_name">Palm</div>
-      <img src="../images/Hand_Palm.svg" width="50px">
-      <div class="pose_detail">移動</div>
-    </div>
-    <div id="pose_rock" class="pose_box">
-      <div class="pose_name">Rock</div>
-      <img src="../images/Hand_Rock.svg" width="50px">
-      <div class="pose_detail">左</br>クリック</div>
-    </div>
-    <div id="pose_gun" class="pose_box">
-      <div class="pose_name">Gun</div>
-      <img src="../images/Hand_Gun.svg" width="50px">
-      <div class="pose_detail">右</br>クリック</div>
-    </div>
-    <div id="pose_three" class="pose_box">
-      <div class="pose_name">Three</div>
-      <img src="../images/Hand_Three.svg" width="50px">
-      <div class="pose_detail">ダブル</br>クリック</div>
-    </div>
-    <div id="pose_peace" class="pose_box">
-      <div class="pose_name">Peace</div>
-      <img src="../images/Hand_Peace.svg" width="50px">
-      <div class="pose_detail">ドラッグ</br>ドロップ</div>
-    </div>
-    <div id="pose_dang" class="pose_box">
-      <div class="pose_name">Dang</div>
-      <img src="../images/Hand_Dang.svg" width="50px">
-      <div class="pose_detail">S１</div>
-    </div>
-    <div id="pose_one" class="pose_box">
-      <div class="pose_name">One</div>
-      <img src="../images/Hand_One.svg" width="50px">
-      <div class="pose_detail">S2</div>
-    </div>
-  </div>
-</div>
 
 </body>
 <footer></footer>
