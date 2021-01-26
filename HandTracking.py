@@ -133,7 +133,7 @@ def HandTracking(cap, width, height, conf_flg = 0):
             break   #最初の while を抜けて正常終了
 
         # カメラ準備 ###############################################################
-        #cap = cv.VideoCapture(cap_device)
+        cap = cv.VideoCapture(cap_device)
         cap.set(cv.CAP_PROP_FRAME_WIDTH, cap_width)
         cap.set(cv.CAP_PROP_FRAME_HEIGHT, cap_height)
 

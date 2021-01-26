@@ -5,6 +5,8 @@ import xml.etree.ElementTree as ET
 #倍率
 magnification = 1
 shortcutflag = 0
+#ドラッグ解除フラグ
+drag_flag = False
 
 @eel.expose()
 def set_shortcutflag():
@@ -35,13 +37,18 @@ def action(sign_id,x,y,countpose,poseshortcut,poseshortcut2):
     #ショートカットキー読み込み
     shortcutone1,shortcutone2=poseshortcut.split(',')
     shortcutdang1,shortcutdang2=poseshortcut2.split(',')
+    global drag_flag
+
     #画面端まで行くように処理
     global magnification
     x = x * magnification
     y = y * magnification
     #palmの時
     if(sign_id==0):
-        autopy.mouse.toggle(autopy.mouse.Button.LEFT,False)
+        if(drag_flag):
+            # autopy.mouse.toggle(autopy.mouse.Button.LEFT,False)
+            pgui.mouseUp(button='left')
+            drag_flag = False
         pointermove(x,y)
         countpose = [0,0,0,0,0,0,0]
 
@@ -61,15 +68,18 @@ def action(sign_id,x,y,countpose,poseshortcut,poseshortcut2):
         #gunの時の処理
         if(countpose[2]<=3):
             countpose[2] += 1
-        if(countpose[2]==3):
-            autopy.mouse.click(autopy.mouse.Button.RIGHT)
+        if(drag_flag==False):
+            if(countpose[2]==3):
+                autopy.mouse.click(autopy.mouse.Button.RIGHT)
     if(sign_id==3):
         #peaceの時
         if(countpose[3]<4):
             countpose[3] += 1
         if(countpose[3]==3):
-            autopy.mouse.toggle(autopy.mouse.Button.LEFT,True)
+            # autopy.mouse.toggle(autopy.mouse.Button.LEFT,True)
+            pgui.mouseDown(button='left')
             pointermove(x,y)
+            drag_flag = True
         if(countpose[3]==4):
             pointermove(x,y)
 
@@ -77,17 +87,19 @@ def action(sign_id,x,y,countpose,poseshortcut,poseshortcut2):
         #rockの時
         if(countpose[4]<=3):
             countpose[4] += 1
-        if(countpose[4]==3):
-            autopy.mouse.click(autopy.mouse.Button.LEFT)
+        if(drag_flag==False):
+            if(countpose[4]==3):
+                autopy.mouse.click(autopy.mouse.Button.LEFT)
 
 
     if(sign_id==5):
         #Threeの時
         if(countpose[5]<=3):
             countpose[5] += 1
-        if(countpose[5]==3):
-            autopy.mouse.click(autopy.mouse.Button.LEFT)
-            autopy.mouse.click(autopy.mouse.Button.LEFT)
+        if(drag_flag==False):
+            if(countpose[5]==3):
+                autopy.mouse.click(autopy.mouse.Button.LEFT)
+                autopy.mouse.click(autopy.mouse.Button.LEFT)
 
     if(sign_id==6):
         #oneの時の処理
