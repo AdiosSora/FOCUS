@@ -222,7 +222,7 @@ h2:after {
 
 @media screen and (min-width: 500px) {
     header{
-      padding:15px;
+      padding:20px;
       background-color: #ffffff;
     }
 
@@ -245,15 +245,15 @@ h2:after {
     }
     .top-square-button{
       border:{
-        style:solid;
-        width:1px;
+      style:solid;
+      width:1px;
       }
       text-align:center;
       display: block;
       height: 0;
       width: 100%;
       padding:{
-        bottom:100%;
+      bottom:100%;
       }
       position: relative;
       .top-sqaure-content{
@@ -346,47 +346,44 @@ h2:after {
         display: flex;
         flex-wrap: wrap;
         flex-direction: column;
+        background: #f5f5f5;
       }
       .tab-label-index {
         width: 60px;
         color: #999999;
         background-color: #ffffff;
-        // font-weight: bold;
         white-space: nowrap;
         text-align: center;
-        // border:1px solid Gray;
-        // border-radius: 4px 0 0 4px;
-        margin: 5px -1px 5px 5px;
+        margin: 0px 0px 20px 23px;
         padding: 23px .5em 23px .5em;
         order: -1;
         position: relative;
         z-index: 1;
         cursor: pointer;
         float:left;
-      }
-      label.tab-label-index:hover{
-        background:rgba(0, 191, 255,.1);
-        border-radius: 50%;
+        // box-shadow: 0 0 3px rgba(0,0,0,0.3);
+        border-radius: 20px;
         transition: .5s;
       }
 
-
-
+      label.tab-label-index:hover{
+        box-shadow: 5px 10px 20px rgba(0,0,0,0.25);
+        transition: .5s;
+      }
 
       .tab-content-index {
         display:none;
       }
       /* アクティブなタブ */
-      .tab-switch-index:checked+.tab-label-index {
+      .tab-switch-index:checked+.tab-label-index{
         color: #0078e7;
         background: White;
         border-right-color: White;
+        box-shadow: 5px 10px 20px rgba(0,0,0,0.25);
       }
       .tab-switch-index:checked+.tab-label-index+.tab-content-index {
         width: calc(100% - 150px); /* - ボタン幅 */
         height: 100%;
-        // padding: 15px;
-        // border-left: 1px solid Gray;
         display:block;
       }
       /* ラジオボタン非表示 */
@@ -394,23 +391,17 @@ h2:after {
         display: none;
       }
 
-
-
-
-
     .icon{
-
       margin: 20px 40px 40px 20px;
-
     }
 
     .index_object_top{
       width:90%;
       height: 70%;
-      padding:30px;
-      margin:15px;
-      border-radius: 10px;
-      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+      margin:30px 15px 0px 0px ;
+      border-radius: 20px;
+      box-shadow: 5px 10px 20px rgba(0,0,0,0.25);
+
     }
 
 

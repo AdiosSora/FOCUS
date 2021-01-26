@@ -2191,6 +2191,7 @@ readers do not read off random characters that represent icons */
 .fa-home:before {
   content: "\f015";
   font-size: 27px;
+  
   }
 
 .fa-hooli:before {
