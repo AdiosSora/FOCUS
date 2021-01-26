@@ -2,14 +2,9 @@
   <setting>
     <mouse_sensitivity>0</mouse_sensitivity>
     <pose_flag>1</pose_flag>
-    <poseshortcut>ctrl,c</poseshortcut>
-    <poseshortcut2>alt,f4</poseshortcut2>
-    <Move>0</Move>
-    <LClick>1</LClick>
-    <RClick>4</RClick>
-    <DragDrop>3</DragDrop>
-    <DoubleClick>5</DoubleClick>
-    <Shortcut_1>1</Shortcut_1>
-    <Shortcut_2>6</Shortcut_2>
+    <poseshortcut>win,tab</poseshortcut>
+    <poseshortcut2>win,down</poseshortcut2>
+    <poseshortcut3>alt,f4</poseshortcut3>
+    <poseshortcut4>win,up</poseshortcut4>
   </setting>
 </config>
