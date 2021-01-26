@@ -69,6 +69,10 @@ h2:after {
     display: none;
   }
 
+  .big{
+    display: none;
+  }
+
   #default_view{
     display: none;
 
@@ -219,7 +223,7 @@ h2:after {
 @media screen and (min-width: 500px) {
     header{
       padding:15px;
-      background-color: #262626;
+      background-color: #ffffff;
     }
 
     .small_index_btn{
@@ -401,10 +405,10 @@ h2:after {
     }
 
     .index_object_top{
-      width:95%;
-      height: 80%;
+      width:90%;
+      height: 70%;
       padding:30px;
-      margin:30px;
+      margin:15px;
       border-radius: 10px;
       box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
     }
@@ -419,15 +423,16 @@ h2:after {
       float: left;
     }
 
-    .top_child p{
-
-    }
-
-
-    .top_child img{
+    .box_2 img{
       width: 350px;
       margin: 20px
     }
+
+.wrap1{
+display: flex;
+justify-content: center;
+}
+
 
     /* =============  check.html  =====================*/
     #video{

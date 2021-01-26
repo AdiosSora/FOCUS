@@ -80,45 +80,49 @@
 </div>
 </div>
 
-<div class="small_index_object">
-<button class="small_index_btn" type="button" name="endbtn" value="end" onclick="endBtn()">×</button>
-</div>
-<div class="poseGuage">
-<h4 id="poseGuage"></h4>
+<div id="small_index_object">
+  <button class="small_index_btn" type="button" name="endbtn" value="end" onclick="endBtn()">終了</button>
 </div>
 
 <div class="small_index_pose">
-    <table class="small_table">
-      <tr>
-        <th class="small_th_text">Palm</th>
-        <th class="small_th_text">Dang</th>
-        <th class="small_th_text">One</th>
-        <th class="small_th_text">Rock</th>
-        <th class="small_th_text">Three</th>
-        <th class="small_th_text">Three</th>
-      </tr>
-      <tr>
-
-        <td class="small_td_img"><img src="../images/Hand_Palm.svg" width="50px"></td>
-        <td class="small_td_img"><img src="../images/Hand_Palm.svg" width="50px"></td>
-        <td class="small_td_img"><img src="../images/Hand_Palm.svg" width="50px"></td>
-        <td class="small_td_img"><img src="../images/Hand_Palm.svg" width="50px"></td>
-        <td class="small_td_img"><img src="../images/Hand_Palm.svg" width="50px"></td>
-        <td class="small_td_img"><img src="../images/Hand_Palm.svg" width="50px"></td>
-      </tr>
-      <tr>
-        <td class="small_td_text"><h6>マウス移動</h6></td>
-        <td class="small_td_text"><h6>クリック</h6></td>
-        <td class="small_td_text"><h6>右クリック</h6></td>
-        <td class="small_td_text"><h6>スクロール</h6></td>
-        <td class="small_td_text"><h6>ドラック</h6></td>
-        <td class="small_td_text"><h6>ダブルクリック</h6></td>
-      </tr>
-
-    </table>
-
+  <div class="pose_boxs">
+    <div id="pose_palm" class="pose_box">
+      <div class="pose_name">Palm</div>
+      <img src="../images/Hand_Palm.svg" width="50px">
+      <div class="pose_detail">移動</div>
+    </div>
+    <div id="pose_rock" class="pose_box">
+      <div class="pose_name">Rock</div>
+      <img src="../images/Hand_Rock.svg" width="50px">
+      <div class="pose_detail">左</br>クリック</div>
+    </div>
+    <div id="pose_gun" class="pose_box">
+      <div class="pose_name">Gun</div>
+      <img src="../images/Hand_Gun.svg" width="50px">
+      <div class="pose_detail">右</br>クリック</div>
+    </div>
+    <div id="pose_three" class="pose_box">
+      <div class="pose_name">Three</div>
+      <img src="../images/Hand_Three.svg" width="50px">
+      <div class="pose_detail">ダブル</br>クリック</div>
+    </div>
+    <div id="pose_peace" class="pose_box">
+      <div class="pose_name">Peace</div>
+      <img src="../images/Hand_Peace.svg" width="50px">
+      <div class="pose_detail">ドラッグ</br>ドロップ</div>
+    </div>
+    <div id="pose_dang" class="pose_box">
+      <div class="pose_name">Dang</div>
+      <img src="../images/Hand_Dang.svg" width="50px">
+      <div class="pose_detail">S１</div>
+    </div>
+    <div id="pose_one" class="pose_box">
+      <div class="pose_name">One</div>
+      <img src="../images/Hand_One.svg" width="50px">
+      <div class="pose_detail">S2</div>
+    </div>
+  </div>
 </div>
-
 
 </body>
 <footer></footer>
