@@ -341,7 +341,7 @@ h2:after {
 
     //縦タブ
     .tab-wrap-index {
-        height: 100%;
+        height: 90%;
         min-height: 300px;
         display: flex;
         flex-wrap: wrap;
@@ -419,19 +419,15 @@ h2:after {
       width:100%;
     }
 
-    .top_parent div{
-      float: left;
-    }
-
     .box_2 img{
       width: 350px;
       margin: 20px
     }
 
-.wrap1{
-display: flex;
-justify-content: center;
-}
+    .wrap1{
+    display: flex;
+    justify-content: center;
+    }
 
 
     /* =============  check.html  =====================*/
@@ -450,7 +446,7 @@ justify-content: center;
 
     }
 
-    /* =============   index.html  =====================*/
+    /* =============   complete.html  =====================*/
 
     .loader1 {
       color: #bbbbbb;
@@ -532,6 +528,21 @@ justify-content: center;
         transform: rotate(360deg);
       }
     }
+
+    .blinking{
+      animation: flash 1.7s linear infinite;
+    }
+
+    @keyframes flash {
+      0%,100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
+    }
+
 
 
     /* =============  endpage.html  =====================*/
@@ -653,7 +664,6 @@ justify-content: center;
 
     .tab-wrap {
       	background: White;
-      	box-shadow: 0 0 5px rgba(0,0,0,.1);
       	display: flex;
       	flex-wrap: wrap;
       	overflow: hidden;
