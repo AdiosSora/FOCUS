@@ -80,7 +80,7 @@ def start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg):
 #            eel.set_base64image("data:image/jpg;base64," +
 #                                        base64_image.decode("ascii"))
         #ここまで、Recognize.html を使うときに使用
-        eel.set_posegauge(name_pose)
+        #eel.set_posegauge(name_pose)
 
         #ここから、test.html を使うときに使用
         #if(flg_sys == 1):
