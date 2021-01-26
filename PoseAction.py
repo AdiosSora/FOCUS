@@ -41,6 +41,7 @@ def shortcut_flag():
 def action(sign_id,x,y,countpose,countmotion,ShortCutList):
     #画面端まで行くように処理
     global magnification
+    global drag_flag
     x = x * magnification
     y = y * magnification
     #palmの時
@@ -74,8 +75,6 @@ def action(sign_id,x,y,countpose,countmotion,ShortCutList):
                     elif hotkeyLen == 3:
                         pgui.hotkey(ShortCutList[index][0],ShortCutList[index][1],ShortCutList[index][2])
 
-
-
     if(sign_id==2):
         #gunの時の処理
         if(countpose[2]<=3):
@@ -83,6 +82,7 @@ def action(sign_id,x,y,countpose,countmotion,ShortCutList):
         if(drag_flag==False):
             if(countpose[2]==3):
                 autopy.mouse.click(autopy.mouse.Button.RIGHT)
+
     if(sign_id==3):
         #peaceの時
         if(countpose[3]<4):
@@ -103,7 +103,6 @@ def action(sign_id,x,y,countpose,countmotion,ShortCutList):
             if(countpose[4]==3):
                 autopy.mouse.click(autopy.mouse.Button.LEFT)
 
-
     if(sign_id==5):
         #Threeの時
         if(countpose[5]<=3):
@@ -120,7 +119,6 @@ def action(sign_id,x,y,countpose,countmotion,ShortCutList):
     #     #         countpose[6] += 1
     #     #     if(countpose[6]==10):
     #     #         pgui.hotkey(shortcutone1,shortcutone2)
-
 
     return countpose,countmotion
 
