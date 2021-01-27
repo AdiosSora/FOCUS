@@ -32,12 +32,13 @@ h1 {
   margin:20vh 10vw;
   width:80vw;
   height:60vh;
+  box-shadow: 5px 10px 20px rgba(0,0,0,0.25);
 }
 .overlay_content{
   height:100%;
   padding:{
-    top:10vh;
-    bottom:10vh;
+  top:10vh;
+  bottom:10vh;
   }
 }
 /* =============  index.html 小さい状態  =====================*/
@@ -260,6 +261,9 @@ h1 {
 
     .h2_comp{
       color: rgb(97, 187, 86);
+      padding:0;
+      margin:0;
+
     }
 
     /* =============   index.html  =====================*/
