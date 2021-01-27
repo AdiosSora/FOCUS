@@ -178,6 +178,7 @@ def HandTracking(cap, width, height, conf_flg = 0):
         #  ########################################################################
         mode = 0
         CountPose = [0,0,0,0,0,0,0]
+        i=1
         while True:
             fps = cvFpsCalc.get()
             # キー処理(ESC：終了) #################################################
@@ -213,6 +214,7 @@ def HandTracking(cap, width, height, conf_flg = 0):
 
             #  ####################################################################
             if results.multi_hand_landmarks is not None:
+                j=1
                 for hand_landmarks, handedness in zip(results.multi_hand_landmarks,
                                                       results.multi_handedness):
                     # 外接矩形の計算
@@ -264,7 +266,13 @@ def HandTracking(cap, width, height, conf_flg = 0):
                     )
 
                     name_pose = keypoint_classifier_labels[hand_sign_id]
-                    eel.set_posegauge(name_pose)
+                    if(focus_flg != 1):
+                        print(i,"回目name_pose=", name_pose)
+                        eel.set_posegauge(name_pose, i)
+                        i+=1
+                    print(j)
+                    j+=1
+                    print("--------------------------------------------------------------------")
 
             else:
                 point_history.append([0, 0])
@@ -291,7 +299,11 @@ def HandTracking(cap, width, height, conf_flg = 0):
                 eel.focusSwitch(width, height, focus_flg)
                 print("【実行】index.html")
                 eel.sleep(0.01)
+                print(i,"回目name_pose=", name_pose)
+                eel.set_posegauge(name_pose,i)
+                print("--------------------------------------------------------------------")
                 focus_flg = 0
+                i+=1
 
             # eel立ち上げ #############################################################
             flg_end = hand_gui_test.start_gui()

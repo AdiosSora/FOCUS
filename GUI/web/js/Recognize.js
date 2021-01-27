@@ -27,7 +27,8 @@
     }
 
     eel.expose(set_posegauge);
-    function set_posegauge(name_pose){
+    function set_posegauge(name_pose,i){
+      console.log(i,"回目の",name_pose)
       switch(name_pose){
         case "Palm":
           if(document.getElementById("pose_palm").classList.contains('pose_highlight')==false){
