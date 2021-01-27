@@ -20,13 +20,12 @@ h1 {
 
 #overlay_view {
   position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, .7);
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(103, 103, 103, 0.7);
   z-index: 2;
   display: none;
+
 }
 
 #overlay_window {
@@ -34,13 +33,14 @@ h1 {
   width: 80vw;
   height: 60vh;
   box-shadow: 5px 10px 20px rgba(0,0,0,0.25);
-}
 
-.overlay_content {
-  height: 100%;
-  padding: {
-    top: 10vh;
-    bottom: 10vh;
+}
+.overlay_content{
+  height:100%;
+  border-radius: 20px;
+  padding:{
+  top:10vh;
+  bottom:10vh;
   }
 }
 /* =============  index.html 小さい状態  =====================*/
@@ -291,11 +291,143 @@ h1 {
     color: white;
   }
 
-  .top {
-    width: 500px;
-    margin-top: 10px;
-    padding: 0;
-  }
+    .start-btn {
+      text-align: right;
+      display: inline-block;
+      padding: 0.3em 1em;
+      text-decoration: none;
+      margin: 0 20px 10px 0;
+      color: #67c5ff;
+      border: solid 2px #67c5ff;
+      border-radius: 3px;
+      transition: .4s;
+    }
+
+    .start-btn:hover {
+      background: #67c5ff;
+      color: white;
+    }
+
+    .top{
+      width: 500px;
+      margin-top: 10px;
+      padding:0;
+    }
+
+    .index_img{
+      text-align:center;
+
+    }
+
+    .column_box {
+        display: grid;
+        grid-template-rows: 700px;
+        grid-template-columns:  75px auto;
+        background-color:#ffffff;
+        padding:5px;
+        width:auto;
+    }
+    .column_item1 {
+        background-color:#ffffff;
+
+    }
+    .column_item2 {
+        background-color:#ececec;
+        border-radius: 10px;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+
+    }
+
+
+    //縦タブ
+    .tab-wrap-index {
+        height: 87%;
+        min-height: 300px;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        background: #f5f5f5;
+      }
+      .tab-label-index {
+        width: 60px;
+        color: #999999;
+        background-color: #ffffff;
+        white-space: nowrap;
+        text-align: center;
+        margin: 0px 0px 20px 23px;
+        padding: 23px .5em 23px .5em;
+        order: -1;
+        position: relative;
+        z-index: 1;
+        cursor: pointer;
+        float:left;
+        // box-shadow: 0 0 3px rgba(0,0,0,0.3);
+        border-radius: 20px;
+        transition: .5s;
+      }
+
+      label.tab-label-index:hover{
+        box-shadow: 5px 10px 20px rgba(0,0,0,0.25);
+        transition: .5s;
+      }
+
+      .tab-content-index {
+        display:none;
+      }
+      /* アクティブなタブ */
+      .tab-switch-index:checked+.tab-label-index{
+        color: #0078e7;
+        background: White;
+        border-right-color: White;
+        box-shadow: 5px 10px 20px rgba(0,0,0,0.25);
+      }
+      .tab-switch-index:checked+.tab-label-index+.tab-content-index {
+        width: calc(100% - 150px); /* - ボタン幅 */
+        height: 100%;
+        display:block;
+      }
+      /* ラジオボタン非表示 */
+      .tab-switch-index {
+        display: none;
+      }
+
+    .icon{
+      margin: 20px 40px 40px 20px;
+    }
+
+    .index_object_top{
+      width:100%;
+      height: 85%;
+      bottom:100px;
+      margin:30px 15px 0px 0px ;
+      border-radius: 20px;
+      box-shadow: 5px 10px 20px rgba(0,0,0,0.25);
+
+    }
+
+
+    /* =============   top.html  =====================*/
+    .top{
+      width:100%;
+    }
+
+    .top_h1{
+      font-family: 'Nunito', sans-serif;
+      font-size: 3em;
+      color: transparent;
+      letter-spacing: 0.1em;
+    }
+
+    .top_h2 {
+
+      position: relative;
+      display: inline-block;
+      padding: 0 55px;
+      color:#303030;
+      font-family: 'Nunito', sans-serif;
+    }
 
   .index_img {
     text-align: center;
@@ -310,9 +442,10 @@ h1 {
     width: auto;
   }
 
-  .column_item1 {
-    background-color: #ffffff;
-  }
+    .box_2 img{
+      width:350px;
+      margin: 20px
+    }
 
   .column_item2 {
     background-color: #ececec;

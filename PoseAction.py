@@ -66,7 +66,8 @@ def action(sign_id,x,y,countpose,countmotion,ShortCutList):
 
             print(countmotion)
             for index,item in enumerate(countmotion):
-                if item == 25:
+                print(item)
+                if item == 15:
                     hotkeyLen = len(ShortCutList[index])
                     if hotkeyLen == 1:
                         break
