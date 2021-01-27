@@ -64,10 +64,22 @@ def set_poseshortcut2():
     root = tree.getroot()
     for item in root:
         return item.find("poseshortcut2").text
+@eel.expose
+def set_poseshortcut3():
+    tree =  ET.parse('conf.xml')
+    root = tree.getroot()
+    for item in root:
+        return item.find("poseshortcut3").text
+@eel.expose
+def set_poseshortcut4():
+    tree =  ET.parse('conf.xml')
+    root = tree.getroot()
+    for item in root:
+        return item.find("poseshortcut4").text
 
 
 @eel.expose #Conf.htmlで設定を保存する時に呼ばれるeel関数
-def save_confvalue(value,shortcut_value1,shortcut_value2):
+def save_confvalue(value,shortcut_value1,shortcut_value2,shortcut_value3,shortcut_value4):
     tree =  ET.parse('conf.xml')
     root = tree.getroot()
     #for item in root.iter('setting'):
@@ -75,6 +87,8 @@ def save_confvalue(value,shortcut_value1,shortcut_value2):
         item.find("mouse_sensitivity").text = value
         item.find("poseshortcut").text = shortcut_value1
         item.find("poseshortcut2").text = shortcut_value2
+        item.find("poseshortcut3").text = shortcut_value3
+        item.find("poseshortcut4").text = shortcut_value4
     tree.write('conf.xml', encoding='UTF-8')
 
 def HandTracking(cap, width, height, conf_flg = 0):
@@ -100,8 +114,10 @@ def HandTracking(cap, width, height, conf_flg = 0):
 
     use_brect = True
     #width,height = autopy.screen.size() #eel で立ち上げた際の表示位置を指定するために取得
-    PoseAction.sensitivity(set_confvalue())
-
+    PoseAction.sensitivity(set_confvalue()) #ポーズアクション用のマウス感度関数を初期設定
+    PoseAction.shortcut_flag() #ショートカットポーズの動作ON/OFFのフラグを初期設定
+    ShortCutList = [set_poseshortcut().split(","),set_poseshortcut2().split(","),set_poseshortcut3().split(","),set_poseshortcut4().split(",")]
+    print(ShortCutList)
 
     while(True):    #カメラが再度接続するまでループ処理
         #カメラが接続されていないフラグの場合
@@ -178,6 +194,7 @@ def HandTracking(cap, width, height, conf_flg = 0):
         #  ########################################################################
         mode = 0
         CountPose = [0,0,0,0,0,0,0]
+        CountMotion = [0,0,0,0] # [Top,Right,Down,Left]
         i=1
         while True:
             fps = cvFpsCalc.get()
@@ -233,10 +250,7 @@ def HandTracking(cap, width, height, conf_flg = 0):
 
                     # ハンドサイン分類
                     hand_sign_id = keypoint_classifier(pre_processed_landmark_list)
-                    #人差し指の先の座標を取得
-                    x,y = landmark_list[8]
-                    #各種操作の実行
-                    CountPose= PoseAction.action(hand_sign_id,x,y,CountPose,set_poseshortcut(),set_poseshortcut2())
+
                     if hand_sign_id == 1:  # Dangサイン
                         point_history.append(landmark_list[8])  # 人差指座標
                     else:
@@ -254,6 +268,8 @@ def HandTracking(cap, width, height, conf_flg = 0):
                     most_common_fg_id = Counter(
                         finger_gesture_history).most_common()
 
+                    gesture_name = point_history_classifier_labels[most_common_fg_id[0][0]]
+
                     # 描画
                     debug_image = draw_bounding_rect(use_brect, debug_image, brect)
                     debug_image = draw_landmarks(debug_image, landmark_list)
@@ -262,9 +278,33 @@ def HandTracking(cap, width, height, conf_flg = 0):
                         brect,
                         handedness,
                         keypoint_classifier_labels[hand_sign_id],
-                        point_history_classifier_labels[most_common_fg_id[0][0]],
+                        gesture_name,
                     )
 
+                    #人差し指の先の座標を取得
+                    x,y = landmark_list[8]
+                    #ジェスチャーが判定された回数をカウント
+                    if gesture_name == 'Stop':
+                        CountMotion = [0,0,0,0]
+                    elif gesture_name == 'Move_Top':
+                        Count_temp =  CountMotion[0]
+                        Count_temp += 1
+                        CountMotion = [Count_temp,0,0,0]
+                    elif gesture_name == 'Move_Right':
+                        Count_temp =  CountMotion[1]
+                        Count_temp += 1
+                        CountMotion = [0,Count_temp,0,0]
+                    elif gesture_name == 'Move_Down':
+                        Count_temp =  CountMotion[2]
+                        Count_temp += 1
+                        CountMotion = [0,0,Count_temp,0]
+                    elif gesture_name == 'Move_Left':
+                        Count_temp =  CountMotion[3]
+                        Count_temp += 1
+                        CountMotion = [0,0,0,Count_temp]
+
+                    #各種操作の実行
+                    CountPose,CountMotion = PoseAction.action(hand_sign_id,x,y,CountPose,CountMotion,ShortCutList)
                     name_pose = keypoint_classifier_labels[hand_sign_id]
                     if(focus_flg != 1):
                         print(i,"回目name_pose=", name_pose)
@@ -283,7 +323,6 @@ def HandTracking(cap, width, height, conf_flg = 0):
             # 画面反映 #############################################################
             debug_image = cv.resize(debug_image,dsize=(400, 200))
             cv.imshow('Hand Gesture Recognition', debug_image)
-            # cv.imshow('Hand Gesture Recognition',image_test)
 
             # eel立ち上げ #############################################################
             #cnt_gui, flg_end, flg_restart, flg_start, keep_flg = hand_gui.start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg)

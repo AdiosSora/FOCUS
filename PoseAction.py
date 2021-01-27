@@ -33,14 +33,15 @@ def sensitivity(value):
     #倍率を1.0から2.0までの範囲で実装
     magnification = 1 + int(value)*0.1
 
-def action(sign_id,x,y,countpose,poseshortcut,poseshortcut2):
-    #ショートカットキー読み込み
-    shortcutone1,shortcutone2=poseshortcut.split(',')
-    shortcutdang1,shortcutdang2=poseshortcut2.split(',')
-    global drag_flag
+def shortcut_flag():
+    global shortcutflag
+    #倍率を1.0から2.0までの範囲で実装
+    shortcutflag = int(set_shortcutflag())
 
+def action(sign_id,x,y,countpose,countmotion,ShortCutList):
     #画面端まで行くように処理
     global magnification
+    global drag_flag
     x = x * magnification
     y = y * magnification
     #palmの時
@@ -58,11 +59,21 @@ def action(sign_id,x,y,countpose,poseshortcut,poseshortcut2):
         #alt+f4押す処理
         global shortcutflag
         if(shortcutflag):
-            if(countpose[1]<=10):
-                countpose[1] += 1
-            if(countpose[1]==10):
-                pgui.hotkey(shortcutdang1,shortcutdang2)
+            # if(countpose[1]<=10):
+            #     countpose[1] += 1
+            # if(countpose[1]==10):
+            #     pgui.hotkey(shortcutdang1,shortcutdang2)
 
+            print(countmotion)
+            for index,item in enumerate(countmotion):
+                if item == 25:
+                    hotkeyLen = len(ShortCutList[index])
+                    if hotkeyLen == 1:
+                        break
+                    elif hotkeyLen == 2:
+                        pgui.hotkey(ShortCutList[index][0],ShortCutList[index][1])
+                    elif hotkeyLen == 3:
+                        pgui.hotkey(ShortCutList[index][0],ShortCutList[index][1],ShortCutList[index][2])
 
     if(sign_id==2):
         #gunの時の処理
@@ -71,6 +82,7 @@ def action(sign_id,x,y,countpose,poseshortcut,poseshortcut2):
         if(drag_flag==False):
             if(countpose[2]==3):
                 autopy.mouse.click(autopy.mouse.Button.RIGHT)
+
     if(sign_id==3):
         #peaceの時
         if(countpose[3]<4):
@@ -91,7 +103,6 @@ def action(sign_id,x,y,countpose,poseshortcut,poseshortcut2):
             if(countpose[4]==3):
                 autopy.mouse.click(autopy.mouse.Button.LEFT)
 
-
     if(sign_id==5):
         #Threeの時
         if(countpose[5]<=3):
@@ -101,16 +112,15 @@ def action(sign_id,x,y,countpose,poseshortcut,poseshortcut2):
                 autopy.mouse.click(autopy.mouse.Button.LEFT)
                 autopy.mouse.click(autopy.mouse.Button.LEFT)
 
-    if(sign_id==6):
-        #oneの時の処理
-        if(shortcutflag):
-            if(countpose[6]<=10):
-                countpose[6] += 1
-            if(countpose[6]==10):
-                pgui.hotkey(shortcutone1,shortcutone2)
+    # if(sign_id==6):
+    #     oneの時の処理
+    #     if(shortcutflag):
+    #     #     if(countpose[6]<=10):
+    #     #         countpose[6] += 1
+    #     #     if(countpose[6]==10):
+    #     #         pgui.hotkey(shortcutone1,shortcutone2)
 
-
-    return countpose
+    return countpose,countmotion
 
 
 def pointermove(x,y):

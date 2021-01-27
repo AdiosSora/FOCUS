@@ -46,92 +46,71 @@
     </div>
   </div> -->
   <div>
-    oneのポーズ
+    Top
     <select name="keyconfig" id="keyconfig">
-      <option value="ctrl,c">Ctl+C</option>
-      <option value="ctrl,s">Ctl+S</option>
-      <option value="ctrl,v">Ctl+V</option>
-      <option value="ctrl,x">Ctl+X</option>
-      <option value="ctrl,y">Ctl+Y</option>
-      <option value="ctrl,z">Ctl+Z</option>
-      <option value="alt,f4">Alt+F4</option>
-      <option value="alt,tab">Alt+Tab</option>
+      <option value="ctrl,c">Ctl+C(コピー)</option>
+      <option value="ctrl,s">Ctl+S(保存)</option>
+      <option value="ctrl,v">Ctl+V(ペースト)</option>
+      <option value="ctrl,x">Ctl+X(切り取り)</option>
+      <option value="ctrl,y">Ctl+Y(戻るをやり直す)</option>
+      <option value="ctrl,z">Ctl+Z(戻る)</option>
+      <option value="alt,f4">Alt+F4(ウィンドウ削除)</option>
+      <option value="win,tab">Win+Tab(タスクビュー)</option>
+      <option value="ctrl,shift,esc">Ctrl+Shift+Esc(タスクマネージャー)</option>
+      <option value="win,up">Win+↑(ウィンドウ最大化)</option>
+      <option value="win,down">Win+↓(ウィンドウ最小化)</option>
     </select>
     <p></p>
-    dangのポーズ
+    Right
     <select name="keyconfig2" id="keyconfig2">
-      <option value="ctrl,c">Ctl+C</option>
-      <option value="ctrl,s">Ctl+S</option>
-      <option value="ctrl,v">Ctl+V</option>
-      <option value="ctrl,x">Ctl+X</option>
-      <option value="ctrl,y">Ctl+Y</option>
-      <option value="ctrl,z">Ctl+Z</option>
-      <option value="alt,f4">Alt+F4</option>
-      <option value="alt,tab">Alt+Tab</option>
+      <option value="ctrl,c">Ctl+C(コピー)</option>
+      <option value="ctrl,s">Ctl+S(保存)</option>
+      <option value="ctrl,v">Ctl+V(ペースト)</option>
+      <option value="ctrl,x">Ctl+X(切り取り)</option>
+      <option value="ctrl,y">Ctl+Y(戻るをやり直す)</option>
+      <option value="ctrl,z">Ctl+Z(戻る)</option>
+      <option value="alt,f4">Alt+F4(ウィンドウ削除)</option>
+      <option value="win,tab">Win+Tab(タスクビュー)</option>
+      <option value="ctrl,shift,esc">Ctrl+Shift+Esc(タスクマネージャー)</option>
+      <option value="win,up">Win+↑(ウィンドウ最大化)</option>
+      <option value="win,down">Win+↓(ウィンドウ最小化)</option>
+
     </select>
+    <p></p>
+    Bottom
+    <select name="keyconfig3" id="keyconfig3">
+      <option value="ctrl,c">Ctl+C(コピー)</option>
+      <option value="ctrl,s">Ctl+S(保存)</option>
+      <option value="ctrl,v">Ctl+V(ペースト)</option>
+      <option value="ctrl,x">Ctl+X(切り取り)</option>
+      <option value="ctrl,y">Ctl+Y(戻るをやり直す)</option>
+      <option value="ctrl,z">Ctl+Z(戻る)</option>
+      <option value="alt,f4">Alt+F4(ウィンドウ削除)</option>
+      <option value="win,tab">Win+Tab(タスクビュー)</option>
+      <option value="ctrl,shift,esc">Ctrl+Shift+Esc(タスクマネージャー)</option>
+      <option value="win,up">Win+↑(ウィンドウ最大化)</option>
+      <option value="win,down">Win+↓(ウィンドウ最小化)</option>
+    </select>
+    <p></p>
+    Left
+    <select name="keyconfig4" id="keyconfig4">
+      <option value="ctrl,c">Ctl+C(コピー)</option>
+      <option value="ctrl,s">Ctl+S(保存)</option>
+      <option value="ctrl,v">Ctl+V(ペースト)</option>
+      <option value="ctrl,x">Ctl+X(切り取り)</option>
+      <option value="ctrl,y">Ctl+Y(戻るをやり直す)</option>
+      <option value="ctrl,z">Ctl+Z(戻る)</option>
+      <option value="alt,f4">Alt+F4(ウィンドウ削除)</option>
+      <option value="win,tab">Win+Tab(タスクビュー)</option>
+      <option value="ctrl,shift,esc">Ctrl+Shift+Esc(タスクマネージャー)</option>
+      <option value="win,up">Win+↑(ウィンドウ最大化)</option>
+      <option value="win,down">Win+↓(ウィンドウ最小化)</option>
+Esc    </select>
     <p></p>
     ショートカットキー有効化<input type='checkbox' id='shortcut' class="checkbox" />
   </div>
-  <div>
-    <!-- <a class="pure-button pure-button-primary" href="#" onclick="saveConfigValue()">適用</a> -->
-    <div class="modal_wrap">
-    <input id="trigger" type="checkbox">
-      <div class="modal_overlay">
-        <label for="trigger" class="modal_trigger"></label>
-        <div class="modal_content">
-          <label for="trigger" class="close_button">✖️</label>
-          <h4 style="text-align:center;">設定を適応しました。</h4>
-        </div>
-      </div>
-    </div>
-  </div>
   <a class="pure-button pure-button-primary" onclick="saveConfigValue()">保存</a>
 </div>
-
-<div id="small_index_object">
-  <button class="small_index_btn" type="button" name="endbtn" value="end" onclick="endBtn()">終了</button>
-</div>
-
-<div class="small_index_pose">
-  <div class="pose_boxs">
-    <div id="pose_palm" class="pose_box">
-      <div class="pose_name">Palm</div>
-      <img src="../images/Hand_Palm.svg" width="50px">
-      <div class="pose_detail">移動</div>
-    </div>
-    <div id="pose_rock" class="pose_box">
-      <div class="pose_name">Rock</div>
-      <img src="../images/Hand_Rock.svg" width="50px">
-      <div class="pose_detail">左</br>クリック</div>
-    </div>
-    <div id="pose_gun" class="pose_box">
-      <div class="pose_name">Gun</div>
-      <img src="../images/Hand_Gun.svg" width="50px">
-      <div class="pose_detail">右</br>クリック</div>
-    </div>
-    <div id="pose_three" class="pose_box">
-      <div class="pose_name">Three</div>
-      <img src="../images/Hand_Three.svg" width="50px">
-      <div class="pose_detail">ダブル</br>クリック</div>
-    </div>
-    <div id="pose_peace" class="pose_box">
-      <div class="pose_name">Peace</div>
-      <img src="../images/Hand_Peace.svg" width="50px">
-      <div class="pose_detail">ドラッグ</br>ドロップ</div>
-    </div>
-    <div id="pose_dang" class="pose_box">
-      <div class="pose_name">Dang</div>
-      <img src="../images/Hand_Dang.svg" width="50px">
-      <div class="pose_detail">S１</div>
-    </div>
-    <div id="pose_one" class="pose_box">
-      <div class="pose_name">One</div>
-      <img src="../images/Hand_One.svg" width="50px">
-      <div class="pose_detail">S2</div>
-    </div>
-  </div>
-</div>
-
 </body>
 
 
@@ -142,6 +121,8 @@
   const rangeBullet = document.getElementById("rs-bullet");
   const keyselect = document.getElementById("keyconfig");
   const keyselect2 = document.getElementById("keyconfig2");
+  const keyselect3 = document.getElementById("keyconfig3");
+  const keyselect4 = document.getElementById("keyconfig4");
   const keybox = document.getElementById("shortcut");
 
   rangeSlider.addEventListener("input", showSliderValue, false);
@@ -175,6 +156,14 @@
     keyset2.then(function(data){
       keyselect2.value = data
     });
+    var keyset3 = Promise.resolve(eel.set_poseshortcut3()());
+    keyset3.then(function(data){
+      keyselect3.value = data
+    });
+    var keyset4 = Promise.resolve(eel.set_poseshortcut4()());
+    keyset4.then(function(data){
+      keyselect4.value = data
+    });
     var key_flag = Promise.resolve(eel.set_shortcutflag()());
     key_flag.then(function(data){
       if(data==0){
@@ -188,7 +177,7 @@
   //設定した値をコンフィグに書き込む関数
   eel.expose(saveConfigValue);
   function saveConfigValue() {
-    eel.save_confvalue(rangeSlider.value,keyconfig.value,keyconfig2.value);
+    eel.save_confvalue(rangeSlider.value,keyconfig.value,keyconfig2.value,keyconfig3.value,keyconfig4.value);
     if(shortcut.checked){
       eel.save_shortcutflag("1");
     }else{

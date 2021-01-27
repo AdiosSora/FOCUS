@@ -107,6 +107,15 @@
             document.getElementById("pose_one").classList.add("pose_highlight");
           }
           break;
+        default:
+          document.getElementById("pose_palm").classList.remove("pose_highlight");
+          document.getElementById("pose_rock").classList.remove("pose_highlight");
+          document.getElementById("pose_gun").classList.remove("pose_highlight");
+          document.getElementById("pose_three").classList.remove("pose_highlight");
+          document.getElementById("pose_peace").classList.remove("pose_highlight");
+          document.getElementById("pose_dang").classList.remove("pose_highlight");
+          document.getElementById("pose_dang").classList.remove("pose_highlight");
+
       }
     }
 
