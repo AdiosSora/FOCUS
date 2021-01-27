@@ -393,11 +393,20 @@ h1 {
       width:100%;
     }
 
+    .top_h1{
+      font-family: 'Nunito', sans-serif;
+      font-size: 3em;
+      color: transparent;
+      letter-spacing: 0.1em;
+    }
+
     .top_h2 {
+
       position: relative;
       display: inline-block;
       padding: 0 55px;
       color:#303030;
+      font-family: 'Nunito', sans-serif;
     }
 
     .top_h2:before, .top_h2:after {
@@ -418,7 +427,7 @@ h1 {
     }
 
     .box_2 img{
-      width: 350px;
+      width:350px;
       margin: 20px
     }
 
