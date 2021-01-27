@@ -12,104 +12,97 @@
 </head>
 
 <body>
-<div class="big">
-  <h2>マウス感度設定</h2>
-  <p class="detail_text">遅いに近いほど細かい操作がしやすくなり、早いに近いほど少しの動作で画面全体の操作が出来ます。</p>
+<div class="big" style="margin:0px 20px;">
+  <h2 class="help_h2">マウス感度設定</h2>
+  <p class="detail_text">青いバーを動かすことで感度の設定が出来ます。<br>
+    遅いに近いほど細かい操作がしやすくなり、早いに近いほど少しの動作で画面全体の操作が出来ます。</p>
   <div class="range-slider">
-    <span id="rs-bullet" class="rs-label">0</span>
+    <span id="rs-bullet" class="rs-label" style="margin-top:0px">0</span>
     遅い　<input id="rs-range-line" class="rs-range" type="range" value="0" min="0" max="10">　速い
   </div>
-  <h2>ポーズ設定</h2>
+  <h2 class="help_h2">ポーズ設定</h2>
   <p class="detail_text">
-    ポーズを入れ替えることでマウスの操作に対するポーズを変更することが出来ます。<br>
-    手のアイコンをドラッグドロップすることで入れ替えることができます。
+    グーの状態で上下左右に動かすと、対応したショートカットが実行されます。<br/>
+    実行するショートカットは下のプルダウンから設定することが出来ます。
   </p>
-  <br>
-  <!-- <div class="PoseSettinglist">
-    <div id="PoseList" class="listWithHandle">
-      <div class="drag_palm"><img src="../images/Hand_Palm.svg" width="46px"></div>
-      <div class="drag_rock"><img src="../images/Hand_Rock.svg" width="46px"></div>
-      <div class="drag_gun"><img src="../images/Hand_Gun.svg" width="46px"></div>
-      <div class="drag_three"><img src="../images/Hand_Three.svg" width="46px"></div>
-      <div class="drag_peace"><img src="../images/Hand_Peace.svg" width="46px"></div>
-      <div class="drag_dang"><img src="../images/Hand_Dang.svg" width="46px"></div>
-      <div class="drag_one"><img src="../images/Hand_One.svg" width="46px"></div>
+  <div class="gesture_area">
+    <div class="gesture_box">
+      Top<br/>
+      <div class="dropdown">
+        <select name="keyconfig" id="keyconfig" class="dropdown-select">
+          <option value="ctrl,c">Ctl+C(コピー)</option>
+          <option value="ctrl,s">Ctl+S(保存)</option>
+          <option value="ctrl,v">Ctl+V(ペースト)</option>
+          <option value="ctrl,x">Ctl+X(切り取り)</option>
+          <option value="ctrl,y">Ctl+Y(戻るをやり直す)</option>
+          <option value="ctrl,z">Ctl+Z(戻る)</option>
+          <option value="alt,f4">Alt+F4(ウィンドウ削除)</option>
+          <option value="win,tab">Win+Tab(タスクビュー)</option>
+          <option value="ctrl,shift,esc">タスクマネージャー</option>
+          <option value="win,up">Win+↑(ウィンドウ最大化)</option>
+          <option value="win,down">Win+↓(ウィンドウ最小化)</option>
+        </select>
+      </div>
     </div>
-    <div class="listlabel">
-      <div>移動</div>
-      <div>左クリック</div>
-      <div>右クリック</div>
-      <div>ダブルクリック</div>
-      <div>ドラッグ<br>ドロップ</div>
-      <div>1<br/>ショートカット</div>
-      <div>2<br/>ショートカット</div>
+    <div class="gesture_box">
+      Left<br/>
+      <div class="dropdown">
+        <select name="keyconfig2" id="keyconfig2" class="dropdown-select">
+          <option value="ctrl,c">Ctl+C(コピー)</option>
+          <option value="ctrl,s">Ctl+S(保存)</option>
+          <option value="ctrl,v">Ctl+V(ペースト)</option>
+          <option value="ctrl,x">Ctl+X(切り取り)</option>
+          <option value="ctrl,y">Ctl+Y(戻るをやり直す)</option>
+          <option value="ctrl,z">Ctl+Z(戻る)</option>
+          <option value="alt,f4">Alt+F4(ウィンドウ削除)</option>
+          <option value="win,tab">Win+Tab(タスクビュー)</option>
+          <option value="ctrl,shift,esc">タスクマネージャー</option>
+          <option value="win,up">Win+↑(ウィンドウ最大化)</option>
+          <option value="win,down">Win+↓(ウィンドウ最小化)</option>
+        </select>
+      </div>
     </div>
-  </div> -->
-  <div>
-    Top
-    <select name="keyconfig" id="keyconfig">
-      <option value="ctrl,c">Ctl+C(コピー)</option>
-      <option value="ctrl,s">Ctl+S(保存)</option>
-      <option value="ctrl,v">Ctl+V(ペースト)</option>
-      <option value="ctrl,x">Ctl+X(切り取り)</option>
-      <option value="ctrl,y">Ctl+Y(戻るをやり直す)</option>
-      <option value="ctrl,z">Ctl+Z(戻る)</option>
-      <option value="alt,f4">Alt+F4(ウィンドウ削除)</option>
-      <option value="win,tab">Win+Tab(タスクビュー)</option>
-      <option value="ctrl,shift,esc">Ctrl+Shift+Esc(タスクマネージャー)</option>
-      <option value="win,up">Win+↑(ウィンドウ最大化)</option>
-      <option value="win,down">Win+↓(ウィンドウ最小化)</option>
-    </select>
-    <p></p>
-    Right
-    <select name="keyconfig2" id="keyconfig2">
-      <option value="ctrl,c">Ctl+C(コピー)</option>
-      <option value="ctrl,s">Ctl+S(保存)</option>
-      <option value="ctrl,v">Ctl+V(ペースト)</option>
-      <option value="ctrl,x">Ctl+X(切り取り)</option>
-      <option value="ctrl,y">Ctl+Y(戻るをやり直す)</option>
-      <option value="ctrl,z">Ctl+Z(戻る)</option>
-      <option value="alt,f4">Alt+F4(ウィンドウ削除)</option>
-      <option value="win,tab">Win+Tab(タスクビュー)</option>
-      <option value="ctrl,shift,esc">Ctrl+Shift+Esc(タスクマネージャー)</option>
-      <option value="win,up">Win+↑(ウィンドウ最大化)</option>
-      <option value="win,down">Win+↓(ウィンドウ最小化)</option>
-
-    </select>
-    <p></p>
-    Bottom
-    <select name="keyconfig3" id="keyconfig3">
-      <option value="ctrl,c">Ctl+C(コピー)</option>
-      <option value="ctrl,s">Ctl+S(保存)</option>
-      <option value="ctrl,v">Ctl+V(ペースト)</option>
-      <option value="ctrl,x">Ctl+X(切り取り)</option>
-      <option value="ctrl,y">Ctl+Y(戻るをやり直す)</option>
-      <option value="ctrl,z">Ctl+Z(戻る)</option>
-      <option value="alt,f4">Alt+F4(ウィンドウ削除)</option>
-      <option value="win,tab">Win+Tab(タスクビュー)</option>
-      <option value="ctrl,shift,esc">Ctrl+Shift+Esc(タスクマネージャー)</option>
-      <option value="win,up">Win+↑(ウィンドウ最大化)</option>
-      <option value="win,down">Win+↓(ウィンドウ最小化)</option>
-    </select>
-    <p></p>
-    Left
-    <select name="keyconfig4" id="keyconfig4">
-      <option value="ctrl,c">Ctl+C(コピー)</option>
-      <option value="ctrl,s">Ctl+S(保存)</option>
-      <option value="ctrl,v">Ctl+V(ペースト)</option>
-      <option value="ctrl,x">Ctl+X(切り取り)</option>
-      <option value="ctrl,y">Ctl+Y(戻るをやり直す)</option>
-      <option value="ctrl,z">Ctl+Z(戻る)</option>
-      <option value="alt,f4">Alt+F4(ウィンドウ削除)</option>
-      <option value="win,tab">Win+Tab(タスクビュー)</option>
-      <option value="ctrl,shift,esc">Ctrl+Shift+Esc(タスクマネージャー)</option>
-      <option value="win,up">Win+↑(ウィンドウ最大化)</option>
-      <option value="win,down">Win+↓(ウィンドウ最小化)</option>
-Esc    </select>
-    <p></p>
-    ショートカットキー有効化<input type='checkbox' id='shortcut' class="checkbox" />
+    <div class="gesture_box">
+      Bottom<br/>
+      <div class="dropdown">
+        <select name="keyconfig3" id="keyconfig3" class="dropdown-select">
+        <option value="ctrl,c">Ctl+C(コピー)</option>
+        <option value="ctrl,s">Ctl+S(保存)</option>
+        <option value="ctrl,v">Ctl+V(ペースト)</option>
+        <option value="ctrl,x">Ctl+X(切り取り)</option>
+        <option value="ctrl,y">Ctl+Y(戻るをやり直す)</option>
+        <option value="ctrl,z">Ctl+Z(戻る)</option>
+        <option value="alt,f4">Alt+F4(ウィンドウ削除)</option>
+        <option value="win,tab">Win+Tab(タスクビュー)</option>
+        <option value="ctrl,shift,esc">タスクマネージャー</option>
+        <option value="win,up">Win+↑(ウィンドウ最大化)</option>
+        <option value="win,down">Win+↓(ウィンドウ最小化)</option>
+      </select>
+      </div>
+    </div>
+    <div class="gesture_box">
+      Right<br/>
+      <div class="dropdown">
+        <select name="keyconfig4" id="keyconfig4" class="dropdown-select">
+        <option value="ctrl,c">Ctl+C(コピー)</option>
+        <option value="ctrl,s">Ctl+S(保存)</option>
+        <option value="ctrl,v">Ctl+V(ペースト)</option>
+        <option value="ctrl,x">Ctl+X(切り取り)</option>
+        <option value="ctrl,y">Ctl+Y(戻るをやり直す)</option>
+        <option value="ctrl,z">Ctl+Z(戻る)</option>
+        <option value="alt,f4">Alt+F4(ウィンドウ削除)</option>
+        <option value="win,tab">Win+Tab(タスクビュー)</option>
+        <option value="ctrl,shift,esc">タスクマネージャー</option>
+        <option value="win,up">Win+↑(ウィンドウ最大化)</option>
+        <option value="win,down">Win+↓(ウィンドウ最小化)</option>
+      </select>
+      </div>
+    </div>
+    <img class="gesture_img" src="../images/arrow_all.png">
   </div>
   <a class="pure-button pure-button-primary" onclick="saveConfigValue()">保存</a>
+  <input type='checkbox' id='shortcut' name="checkbox_conf" class="checkbox" />
+  <label for="shortcut" class="checkbox_conf">ショートカットキー有効化</label>
 </div>
 </body>
 
