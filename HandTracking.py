@@ -102,7 +102,6 @@ def HandTracking(cap, width, height, conf_flg = 0):
     name_pose = "Unknown"
     focus_flg = 1   #index.html の表示・非表示の切り替え、「0」:Main.pyで開いた場合、「1」:HandTracking.pyで開いた場合
     namePose_flg = 1    #complete_old.htmlの開始・終了フラグ
-    start = time.time()
     #flg_closePush = 0
 
     cap_device = args.device
@@ -197,7 +196,6 @@ def HandTracking(cap, width, height, conf_flg = 0):
         CountPose = [0,0,0,0,0,0,0]
         CountMotion = [0,0,0,0] # [Top,Right,Down,Left]
         identification = False
-        i=1
         while True:
             fps = cvFpsCalc.get()
             # キー処理(ESC：終了) #################################################
@@ -336,7 +334,7 @@ def HandTracking(cap, width, height, conf_flg = 0):
                 #            port = 0,
                 #            mode='chrome',
                 #            size=(4, 2),  #サイズ指定（横, 縦）
-                #            position=(width,height), #位置指定（left, top）
+                #            position=(width,0), #位置指定（left, top）
                 #            block=False
                 #            )
                 eel.sleep(0.01)
@@ -348,17 +346,12 @@ def HandTracking(cap, width, height, conf_flg = 0):
                 eel.focusSwitch(width, height, focus_flg)
                 print("【実行】index.html")
                 eel.sleep(0.01)
-                #print(i,"回目name_pose=", name_pose)
                 #eel.set_posegauge(name_pose,i)
-                #print("--------------------------------------------------------------------")
                 focus_flg = 0
                 #i+=1
 
             # eel立ち上げ #############################################################
-            flg_end, start = hand_gui_test.start_gui(start)
-            print(i,"回目")
-            print("-------------------------------------------------------------------------")
-            i+=1
+            flg_end = hand_gui_test.start_gui()
             if(flg_end == 1):
                 #正常に終了する処理(中間のループを抜ける)
                 flg_break = 1
@@ -367,6 +360,7 @@ def HandTracking(cap, width, height, conf_flg = 0):
                 cv.destroyAllWindows()
                 eel.overlay_controll(False)
                 eel.object_change("endpage.html", False)
+                #eel.windowclose_keeper()
                 break
 
 def select_mode(key, mode):

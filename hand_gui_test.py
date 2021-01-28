@@ -35,7 +35,6 @@ def sysclose_switch(end_switch):
 
 @eel.expose
 def close_switch(closePush):
-    print("×ボタン押された")
     #×ボタンが押されたフラグ(eelから)を別関数に渡す
     close_switch_py(closePush)
 
@@ -44,8 +43,7 @@ def close_switch_py(closePush_py):
     global flg_closePush
     flg_closePush = closePush_py
 
-def start_gui(start):
-    print("flg_closePush=", flg_closePush)
+def start_gui():
     if(flg_closePush == 1 ):
         start = time.time()
         #×ボタンが押された際の動作
@@ -62,20 +60,17 @@ def start_gui(start):
         print("【通知】index.html再起動")
         #×ボタンのフラグの初期化
         close_switch_py(0)
-        return flg_end,start
+        return flg_end
     else:
         try:
             #正常動作
             eel.sleep(0.01)
             #eel.set_posegauge(name_pose)
-        except:
+        except SystemExit:
             traceback.print_exc()
-            print("再起動からかかった時間：", time.time()-start)
-        #else:
-            #eel.sleep(0.01)
-            start = time.time()
+            print("【通知】SystemExit発生")
         finally:
-            return flg_end,start
+            return flg_end
 
 def cam_source():
     eel.init('GUI/web')
