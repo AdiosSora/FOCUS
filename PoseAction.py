@@ -2,6 +2,7 @@ import autopy
 import eel
 import pyautogui as pgui
 import xml.etree.ElementTree as ET
+import subprocess
 #倍率
 magnification = 1
 shortcutflag = 0
@@ -84,6 +85,7 @@ def action(sign_id,x,y,countpose,countmotion,ShortCutList):
             if(countpose[2]==3):
                 autopy.mouse.click(autopy.mouse.Button.RIGHT)
 
+
     if(sign_id==3):
         #peaceの時
         if(countpose[3]<4):
@@ -113,13 +115,13 @@ def action(sign_id,x,y,countpose,countmotion,ShortCutList):
                 autopy.mouse.click(autopy.mouse.Button.LEFT)
                 autopy.mouse.click(autopy.mouse.Button.LEFT)
 
-    # if(sign_id==6):
-    #     oneの時の処理
-    #     if(shortcutflag):
-    #     #     if(countpose[6]<=10):
-    #     #         countpose[6] += 1
-    #     #     if(countpose[6]==10):
-    #     #         pgui.hotkey(shortcutone1,shortcutone2)
+    if(sign_id==6):
+        #oneの時の処理
+        if(countpose[6]<=3):
+            countpose[6] += 1
+        if(countpose[6]==3):
+            subprocess.Popen(r'.\GUI\flikkey\exe\keyBoard.exe')
+
 
     return countpose,countmotion
 
