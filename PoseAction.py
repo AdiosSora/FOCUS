@@ -126,13 +126,11 @@ def action(sign_id,x,y,countpose,countmotion,ShortCutList):
             countpose[6] += 1
         if(countpose[6]==3):
             print(one_flag)
-            if(one_flag == 'True'):
-                print(one_flag)
-                print("zikkou")
-                subprocess.Popen(r'.\GUI\flikkey\exe\keyBoard.exe')
-                for item in root:
-                    item.find("keyboard").text = 'False'
-                tree.write('conf.xml', encoding='UTF-8')
+            # if(one_flag == 'True'):
+            subprocess.Popen(r'.\GUI\flikkey\exe\keyBoard.exe')
+                # for item in root:
+                #     # item.find("keyboard").text = 'False'
+                # tree.write('conf.xml', encoding='UTF-8')
 
 
     return countpose,countmotion
