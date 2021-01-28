@@ -6,5 +6,6 @@
     <poseshortcut2>win,up</poseshortcut2>
     <poseshortcut3>alt,f4</poseshortcut3>
     <poseshortcut4>win,down</poseshortcut4>
+    <keyboard>False</keyboard>
   </setting>
 </config>
