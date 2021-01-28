@@ -81,9 +81,9 @@ def action(sign_id,x,y,countpose,countmotion,ShortCutList):
         #gunの時の処理
         if(countpose[2]<=3):
             countpose[2] += 1
-        # if(drag_flag==False):
-        #     if(countpose[2]==3):
-                # autopy.mouse.click(autopy.mouse.Button.RIGHT)
+        if(drag_flag==False):
+            if(countpose[2]==3):
+                autopy.mouse.click(autopy.mouse.Button.RIGHT)
 
 
     if(sign_id==3):
