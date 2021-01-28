@@ -12,9 +12,17 @@
   <link rel="icon" href="../favicon.ico" type="image/x-icon"/>
   <link rel="stylesheet" type="text/css" href="../css/all.css">
   <script type="text/javascript">
+    // 最後の手段（確認メッセージを出す）
+    // window.addEventListener('beforeunload', (event) => {
+    //   event.preventDefault();
+    //   event.returnValue = '';
+    // });
+    // ここまで最後の手段
     // ×ボタンが押された際のフラグを立てる
     window.onbeforeunload = function(e) {
       eel.close_switch(1)
+    //   const _sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    //   await _sleep(2000);
     }
   </script>
 </head>

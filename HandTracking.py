@@ -102,6 +102,7 @@ def HandTracking(cap, width, height, conf_flg = 0):
     name_pose = "Unknown"
     focus_flg = 1   #index.html の表示・非表示の切り替え、「0」:Main.pyで開いた場合、「1」:HandTracking.pyで開いた場合
     namePose_flg = 1    #complete_old.htmlの開始・終了フラグ
+    start = time.time()
     #flg_closePush = 0
 
     cap_device = args.device
@@ -231,7 +232,7 @@ def HandTracking(cap, width, height, conf_flg = 0):
 
             #  ####################################################################
             if results.multi_hand_landmarks is not None:
-                j=1
+                #j=1
                 for hand_landmarks, handedness in zip(results.multi_hand_landmarks,
                                                       results.multi_handedness):
                     # 外接矩形の計算
@@ -307,12 +308,12 @@ def HandTracking(cap, width, height, conf_flg = 0):
                     CountPose,CountMotion = PoseAction.action(hand_sign_id,x,y,CountPose,CountMotion,ShortCutList)
                     name_pose = keypoint_classifier_labels[hand_sign_id]
                     if(focus_flg != 1):
-                        print(i,"回目name_pose=", name_pose)
+                        #print(i,"回目name_pose=", name_pose)
                         eel.set_posegauge(name_pose, i)
-                        i+=1
-                    print(j)
-                    j+=1
-                    print("--------------------------------------------------------------------")
+                        #i+=1
+                    #print(j)
+                    #j+=1
+                    #print("--------------------------------------------------------------------")
 
             else:
                 point_history.append([0, 0])
@@ -329,6 +330,16 @@ def HandTracking(cap, width, height, conf_flg = 0):
 
             if(namePose_flg == 1):
                 eel.object_change("complete_old.html", True)
+                #eel.sleep(0.01)
+                #eel.init("GUI/web")
+                #eel.start("開きたい上記のフォルダ下のファイル名",～
+                #eel.start("html/keeper.html",
+                #            port = 0,
+                #            mode='chrome',
+                #            size=(4, 2),  #サイズ指定（横, 縦）
+                #            position=(width,height), #位置指定（left, top）
+                #            block=False
+                #            )
                 eel.sleep(0.01)
                 print("【通知】準備完了")
                 namePose_flg = 0
@@ -338,15 +349,17 @@ def HandTracking(cap, width, height, conf_flg = 0):
                 eel.focusSwitch(width, height, focus_flg)
                 print("【実行】index.html")
                 eel.sleep(0.01)
-                print(i,"回目name_pose=", name_pose)
+                #print(i,"回目name_pose=", name_pose)
                 eel.set_posegauge(name_pose,i)
-                print("--------------------------------------------------------------------")
+                #print("--------------------------------------------------------------------")
                 focus_flg = 0
-                i+=1
+                #i+=1
 
             # eel立ち上げ #############################################################
-            flg_end = hand_gui_test.start_gui()
-
+            flg_end, start = hand_gui_test.start_gui(start)
+            print(i,"回目")
+            print("-------------------------------------------------------------------------")
+            i+=1
             if(flg_end == 1):
                 #正常に終了する処理(中間のループを抜ける)
                 flg_break = 1

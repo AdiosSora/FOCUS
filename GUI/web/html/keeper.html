@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="/eel.js"></script>
+  </head>
+  <body>
+    強制終了を防ぐため見守る
+    <script>
+      eel.expose(windowclose_keeper);
+      function windowclose_keeper(){
+        // pythonからwindowを閉じる関数
+        window.close();
+      }
+    </script>
+  </body>
+</html>

@@ -35,6 +35,7 @@ def sysclose_switch(end_switch):
 
 @eel.expose
 def close_switch(closePush):
+    print("×ボタン押された")
     #×ボタンが押されたフラグ(eelから)を別関数に渡す
     close_switch_py(closePush)
 
@@ -43,8 +44,10 @@ def close_switch_py(closePush_py):
     global flg_closePush
     flg_closePush = closePush_py
 
-def start_gui():
-    if(flg_closePush == 1):
+def start_gui(start):
+    print("flg_closePush=", flg_closePush)
+    if(flg_closePush == 1 ):
+        start = time.time()
         #×ボタンが押された際の動作
         eel.init("GUI/web")
         #eel.start("開きたい上記のフォルダ下のファイル名",～
@@ -59,12 +62,20 @@ def start_gui():
         print("【通知】index.html再起動")
         #×ボタンのフラグの初期化
         close_switch_py(0)
-        return flg_end
+        return flg_end,start
     else:
-        #正常動作
-        eel.sleep(0.01)
-        #eel.set_posegauge(name_pose)
-        return flg_end
+        try:
+            #正常動作
+            eel.sleep(0.01)
+            #eel.set_posegauge(name_pose)
+        except:
+            traceback.print_exc()
+            print("再起動からかかった時間：", time.time()-start)
+        #else:
+            #eel.sleep(0.01)
+            start = time.time()
+        finally:
+            return flg_end,start
 
 def cam_source():
     eel.init('GUI/web')
