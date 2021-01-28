@@ -117,14 +117,25 @@ def action(sign_id,x,y,countpose,countmotion,ShortCutList):
 
     if(sign_id==6):
         #oneの時の処理
+        tree =  ET.parse('conf.xml')
+        root = tree.getroot()
+        one_flag = True
+        for item in root:
+            one_flag = item.find("keyboard").text
         if(countpose[6]<=3):
             countpose[6] += 1
         if(countpose[6]==3):
-            subprocess.Popen(r'.\GUI\flikkey\exe\keyBoard.exe')
+            print(one_flag)
+            if(one_flag == 'True'):
+                print(one_flag)
+                print("zikkou")
+                subprocess.Popen(r'.\GUI\flikkey\exe\keyBoard.exe')
+                for item in root:
+                    item.find("keyboard").text = 'False'
+                tree.write('conf.xml', encoding='UTF-8')
 
 
     return countpose,countmotion
-
 
 def pointermove(x,y):
     try:
