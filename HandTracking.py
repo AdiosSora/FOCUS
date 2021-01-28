@@ -196,6 +196,7 @@ def HandTracking(cap, width, height, conf_flg = 0):
         mode = 0
         CountPose = [0,0,0,0,0,0,0]
         CountMotion = [0,0,0,0] # [Top,Right,Down,Left]
+        identification = False
         i=1
         while True:
             fps = cvFpsCalc.get()
@@ -307,16 +308,14 @@ def HandTracking(cap, width, height, conf_flg = 0):
                     #各種操作の実行
                     CountPose,CountMotion = PoseAction.action(hand_sign_id,x,y,CountPose,CountMotion,ShortCutList)
                     name_pose = keypoint_classifier_labels[hand_sign_id]
-                    if(focus_flg != 1):
-                        #print(i,"回目name_pose=", name_pose)
-                        eel.set_posegauge(name_pose, i)
-                        #i+=1
-                    #print(j)
-                    #j+=1
-                    #print("--------------------------------------------------------------------")
+                    eel.set_posegauge(str(name_pose))
+                    identification = True
 
             else:
                 point_history.append([0, 0])
+                if identification == True:
+                    eel.set_posegauge('None')
+                    identification = False
 
             debug_image = draw_point_history(debug_image, point_history)
             debug_image = draw_info(debug_image, fps, mode, number)
@@ -350,7 +349,7 @@ def HandTracking(cap, width, height, conf_flg = 0):
                 print("【実行】index.html")
                 eel.sleep(0.01)
                 #print(i,"回目name_pose=", name_pose)
-                eel.set_posegauge(name_pose,i)
+                #eel.set_posegauge(name_pose,i)
                 #print("--------------------------------------------------------------------")
                 focus_flg = 0
                 #i+=1
