@@ -38,6 +38,7 @@
             document.getElementById("pose_peace").classList.remove("pose_highlight");
             document.getElementById("pose_dang").classList.remove("pose_highlight");
             document.getElementById("pose_one").classList.remove("pose_highlight");
+            document.getElementById("idf_hand").innerHTML='<img id="idf_hand_img" src="../images/green_lamp.png" alt="" width="20px">手が検出されています。';
           }
           break;
         case "Rock":
@@ -49,6 +50,7 @@
             document.getElementById("pose_peace").classList.remove("pose_highlight");
             document.getElementById("pose_dang").classList.remove("pose_highlight");
             document.getElementById("pose_one").classList.remove("pose_highlight");
+            document.getElementById("idf_hand").innerHTML='<img id="idf_hand_img" src="../images/green_lamp.png" alt="" width="20px">手が検出されています。';
           }
             break;
         case "Gun":
@@ -60,6 +62,7 @@
             document.getElementById("pose_peace").classList.remove("pose_highlight");
             document.getElementById("pose_dang").classList.remove("pose_highlight");
             document.getElementById("pose_one").classList.remove("pose_highlight");
+            document.getElementById("idf_hand").innerHTML='<img id="idf_hand_img" src="../images/green_lamp.png" alt="" width="20px">手が検出されています。';
           }
           break;
         case "Three":
@@ -71,6 +74,7 @@
             document.getElementById("pose_peace").classList.remove("pose_highlight");
             document.getElementById("pose_dang").classList.remove("pose_highlight");
             document.getElementById("pose_one").classList.remove("pose_highlight");
+            document.getElementById("idf_hand").innerHTML='<img id="idf_hand_img" src="../images/green_lamp.png" alt="" width="20px">手が検出されています。';
           }
           break;
         case "Peace":
@@ -82,6 +86,7 @@
             document.getElementById("pose_peace").classList.add("pose_highlight");
             document.getElementById("pose_dang").classList.remove("pose_highlight");
             document.getElementById("pose_one").classList.remove("pose_highlight");
+            document.getElementById("idf_hand").innerHTML='<img id="idf_hand_img" src="../images/green_lamp.png" alt="" width="20px">手が検出されています。';
           }
           break;
         case "Dang":
@@ -93,6 +98,7 @@
             document.getElementById("pose_peace").classList.remove("pose_highlight");
             document.getElementById("pose_dang").classList.add("pose_highlight");
             document.getElementById("pose_one").classList.remove("pose_highlight");
+            document.getElementById("idf_hand").innerHTML='<img id="idf_hand_img" src="../images/green_lamp.png" alt="" width="20px">手が検出されています。';
           }
           break;
         case "One":
@@ -104,9 +110,10 @@
             document.getElementById("pose_peace").classList.remove("pose_highlight");
             document.getElementById("pose_dang").classList.remove("pose_highlight");
             document.getElementById("pose_one").classList.add("pose_highlight");
+            document.getElementById("idf_hand").innerHTML='<img id="idf_hand_img" src="../images/green_lamp.png" alt="" width="20px">手が検出されています。';
           }
           break;
-        default:
+        case "None":
           document.getElementById("pose_palm").classList.remove("pose_highlight");
           document.getElementById("pose_rock").classList.remove("pose_highlight");
           document.getElementById("pose_gun").classList.remove("pose_highlight");
@@ -114,7 +121,7 @@
           document.getElementById("pose_peace").classList.remove("pose_highlight");
           document.getElementById("pose_dang").classList.remove("pose_highlight");
           document.getElementById("pose_dang").classList.remove("pose_highlight");
-
+          document.getElementById("idf_hand").innerHTML='<img id="idf_hand_img" src="../images/red_lamp.png" alt="" width="20px">手が検出されていません。';
       }
     }
 

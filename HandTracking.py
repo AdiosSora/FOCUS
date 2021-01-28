@@ -195,6 +195,7 @@ def HandTracking(cap, width, height, conf_flg = 0):
         mode = 0
         CountPose = [0,0,0,0,0,0,0]
         CountMotion = [0,0,0,0] # [Top,Right,Down,Left]
+        identification = False
         while True:
             fps = cvFpsCalc.get()
             # キー処理(ESC：終了) #################################################
@@ -305,9 +306,13 @@ def HandTracking(cap, width, height, conf_flg = 0):
                     CountPose,CountMotion = PoseAction.action(hand_sign_id,x,y,CountPose,CountMotion,ShortCutList)
                     name_pose = keypoint_classifier_labels[hand_sign_id]
                     eel.set_posegauge(str(name_pose))
+                    identification = True
 
             else:
                 point_history.append([0, 0])
+                if identification == True:
+                    eel.set_posegauge('None')
+                    identification = False
 
             debug_image = draw_point_history(debug_image, point_history)
             debug_image = draw_info(debug_image, fps, mode, number)
