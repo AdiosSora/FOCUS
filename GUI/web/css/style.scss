@@ -170,12 +170,85 @@ h1 {
   }
   #shortcut_box{
     position: absolute;
-    left: 0; top: 0;
-    background-color: rgba(255,255,255,0.5);
+    left: 0; top: 34;
+    background-color: rgba(255,255,255,0.8);
     z-index: 2;
     width: 100%;
-    height:455px;
-    display:none;
+    height:104px;
+    // display:none;
+  }
+  .shortcut_content{
+    text-align: center;
+    vertical-align:middle;
+    position: absolute;
+    line-height: 30px;
+    border:solid 1px #333333;
+    background-color: white;
+    &:nth-of-type(1){
+      width:50px;
+      height:30px;
+      left:150px; top:34px;
+    }
+    &:nth-of-type(2){
+      width:50px;
+      height:30px;
+      left:150px; top:0px;
+    }
+    &:nth-of-type(3){
+      width:50px;
+      height:30px;
+      left:204px; top:34px;
+    }
+    &:nth-of-type(4){
+      width: 50px;
+      height: 30px;
+      left: 150px; top: 68px;
+      font-size: 12px;
+    }
+    &:nth-of-type(5){
+      width: 50px;
+      height: 30px;
+      left: 96px; top: 34px;
+    }
+  }
+  .shortcut_highlight {
+    background: #ffec88;
+    -webkit-animation: shortcut_highlight 0.45s both;
+    -moz-animation: shortcut_highlight 0.45s both;
+    animation: shortcut_highlight 0.45s both;
+  }
+  @-webkit-keyframes shortcut_highlight {
+    0% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+    }
+
+    100% {
+      -webkit-transform: scale(1.2);
+      transform: scale(1.2);
+    }
+  }
+  @-moz-keyframes shortcut_highlight {
+    0% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+    }
+
+    100% {
+      -webkit-transform: scale(1.2);
+      transform: scale(1.2);
+    }
+  }
+  @keyframes shortcut_highlight {
+    0% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+    }
+
+    100% {
+      -webkit-transform: scale(1.2);
+      transform: scale(1.2);
+    }
   }
   //----- Endpage用CSS -----//
   .end_title {

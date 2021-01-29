@@ -8,6 +8,7 @@ magnification = 1
 shortcutflag = 0
 #ドラッグ解除フラグ
 drag_flag = False
+active_shortcut = False
 
 @eel.expose()
 def set_shortcutflag():
@@ -43,6 +44,7 @@ def action(sign_id,x,y,countpose,countmotion,ShortCutList):
     #画面端まで行くように処理
     global magnification
     global drag_flag
+    global active_shortcut
     x = x * magnification
     y = y * magnification
     #palmの時
@@ -53,6 +55,9 @@ def action(sign_id,x,y,countpose,countmotion,ShortCutList):
             drag_flag = False
         pointermove(x,y)
         countpose = [0,0,0,0,0,0,0]
+        eel.shortcut_overlay(False,0)
+        active_shortcut = False
+
 
 
     if(sign_id==1):
@@ -64,18 +69,22 @@ def action(sign_id,x,y,countpose,countmotion,ShortCutList):
             #     countpose[1] += 1
             # if(countpose[1]==10):
             #     pgui.hotkey(shortcutdang1,shortcutdang2)
-
+            if active_shortcut == False:
+                eel.shortcut_overlay(True,0)
+                active_shortcut = True
             print(countmotion)
             for index,item in enumerate(countmotion):
                 print(item)
                 if item == 15:
                     hotkeyLen = len(ShortCutList[index])
+                    eel.shortcut_overlay(True,(index+1))
                     if hotkeyLen == 1:
                         break
                     elif hotkeyLen == 2:
                         pgui.hotkey(ShortCutList[index][0],ShortCutList[index][1])
                     elif hotkeyLen == 3:
                         pgui.hotkey(ShortCutList[index][0],ShortCutList[index][1],ShortCutList[index][2])
+
 
     if(sign_id==2):
         #gunの時の処理
@@ -84,6 +93,9 @@ def action(sign_id,x,y,countpose,countmotion,ShortCutList):
         if(drag_flag==False):
             if(countpose[2]==3):
                 autopy.mouse.click(autopy.mouse.Button.RIGHT)
+        eel.shortcut_overlay(False,0)
+        active_shortcut = False
+
 
 
     if(sign_id==3):
@@ -97,6 +109,8 @@ def action(sign_id,x,y,countpose,countmotion,ShortCutList):
             drag_flag = True
         if(countpose[3]==4):
             pointermove(x,y)
+        eel.shortcut_overlay(False,0)
+        active_shortcut = False
 
     if(sign_id==4):
         #rockの時
@@ -105,6 +119,8 @@ def action(sign_id,x,y,countpose,countmotion,ShortCutList):
         if(drag_flag==False):
             if(countpose[4]==3):
                 autopy.mouse.click(autopy.mouse.Button.LEFT)
+        eel.shortcut_overlay(False,0)
+        active_shortcut = False
 
     if(sign_id==5):
         #Threeの時
@@ -114,6 +130,8 @@ def action(sign_id,x,y,countpose,countmotion,ShortCutList):
             if(countpose[5]==3):
                 autopy.mouse.click(autopy.mouse.Button.LEFT)
                 autopy.mouse.click(autopy.mouse.Button.LEFT)
+        eel.shortcut_overlay(False,0)
+        active_shortcut = False
 
     if(sign_id==6):
         #oneの時の処理
@@ -131,6 +149,8 @@ def action(sign_id,x,y,countpose,countmotion,ShortCutList):
                 # for item in root:
                 #     # item.find("keyboard").text = 'False'
                 # tree.write('conf.xml', encoding='UTF-8')
+        eel.shortcut_overlay(False,0)
+        active_shortcut = False
 
 
     return countpose,countmotion

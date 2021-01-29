@@ -66,10 +66,11 @@
   </div>
   <div class="small_index_pose">
     <div id="shortcut_box">
-      <div class="shortcut_content" id="shortcut_content1">a</div>
-      <div class="shortcut_content" id="shortcut_content2">b</div>
-      <div class="shortcut_content" id="shortcut_content3">c</div>
-      <div class="shortcut_content" id="shortcut_content4">d</div>
+      <div class="shortcut_content" id="shortcut_content0">STOP</div>
+      <div class="shortcut_content" id="shortcut_content1">TOP</div>
+      <div class="shortcut_content" id="shortcut_content2">RIGHT</div>
+      <div class="shortcut_content" id="shortcut_content3">BOTTOM</div>
+      <div class="shortcut_content" id="shortcut_content4">LEFT</div>
     </div>
     <div class="pose_boxs">
       <div id="pose_palm" class="pose_box">
@@ -143,5 +144,60 @@
     obj.parentNode.replaceChild(clone, obj);
   }
   window.onresize = window.resizeTo(200,100);
-
+  eel.expose(shortcut_overlay);
+  function shortcut_overlay(flag,value) {
+    const s_overlay = document.getElementById("shortcut_box");
+    const sc_0 = document.getElementById("shortcut_content0");
+    const sc_1 = document.getElementById("shortcut_content1");
+    const sc_2 = document.getElementById("shortcut_content2");
+    const sc_3 = document.getElementById("shortcut_content3");
+    const sc_4 = document.getElementById("shortcut_content4");
+    if(flag){
+      s_overlay.style.display = "block";
+      switch (value) {
+        case 0:
+          sc_0.classList.add("shortcut_highlight");
+          sc_1.classList.remove("shortcut_highlight");
+          sc_2.classList.remove("shortcut_highlight");
+          sc_3.classList.remove("shortcut_highlight");
+          sc_4.classList.remove("shortcut_highlight");
+          break;
+        case 1:
+          sc_0.classList.remove("shortcut_highlight");
+          sc_1.classList.add("shortcut_highlight");
+          sc_2.classList.remove("shortcut_highlight");
+          sc_3.classList.remove("shortcut_highlight");
+          sc_4.classList.remove("shortcut_highlight");
+          break;
+        case 2:
+          sc_0.classList.remove("shortcut_highlight");
+          sc_1.classList.remove("shortcut_highlight");
+          sc_2.classList.add("shortcut_highlight");
+          sc_3.classList.remove("shortcut_highlight");
+          sc_4.classList.remove("shortcut_highlight");
+          break;
+        case 3:
+          sc_0.classList.remove("shortcut_highlight");
+          sc_1.classList.remove("shortcut_highlight");
+          sc_2.classList.remove("shortcut_highlight");
+          sc_3.classList.add("shortcut_highlight");
+          sc_4.classList.remove("shortcut_highlight");
+          break;
+        case 4:
+          sc_0.classList.remove("shortcut_highlight");
+          sc_1.classList.remove("shortcut_highlight");
+          sc_2.classList.remove("shortcut_highlight");
+          sc_3.classList.remove("shortcut_highlight");
+          sc_4.classList.add("shortcut_highlight");
+          break;
+      }
+    }else{
+      s_overlay.style.display = "none";
+      sc_0.classList.add("shortcut_highlight");
+      sc_1.classList.remove("shortcut_highlight");
+      sc_2.classList.remove("shortcut_highlight");
+      sc_3.classList.remove("shortcut_highlight");
+      sc_4.classList.remove("shortcut_highlight");
+    }
+  }
 </script>
