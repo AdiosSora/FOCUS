@@ -1,7 +1,7 @@
 import eel
 import traceback
 import HandTracking
-import cv2
+import cv2 as cv
 import win32gui, win32con
 from win32api import GetSystemMetrics
 import tkinter as tk
@@ -60,6 +60,8 @@ def get_args():
 if __name__ == '__main__':
     args = get_args()
     cap_device = args.device
+    cap_width = args.width
+    cap_height = args.height
     focus_flg = 0   #index.html の表示・非表示の切り替え、「0」:Main.pyで開いた場合、「1」:HandTracking.pyで開いた場合
     eel.init("GUI/web")
 
@@ -120,7 +122,9 @@ if __name__ == '__main__':
 
             while(True):
                 #カメラが接続されるまでループ
-                cap = cv2.VideoCapture(cap_device)
+                cap = cv.VideoCapture(cap_device)
+                cap.set(cv.CAP_PROP_FRAME_WIDTH, cap_width)
+                cap.set(cv.CAP_PROP_FRAME_HEIGHT, cap_height)
                 ret, frame = cap.read()
                 if(ret is True):
                     if(webcam_flg == 1):

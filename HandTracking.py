@@ -124,6 +124,8 @@ def HandTracking(cap, width, height, conf_flg = 0):
         if(flg_video == 1):
             #カメラが接続されているか確認
             cap = cv.VideoCapture(cap_device)
+            cap.set(cv.CAP_PROP_FRAME_WIDTH, cap_width)
+            cap.set(cv.CAP_PROP_FRAME_HEIGHT, cap_height)
             ret, frame = cap.read()
             if(ret is True):
                 #カメラが接続されている場合
@@ -149,9 +151,9 @@ def HandTracking(cap, width, height, conf_flg = 0):
             break   #最初の while を抜けて正常終了
 
         # カメラ準備 ###############################################################
-        cap = cv.VideoCapture(cap_device)
-        cap.set(cv.CAP_PROP_FRAME_WIDTH, cap_width)
-        cap.set(cv.CAP_PROP_FRAME_HEIGHT, cap_height)
+        #cap = cv.VideoCapture(cap_device)
+        #cap.set(cv.CAP_PROP_FRAME_WIDTH, cap_width)
+        #cap.set(cv.CAP_PROP_FRAME_HEIGHT, cap_height)
 
         # モデルロード #############################################################
         mp_hands = mp.solutions.hands
