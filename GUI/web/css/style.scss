@@ -1414,4 +1414,62 @@ h1 {
   input[type=checkbox]:checked + .checkbox_conf::after {
       opacity: 1;
   }
+
+  .modal_wrap input{
+    display: none;
+  }
+
+  .modal_overlay{
+    display: flex;
+    justify-content: center;
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    opacity: 0;
+    transition: opacity 0.5s, transform 0s 0.5s;
+    transform: scale(0);
+  }
+
+  .modal_trigger{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  .modal_content{
+    align-self: flex-start;
+    width: 60%;
+    padding: 30px 30px;
+    box-sizing: border-box;
+    background: #fff;
+    line-height: 1.4em;
+    transform: translateY(-100%);
+    transition: 0.5s;
+    border-radius: 20px;
+  }
+
+  .close_button{
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .modal_wrap input:checked ~ .modal_overlay{
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.5s;
+  }
+
+  .modal_wrap input:checked ~ .modal_overlay .modal_content{
+    transform: translateY(20px);
+  }
+
+
 }
