@@ -101,10 +101,24 @@
     </div>
     <img class="gesture_img" src="../images/arrow_all.png">
   </div>
-  <a class="pure-button pure-button-primary" onclick="saveConfigValue()">保存</a>
+  <!-- <a class="pure-button pure-button-primary" onclick="saveConfigValue()">保存</a> -->
+  <label for="trigger" class="pure-button pure-button-primary" onclick="saveConfigValue()">保存</label>
   <input type='checkbox' id='shortcut' name="checkbox_conf" class="checkbox" />
   <label for="shortcut" class="checkbox_conf">ショートカットキー有効化</label>
 </div>
+
+<div class="modal_wrap">
+<input id="trigger" type="checkbox">
+  <div class="modal_overlay">
+    <label for="trigger" class="modal_trigger"></label>
+    <div class="modal_content">
+      <label for="trigger" class="close_button">✖️</label>
+      <h3 style="text-align:center;">設定を変更しました。</h3>
+    </div>
+  </div>
+</div>
+
+
 </body>
 
 
