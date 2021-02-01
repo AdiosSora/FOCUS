@@ -159,7 +159,7 @@ function focusSwitch(width, height, focus_flg){
     window.moveTo(width-400,height-200)
     console.log("focus_flg is 1");
   }else{
-    window.resizeTo(1025,775)
+    window.resizeTo(1100,850)
     window.moveTo(width/4, height/4)
     console.log("focus_flg is 0");
   }
