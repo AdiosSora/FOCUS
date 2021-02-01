@@ -106,7 +106,7 @@ if __name__ == '__main__':
     eel.start('html/index.html',
                 port = 0,
                 mode='chrome',
-                size=(1100,850),
+                size=(1025,775),
                 position=(width/4, height/4),
                 block=False)
     eel.sleep(0.01)
