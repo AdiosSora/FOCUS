@@ -7,7 +7,7 @@
 Windwosショートカットなどを手の操作のみで実行が可能になります。
 # Requirements
 ・Start.batファイルを起動すると下記のライブラリが自動インストールされた後、起動します。
-<h2>pip - Library</h2>
+## pip - Library
 * tensorflow = 2.4.0
 * mediapipe　= 0.8.2
 * eel　= 0.14.0
