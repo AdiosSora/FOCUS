@@ -1,3 +1,3 @@
 @echo off
 
-start /min %~dp0utils\Start.bat %*
+start /min %~dp0utils\StartUP.bat %*
