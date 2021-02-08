@@ -322,6 +322,7 @@ def HandTracking(cap, width, height, conf_flg = 0):
                 if identification == True:
                     eel.set_posegauge('None')
                     identification = False
+                    eel.shortcut_overlay(False,0)
 
             debug_image = draw_point_history(debug_image, point_history)
             debug_image = draw_info(debug_image, fps, mode, number)
