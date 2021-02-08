@@ -1,6 +1,6 @@
 import eel
 import traceback
-import HandTracking
+from utils import HandTracking
 import cv2 as cv
 import win32gui, win32con
 from win32api import GetSystemMetrics
@@ -10,7 +10,7 @@ import autopy
 import xml.etree.ElementTree as ET
 
 import time
-import PoseAction
+from utils import PoseAction
 import argparse
 
 start_flg = 0   #HandTracking.py の開始フラグ、「1」で開始

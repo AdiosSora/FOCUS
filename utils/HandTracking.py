@@ -20,7 +20,7 @@ from model import PointHistoryClassifier
 from ctypes import windll
 
 
-import PoseAction
+from utils import PoseAction
 #import hand_gui
 import hand_gui_test
 import traceback
