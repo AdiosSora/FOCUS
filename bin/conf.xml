@@ -1,0 +1,11 @@
+<config>
+  <setting>
+    <mouse_sensitivity>0</mouse_sensitivity>
+    <pose_flag>1</pose_flag>
+    <poseshortcut>win,tab</poseshortcut>
+    <poseshortcut2>win,up</poseshortcut2>
+    <poseshortcut3>alt,f4</poseshortcut3>
+    <poseshortcut4>win,down</poseshortcut4>
+    <keyboard>False</keyboard>
+  </setting>
+</config>

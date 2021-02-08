@@ -17,6 +17,8 @@ import base64
 from utils import CvFpsCalc
 from model import KeyPointClassifier
 from model import PointHistoryClassifier
+from ctypes import windll
+
 
 import PoseAction
 #import hand_gui
@@ -28,9 +30,13 @@ import xml.etree.ElementTree as ET
 def get_args():
     parser = argparse.ArgumentParser()
 
+
+    w = windll.user32.GetSystemMetrics(0)  # 横幅
+    h = windll.user32.GetSystemMetrics(1)  # 縦幅
+
     parser.add_argument("--device", type=int, default=0)
-    parser.add_argument("--width", help='cap width', type=int, default=1920)
-    parser.add_argument("--height", help='cap height', type=int, default=1080)
+    parser.add_argument("--width", help='cap width', type=int, default=w)
+    parser.add_argument("--height", help='cap height', type=int, default=h)
 
     parser.add_argument('--use_static_image_mode', action='store_true')
     parser.add_argument("--min_detection_confidence",
@@ -321,7 +327,7 @@ def HandTracking(cap, width, height, conf_flg = 0):
             debug_image = draw_info(debug_image, fps, mode, number)
 
             # 画面反映 #############################################################
-            debug_image = cv.resize(debug_image,dsize=(400, 200))
+            debug_image = cv.resize(debug_image,dsize=(520, 260))
             cv.imshow('Hand Gesture Recognition', debug_image)
 
             # eel立ち上げ #############################################################
@@ -483,84 +489,84 @@ def draw_landmarks(image, landmark_point):
     if len(landmark_point) > 0:
         # 親指
         cv.line(image, tuple(landmark_point[2]), tuple(landmark_point[3]),
-            (0, 255, 0), 6)
+            (255, 0, 0), 6)
         cv.line(image, tuple(landmark_point[2]), tuple(landmark_point[3]),
             (255, 255, 255), 2)
         cv.line(image, tuple(landmark_point[3]), tuple(landmark_point[4]),
-            (0, 255, 0), 6)
+            (255, 0, 0), 6)
         cv.line(image, tuple(landmark_point[3]), tuple(landmark_point[4]),
             (255, 255, 255), 2)
 
         # 人差指
         cv.line(image, tuple(landmark_point[5]), tuple(landmark_point[6]),
-            (0, 255, 0), 6)
+            (255, 0, 0), 6)
         cv.line(image, tuple(landmark_point[5]), tuple(landmark_point[6]),
             (255, 255, 255), 2)
         cv.line(image, tuple(landmark_point[6]), tuple(landmark_point[7]),
-            (0, 255, 0), 6)
+            (255, 0, 0), 6)
         cv.line(image, tuple(landmark_point[6]), tuple(landmark_point[7]),
             (255, 255, 255), 2)
         cv.line(image, tuple(landmark_point[7]), tuple(landmark_point[8]),
-            (0, 255, 0), 6)
+            (255, 0, 0), 6)
         cv.line(image, tuple(landmark_point[7]), tuple(landmark_point[8]),
             (255, 255, 255), 2)
 
         # 中指
         cv.line(image, tuple(landmark_point[9]), tuple(landmark_point[10]),
-            (0, 255, 0), 6)
+            (255, 0, 0), 6)
         cv.line(image, tuple(landmark_point[9]), tuple(landmark_point[10]),
             (255, 255, 255), 2)
         cv.line(image, tuple(landmark_point[10]), tuple(landmark_point[11]),
-            (0, 255, 0), 6)
+            (255, 0, 0), 6)
         cv.line(image, tuple(landmark_point[10]), tuple(landmark_point[11]),
             (255, 255, 255), 2)
         cv.line(image, tuple(landmark_point[11]), tuple(landmark_point[12]),
-            (0, 255, 0), 6)
+            (255, 0, 0), 6)
         cv.line(image, tuple(landmark_point[11]), tuple(landmark_point[12]),
             (255, 255, 255), 2)
         # 薬指
         cv.line(image, tuple(landmark_point[13]), tuple(landmark_point[14]),
-            (0, 255, 0), 6)
+            (255, 0, 0), 6)
         cv.line(image, tuple(landmark_point[13]), tuple(landmark_point[14]),
             (255, 255, 255), 2)
         cv.line(image, tuple(landmark_point[14]), tuple(landmark_point[15]),
-            (0, 255, 0), 6)
+            (255, 0, 0), 6)
         cv.line(image, tuple(landmark_point[14]), tuple(landmark_point[15]),
             (255, 255, 255), 2)
         cv.line(image, tuple(landmark_point[15]), tuple(landmark_point[16]),
-            (0, 255, 0), 6)
+            (255, 0, 0), 6)
         cv.line(image, tuple(landmark_point[15]), tuple(landmark_point[16]),
             (255, 255, 255), 2)
 
         # 小指
         cv.line(image, tuple(landmark_point[17]), tuple(landmark_point[18]),
-            (0, 255, 0), 6)
+            (255, 0, 0), 6)
         cv.line(image, tuple(landmark_point[17]), tuple(landmark_point[18]),
             (255, 255, 255), 2)
         cv.line(image, tuple(landmark_point[18]), tuple(landmark_point[19]),
-            (0, 255, 0), 6)
+            (255, 0, 0), 6)
         cv.line(image, tuple(landmark_point[18]), tuple(landmark_point[19]),
             (255, 255, 255), 2)
         cv.line(image, tuple(landmark_point[19]), tuple(landmark_point[20]),
-            (0, 255, 0), 6)
+            (255, 0, 0), 6)
         cv.line(image, tuple(landmark_point[19]), tuple(landmark_point[20]),
             (255, 255, 255), 2)
 
         # 手の平
         cv.line(image, tuple(landmark_point[0]), tuple(landmark_point[1]),
-            (0, 255, 0), 6)
+            (255, 0, 0), 6)
         cv.line(image, tuple(landmark_point[1]), tuple(landmark_point[2]),
-            (0, 255, 0), 6)
+            (255, 0, 0), 6)
         cv.line(image, tuple(landmark_point[2]), tuple(landmark_point[5]),
-            (0, 255, 0), 6)
+            (255, 0, 0), 6)
         cv.line(image, tuple(landmark_point[5]), tuple(landmark_point[9]),
-            (0, 255, 0), 6)
+            (255, 0, 0), 6)
         cv.line(image, tuple(landmark_point[9]), tuple(landmark_point[13]),
-            (0, 255, 0), 6)
+            (255, 0, 0), 6)
         cv.line(image, tuple(landmark_point[13]), tuple(landmark_point[17]),
-            (0, 255, 0), 6)
+            (255, 0, 0), 6)
         cv.line(image, tuple(landmark_point[17]), tuple(landmark_point[0]),
-            (0, 255, 0), 6)
+            (255, 0, 0), 6)
 
     # キーポイント
     for index, landmark in enumerate(landmark_point):
