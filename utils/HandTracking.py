@@ -22,7 +22,7 @@ from ctypes import windll
 
 from utils import PoseAction
 #import hand_gui
-import hand_gui_test
+from utils import hand_gui
 import traceback
 import time
 import xml.etree.ElementTree as ET
@@ -98,8 +98,8 @@ def save_confvalue(value,shortcut_value1,shortcut_value2,shortcut_value3,shortcu
     tree.write('conf.xml', encoding='UTF-8')
 
 def HandTracking(cap, width, height, conf_flg = 0):
-    # ×ボタンが押されたかのフラグ(hand_gui_test.py内の変数、flg_closePush)の初期化
-    hand_gui_test.close_switch_py(0)
+    # ×ボタンが押されたかのフラグ(hand_gui.py内の変数、flg_closePush)の初期化
+    hand_gui.close_switch_py(0)
     # 引数解析 #################################################################
     args = get_args()
 
@@ -144,7 +144,7 @@ def HandTracking(cap, width, height, conf_flg = 0):
                 flg_video = 0
                 print("【通知】WebCamera検知")
                 #×ボタンフラグの初期化
-                hand_gui_test.close_switch_py(0)
+                hand_gui.close_switch_py(0)
                 #complete_html(width, height)
                 continue    #最初の while に戻る
             else:
@@ -360,7 +360,7 @@ def HandTracking(cap, width, height, conf_flg = 0):
                 #i+=1
 
             # eel立ち上げ #############################################################
-            flg_end = hand_gui_test.start_gui()
+            flg_end = hand_gui.start_gui()
             if(flg_end == 1):
                 #正常に終了する処理(中間のループを抜ける)
                 flg_break = 1
