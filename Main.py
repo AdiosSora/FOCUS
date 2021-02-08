@@ -17,8 +17,8 @@ start_flg = 0   #HandTracking.py の開始フラグ、「1」で開始
 end_flg = 0 #システム終了のフラグ、「1」で終了
 width,height = autopy.screen.size()
 
-The_program_to_hide = win32gui.GetForegroundWindow()
-win32gui.ShowWindow(The_program_to_hide , win32con.SW_HIDE)
+#The_program_to_hide = win32gui.GetForegroundWindow()
+#win32gui.ShowWindow(The_program_to_hide , win32con.SW_HIDE)
 
 
 @eel.expose #手識別機能の起動ボタンを押されたときに呼ばれるeel関数

@@ -155,12 +155,12 @@ function endBtn(){
 eel.expose(focusSwitch);
 function focusSwitch(width, height, focus_flg){
   if(focus_flg == 1){
-    window.resizeTo(400, 200)
-    window.moveTo(width-400,height-200)
+    window.resizeTo(400, 200);
+    window.moveBy(width-400,height-200);
     console.log("focus_flg is 1");
   }else{
     window.resizeTo(1100,850)
-    window.moveTo(width/4, height/4)
+    window.moveTo(width/4, height/4);
     console.log("focus_flg is 0");
   }
 }
