@@ -17,6 +17,8 @@ import base64
 from utils import CvFpsCalc
 from model import KeyPointClassifier
 from model import PointHistoryClassifier
+from ctypes import windll
+
 
 import PoseAction
 #import hand_gui
@@ -28,9 +30,13 @@ import xml.etree.ElementTree as ET
 def get_args():
     parser = argparse.ArgumentParser()
 
+
+    w = windll.user32.GetSystemMetrics(0)  # 横幅
+    h = windll.user32.GetSystemMetrics(1)  # 縦幅
+
     parser.add_argument("--device", type=int, default=0)
-    parser.add_argument("--width", help='cap width', type=int, default=1920)
-    parser.add_argument("--height", help='cap height', type=int, default=1080)
+    parser.add_argument("--width", help='cap width', type=int, default=w)
+    parser.add_argument("--height", help='cap height', type=int, default=h)
 
     parser.add_argument('--use_static_image_mode', action='store_true')
     parser.add_argument("--min_detection_confidence",
