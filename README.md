@@ -10,7 +10,7 @@ Windwosショートカットなどを手の操作のみで実行が可能にな�
 # Requirements
 * Python emmbededである為、Pythonをインストールする必要はありません。
 * Start.batファイルを起動すると下記のライブラリが自動インストールされた後、起動します。
-* ユーザー名が日本語の場合うまく実行出来ない場合があります。その場合は[こちら](https://drive.google.com/file/d/1SL7JIzJuCo4fnPBF-h2A4FghpigiV-Go/view?usp=sharing)からダウンロードしてください。
+* ユーザー名が日本語の場合うまく実行出来ない場合があります。その場合は[こちら](https://drive.google.com/file/d/1c7SlRBQG5G3Ywq05n9a76DFawXZPwl9j/view?usp=sharing)からダウンロードしてください。
 
 ## pip - Library
 * tensorflow 2.4.0 or Later
@@ -20,8 +20,8 @@ Windwosショートカットなどを手の操作のみで実行が可能にな�
 * autopy　4.0.0 or Later
 * PyAutoGUI　0.9.52 or Later
 * OpenCV 3.4.2 or Later
-* scikit-learn 0.23.2 or Later 
-* matplotlib 3.3.2 or Later 
+* scikit-learn 0.23.2 or Later
+* matplotlib 3.3.2 or Later
 # Reference
 * [MediaPipe](https://mediapipe.dev/)
 * [Kazuhito00/mediapipe-python-sample](https://github.com/Kazuhito00/mediapipe-python-sample)
