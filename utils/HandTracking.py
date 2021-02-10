@@ -31,8 +31,8 @@ def get_args():
     parser = argparse.ArgumentParser()
 
 
-    w = windll.user32.GetSystemMetrics(0)  # 横幅
-    h = windll.user32.GetSystemMetrics(1)  # 縦幅
+    w = windll.user32.GetSystemMetrics(0) # 横幅
+    h = windll.user32.GetSystemMetrics(1) # 縦幅
 
     parser.add_argument("--device", type=int, default=0)
     parser.add_argument("--width", help='cap width', type=int, default=w)
@@ -291,6 +291,11 @@ def HandTracking(cap, width, height, conf_flg = 0):
 
                     #人差し指の先の座標を取得
                     x,y = landmark_list[8]
+                    #座標調整
+                    x_width = args.width * 0.05
+                    x = x - x_width
+                    x = x * 1.5
+                    y = y * 1.5
                     #ジェスチャーが判定された回数をカウント
                     if gesture_name == 'Stop':
                         CountMotion = [0,0,0,0]
