@@ -122,9 +122,8 @@ def HandTracking(cap, width, height, conf_flg = 0):
     #width,height = autopy.screen.size() #eel で立ち上げた際の表示位置を指定するために取得
     PoseAction.sensitivity(set_confvalue()) #ポーズアクション用のマウス感度関数を初期設定
     PoseAction.shortcut_flag() #ショートカットポーズの動作ON/OFFのフラグを初期設定
-    ShortCutList = [set_poseshortcut().split(","),set_poseshortcut2().split(","),set_poseshortcut3().split(","),set_poseshortcut4().split(",")]
-    print(ShortCutList)
-
+    ShortCutList = [set_poseshortcut().split("+"),set_poseshortcut2().split("+"),set_poseshortcut3().split("+"),set_poseshortcut4().split("+")]
+    eel.set_shortcutname(set_poseshortcut(),set_poseshortcut2(),set_poseshortcut3(),set_poseshortcut4())
     while(True):    #カメラが再度接続するまでループ処理
         #カメラが接続されていないフラグの場合
         if(flg_video == 1):
@@ -329,7 +328,7 @@ def HandTracking(cap, width, height, conf_flg = 0):
 
             # 画面反映 #############################################################
             debug_image = cv.resize(debug_image,dsize=(520, 260))
-            cv.imshow('Hand Gesture Recognition', debug_image)
+            cv.imshow('FOCUS preview', debug_image)
 
             # eel立ち上げ #############################################################
             #cnt_gui, flg_end, flg_restart, flg_start, keep_flg = hand_gui.start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg)

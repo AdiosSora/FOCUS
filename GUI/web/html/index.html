@@ -144,6 +144,7 @@
     obj.parentNode.replaceChild(clone, obj);
   }
   window.onresize = window.resizeTo(200,100);
+
   eel.expose(shortcut_overlay);
   function shortcut_overlay(flag,value) {
     const s_overlay = document.getElementById("shortcut_box");
@@ -199,5 +200,13 @@
       sc_3.classList.remove("shortcut_highlight");
       sc_4.classList.remove("shortcut_highlight");
     }
+  }
+
+  eel.expose(set_shortcutname);
+  function set_shortcutname(top,right,bottom,left){
+    document.getElementById("shortcut_content1").textContent = top;
+    document.getElementById("shortcut_content2").textContent = right;
+    document.getElementById("shortcut_content3").textContent = bottom;
+    document.getElementById("shortcut_content4").textContent = left;
   }
 </script>
