@@ -161,10 +161,30 @@ def pointermove(x,y):
         autopy.mouse.move(x,y)
     except Exception as e:
         if(x<0):
-            autopy.mouse.move(1,y)
+            if(0<y<h):
+                autopy.mouse.move(1,y)
+            elif(h<y):
+                autopy.mouse.move(1,h-1)
+            elif(y<0):
+                autopy.mouse.move(1,1)
         elif(w<x):
-            autopy.mouse.move(w-1,y)
+            if(0<y<h):
+                autopy.mouse.move(w-1,y)
+            elif(h<y):
+                autopy.mouse.move(w-1,h-1)
+            elif(y<0):
+                autopy.mouse.move(w-1,1)
         elif(y<0):
-            autopy.mouse.move(x,1)
+            if(0<x<w):
+                autopy.mouse.move(x,1)
+            elif(w<x):
+                autopy.mouse.move(w-1,1)
+            elif(x<0):
+                autopy.mouse.move(1,1)
         elif(h<y):
-            autopy.mouse.move(x,h-1)
+            if(0<x<w):
+                autopy.mouse.move(x,h-1)
+            elif(w<x):
+                autopy.mouse.move(w-1,h-1)
+            elif(x<0):
+                autopy.mouse.move(1,h-1)
