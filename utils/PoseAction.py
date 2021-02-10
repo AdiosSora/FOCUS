@@ -157,6 +157,14 @@ def action(sign_id,x,y,countpose,countmotion,ShortCutList):
 
 def pointermove(x,y):
     try:
+        w,h = autopy.screen.size()
         autopy.mouse.move(x,y)
     except Exception as e:
-        print(e)
+        if(x<0):
+            autopy.mouse.move(1,y)
+        elif(w<x):
+            autopy.mouse.move(w-1,y)
+        elif(y<0):
+            autopy.mouse.move(x,1)
+        elif(h<y):
+            autopy.mouse.move(x,h-1)
