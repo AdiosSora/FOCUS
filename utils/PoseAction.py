@@ -159,7 +159,7 @@ def pointermove(x,y):
     try:
         w,h = autopy.screen.size()
         autopy.mouse.move(x,y)
-    except Exception as e:
+    except Exception as e: #マウスが画面外の座標へ移動した時端で止める
         if(x<0):
             if(0<y<h):
                 autopy.mouse.move(1,y)
