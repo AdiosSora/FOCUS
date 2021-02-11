@@ -93,10 +93,24 @@ h1 {
     transition: 0.4s;
   }
 
-  .small_index_btn:hover {
-    background-color: #ffffff;
-    border-color: #394e8e;
-    color: #26408e;
+  .small_index_btn_conf {
+    border: 2px solid #454545;
+    background-color: #454545;
+    &:hover {
+      background-color: #ffffff;
+      border-color: #454545;
+      color: #545454;
+    }
+  }
+
+  .small_index_btn_end {
+    border: 2px solid #26408e;
+    background-color: #26408e;
+    &:hover {
+      background-color: #ffffff;
+      border-color: #394e8e;
+      color: #26408e;
+    }
   }
 
   .pose_boxs {
@@ -175,7 +189,7 @@ h1 {
     z-index: 2;
     width: 100%;
     height:104px;
-    // display:none;
+    display:none;
   }
   .shortcut_content{
     text-align: center;
@@ -301,6 +315,149 @@ h1 {
   a.btn--shadow {
     -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+  }
+
+  #small_confbox{
+    position: absolute;
+    left: 0; top: 0;
+    background-color: rgba(255,255,255,0.8);
+    z-index: 4;
+    width: 100%;
+    height:138px;
+    display:none;
+  }
+
+  .small_conf_inner{
+    width:100%;
+  }
+
+  .detail_text{
+    display: none;
+  }
+
+  .conf_h2{
+    display: none;
+  }
+
+
+  .rs-range {
+    margin-top: 10px;
+    width: 180px;
+    -webkit-appearance: none;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::-webkit-slider-runnable-track {
+      width: 30%;
+      height: 1px;
+      cursor: pointer;
+      box-shadow: none;
+      background: #0078e7;
+      border-radius: 0;
+      border: 0 solid #010101;
+    }
+
+    &::-moz-range-track {
+      width: 30%;
+      height: 1px;
+      cursor: pointer;
+      box-shadow: none;
+      background: #0078e7;
+      border-radius: 0;
+      border: 0 solid #010101;
+    }
+
+    &::-webkit-slider-thumb {
+      box-shadow: none;
+      border: 0 solid #0078e7;
+      box-shadow: 0 10px 10px rgba(0,0,0,0.25);
+      height: 22px;
+      width: 22px;
+      border-radius: 22px;
+      background: rgba(0, 120, 231, 1.0);
+      cursor: pointer;
+      -webkit-appearance: none;
+      margin-top: -10px;
+    }
+
+    &::-moz-range-thumb {
+      box-shadow: none;
+      border: 0 solid #0078e7;
+      box-shadow: 0 10px 10px rgba(0,0,0,0.25);
+      height: 22px;
+      width: 22px;
+      border-radius: 22px;
+      background: rgba(0, 120, 231, 1.0);
+      cursor: pointer;
+      -webkit-appearance: none;
+      margin-top: -10px;
+    }
+
+    &::-moz-focus-outer {
+      border: 0;
+    }
+  }
+  .range-slider{
+    margin-bottom:10px;
+  }
+  .rs-label {
+    position: relative;
+    transform-origin: center center;
+    display: block;
+    width: 50px;
+    height: 16px;
+    background: transparent;
+    border-radius: 50%;
+    line-height: 30px;
+    text-align: center;
+    font-weight: bold;
+    box-sizing: border-box;
+    margin-top: 20px;
+    margin-left: 33px;
+    left: attr(value);
+    color: #0078e7;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-size: 16px;
+
+    &::after {
+      content: "";
+      display: block;
+      font-size: 20px;
+      letter-spacing: 0.07em;
+      margin-top: -2px;
+    }
+  }
+
+  .close_button{
+    display: none;
+  }
+
+  .modal_wrap{
+    display: none!important;
+  }
+  .conf_close_button {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  .gesture_img{
+    display:none;
+  }
+  .dropdown{
+    font-size: 12px;
+  }
+  .gesture_box{
+    width:140px;
+    display:inline-block;
+  }
+  .pure-button-primary{
+    display: none!important;
   }
 }
 @media screen and (min-width: 500px) {
@@ -941,6 +1098,9 @@ h1 {
         background: -webkit-linear-gradient(to right, rgb(30, 30, 30), transparent);
         background: linear-gradient(to right, rgb(30, 30, 30), transparent);
       }
+      &:nth-of-type(1){
+        padding-top:1em;
+      }
     }
   .tab-wrap {
     background: White;
@@ -1471,5 +1631,8 @@ h1 {
     transform: translateY(20px);
   }
 
+  #small_confbox{
+    display:none;
+  }
 
 }

@@ -13,14 +13,13 @@
 
 <body>
 <div class="big" style="margin:0px 20px;">
-  <h2 class="conf_h2" style="padding-top:1em">マウス感度設定</h2>
+  <h2 class="conf_h2">マウス感度設定</h2>
   <p class="detail_text">青いバーを動かすことで感度の設定が出来ます。<br>
     遅いに近いほど細かい操作がしやすくなり、早いに近いほど少しの動作で画面全体の操作が出来ます。</p>
   <div class="range-slider">
     <span id="rs-bullet" class="rs-label" style="margin-top:0px">0</span>
     遅い　<input id="rs-range-line" class="rs-range" type="range" value="0" min="0" max="10">　速い
   </div>
-  <br/>
   <h2 class="conf_h2">ショートカット設定</h2>
   <p class="detail_text">
     グーの状態で上下左右に動かすと、対応したショートカットが実行されます。<br/>
@@ -105,7 +104,6 @@
     </div>
     <img class="gesture_img" src="../images/arrow_all.png">
   </div>
-  <!-- <a class="pure-button pure-button-primary" onclick="saveConfigValue()">保存</a> -->
   <label for="trigger" class="pure-button pure-button-primary" onclick="saveConfigValue()">保存</label>
   <input type='checkbox' id='shortcut' name="checkbox_conf" class="checkbox" />
   <label for="shortcut" class="checkbox_conf">ショートカットキー有効化</label>
@@ -136,13 +134,25 @@
   const keyselect3 = document.getElementById("keyconfig3");
   const keyselect4 = document.getElementById("keyconfig4");
   const keybox = document.getElementById("shortcut");
+  var window_width = 	document.documentElement.clientWidth;
 
   rangeSlider.addEventListener("input", showSliderValue, false);
+  rangeSlider.addEventListener("change", saveConfigValue_realtime);
+  keyselect.addEventListener("change", saveConfigValue_realtime);
+  keyselect2.addEventListener("change", saveConfigValue_realtime);
+  rangeSlider.addEventListener("change", saveConfigValue_realtime);
+  keyselect3.addEventListener("change", saveConfigValue_realtime);
+  keyselect4.addEventListener("change", saveConfigValue_realtime);
+  keybox.addEventListener("change", saveConfigValue_realtime);
 
   function showSliderValue() {
     rangeBullet.innerHTML = rangeSlider.value;
     var bulletPosition = (rangeSlider.value / rangeSlider.max);
-    rangeBullet.style.left = (bulletPosition * 578) + "px";
+    if(window_width>500){
+      rangeBullet.style.left = (bulletPosition * 578) + "px";
+    }else{
+      rangeBullet.style.left = (bulletPosition * 160) + "px";
+    }
   }
 
   //ページリンク関数
@@ -158,7 +168,11 @@
     mouse_sensitivity.then(function(data) {
       rangeSlider.value = data
       rangeBullet.innerHTML = data
-      rangeBullet.style.left = ((data / rangeSlider.max) * 578) + "px";
+      if(window_width>500){
+        rangeBullet.style.left = ((data / rangeSlider.max) * 578) + "px";
+      }else{
+        rangeBullet.style.left = ((data / rangeSlider.max) * 160) + "px";
+      }
       });
     var keyset1 = Promise.resolve(eel.set_poseshortcut()());
     keyset1.then(function(data){
@@ -194,6 +208,19 @@
       eel.save_shortcutflag("1");
     }else{
       eel.save_shortcutflag("0");
+    }
+  }
+
+  function saveConfigValue_realtime() {
+    if(window_width<=500){
+      eel.save_confvalue(rangeSlider.value,keyconfig.value,keyconfig2.value,keyconfig3.value,keyconfig4.value);
+      if(shortcut.checked){
+        eel.save_shortcutflag("1");
+      }else{
+        eel.save_shortcutflag("0");
+      }
+      console.log("変更");
+      var shortcut_array = eel.config_sys_set();
     }
   }
 

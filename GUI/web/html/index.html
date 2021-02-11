@@ -60,9 +60,15 @@
     </div>
   </div>
 
+  <div id="small_confbox">
+    <a class="conf_close_button" onclick="conf_Btn()">✖️</a>
+    <object class="small_conf_inner" data="conf.html">
+   </object>
+  </div>
   <div id="small_index_object">
     <div class="idf_hand" id="idf_hand"><img id="idf_hand_img" src="../images/red_lamp.png" alt="" width="20px">手は検出されていません。</div>
-    <p class="small_btn_p"><button class="small_index_btn" type="button" name="endbtn" value="end" onclick="endBtn()">終了</button><p>
+    <p class="small_btn_p"><button class="small_index_btn small_index_btn_conf" type="button" name="confbtn" value="conf" onclick="conf_Btn()">設定</button><p>
+    <p class="small_btn_p"><button class="small_index_btn small_index_btn_end" type="button" name="endbtn" value="end" onclick="endBtn()">終了</button><p>
   </div>
   <div class="small_index_pose">
     <div id="shortcut_box">
@@ -208,5 +214,14 @@
     document.getElementById("shortcut_content2").textContent = right;
     document.getElementById("shortcut_content3").textContent = bottom;
     document.getElementById("shortcut_content4").textContent = left;
+  }
+
+  function conf_Btn(){
+    const small_confbox = document.getElementById("small_confbox")
+    if(small_confbox.style.display == "none"){
+      small_confbox.style.display = "block";
+    }else{
+      small_confbox.style.display = "none";
+    }
   }
 </script>

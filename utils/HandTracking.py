@@ -26,7 +26,7 @@ from utils import hand_gui
 import traceback
 import time
 import xml.etree.ElementTree as ET
-
+ShortCutList = []
 def get_args():
     parser = argparse.ArgumentParser()
 
@@ -97,6 +97,15 @@ def save_confvalue(value,shortcut_value1,shortcut_value2,shortcut_value3,shortcu
         item.find("poseshortcut4").text = shortcut_value4
     tree.write('conf.xml', encoding='UTF-8')
 
+@eel.expose #リアルタイムにコンフィグの設定を反映するeel関数
+def config_sys_set():
+    global ShortCutList
+    PoseAction.sensitivity(set_confvalue()) #ポーズアクション用のマウス感度関数を初期設定
+    PoseAction.shortcut_flag() #ショートカットポーズの動作ON/OFFのフラグを初期設定
+    ShortCutList = [set_poseshortcut().split("+"),set_poseshortcut2().split("+"),set_poseshortcut3().split("+"),set_poseshortcut4().split("+")] #ショートカットコマンド用の配列を設定
+    eel.set_shortcutname(set_poseshortcut(),set_poseshortcut2(),set_poseshortcut3(),set_poseshortcut4()) #ショートカットコマンド名をUIに受け渡し
+    return ShortCutList
+
 def HandTracking(cap, width, height, conf_flg = 0):
     # ×ボタンが押されたかのフラグ(hand_gui.py内の変数、flg_closePush)の初期化
     hand_gui.close_switch_py(0)
@@ -109,7 +118,8 @@ def HandTracking(cap, width, height, conf_flg = 0):
     focus_flg = 1   #index.html の表示・非表示の切り替え、「0」:Main.pyで開いた場合、「1」:HandTracking.pyで開いた場合
     namePose_flg = 1    #complete_old.htmlの開始・終了フラグ
     #flg_closePush = 0
-
+    global ShortCutList
+    ShortCutList = config_sys_set()
     cap_device = args.device
     cap_width = args.width
     cap_height = args.height
@@ -120,10 +130,7 @@ def HandTracking(cap, width, height, conf_flg = 0):
 
     use_brect = True
     #width,height = autopy.screen.size() #eel で立ち上げた際の表示位置を指定するために取得
-    PoseAction.sensitivity(set_confvalue()) #ポーズアクション用のマウス感度関数を初期設定
-    PoseAction.shortcut_flag() #ショートカットポーズの動作ON/OFFのフラグを初期設定
-    ShortCutList = [set_poseshortcut().split("+"),set_poseshortcut2().split("+"),set_poseshortcut3().split("+"),set_poseshortcut4().split("+")]
-    eel.set_shortcutname(set_poseshortcut(),set_poseshortcut2(),set_poseshortcut3(),set_poseshortcut4())
+
     while(True):    #カメラが再度接続するまでループ処理
         #カメラが接続されていないフラグの場合
         if(flg_video == 1):
