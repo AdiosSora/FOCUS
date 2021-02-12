@@ -136,6 +136,7 @@ def HandTracking(cap, width, height, conf_flg = 0):
     name_pose = "Unknown"
     focus_flg = 1   #index.html の表示・非表示の切り替え、「0」:Main.pyで開いた場合、「1」:HandTracking.pyで開いた場合
     namePose_flg = 1    #complete_old.htmlの開始・終了フラグ
+    potision_flg = 0
     #flg_closePush = 0
     global ShortCutList
     ShortCutList = config_sys_set()
@@ -405,6 +406,9 @@ def HandTracking(cap, width, height, conf_flg = 0):
             # 画面反映 #############################################################
             debug_image = cv.resize(debug_image,dsize=(520, 260))
             cv.imshow('FOCUS preview', debug_image)
+            if potision_flg == 0:
+                cv.moveWindow('FOCUS preview', 0, 0)
+                potision_flg = 1
 
             # eel立ち上げ #############################################################
             #cnt_gui, flg_end, flg_restart, flg_start, keep_flg = hand_gui.start_gui(cnt_gui, name_pose, flg_restart, flg_start, keep_flg)
