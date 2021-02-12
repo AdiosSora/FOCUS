@@ -10,7 +10,7 @@ Windwosショートカットなどを手の操作のみで実行が可能にな�
 # Requirements
 * Python emmbededである為、Pythonをインストールする必要はありません。
 * Start.batファイルを起動すると下記のライブラリが自動インストールされた後、起動します。
-* ユーザー名が日本語の場合うまく実行出来ない場合があります。その場合は[こちら](https://drive.google.com/file/d/1c7SlRBQG5G3Ywq05n9a76DFawXZPwl9j/view?usp=sharing)からダウンロードしてください。
+* ユーザー名が日本語の場合うまく実行出来ない場合があります。その場合は[こちら](https://drive.google.com/file/d/1SdbgodBUb4rS_yBmIu9dtZhokksa6mTW/view?usp=sharing)からダウンロードしてください。
 
 ## pip - Library
 * tensorflow 2.4.0 or Later
