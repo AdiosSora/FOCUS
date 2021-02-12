@@ -12,10 +12,13 @@ import xml.etree.ElementTree as ET
 import time
 from utils import PoseAction
 import argparse
+import base64
 
 start_flg = 0   #HandTracking.py の開始フラグ、「1」で開始
 end_flg = 0 #システム終了のフラグ、「1」で終了
 width,height = autopy.screen.size()
+sel_cam = 999
+decideFlg = 0
 
 The_program_to_hide = win32gui.GetForegroundWindow()
 win32gui.ShowWindow(The_program_to_hide , win32con.SW_HIDE)
@@ -55,6 +58,22 @@ def get_args():
     args = parser.parse_args()
 
     return args
+
+@eel.expose
+def decide_cam(num):
+    decide_cam_py(num)
+
+def decide_cam_py(decNum):
+    global sel_cam
+    sel_cam = decNum
+
+@eel.expose
+def decide_flg():
+    decide_flg_py(1)
+
+def decide_flg_py(flg):
+    global decideFlg
+    decideFlg = flg
 
 if __name__ == '__main__':
     args = get_args()
@@ -117,38 +136,89 @@ if __name__ == '__main__':
             eel.overlay_controll(True)
             eel.object_change("complete.html", True)
             eel.sleep(1)
-            webcam_flg = 0  #connect.html が起動中か判別、「1」で起動中
 
-            while(True):
-                #カメラが接続されるまでループ
-                cap = cv.VideoCapture(cap_device)
-                cap.set(cv.CAP_PROP_FRAME_WIDTH, cap_width)
-                cap.set(cv.CAP_PROP_FRAME_HEIGHT, cap_height)
-                ret, frame = cap.read()
-                if(ret is True):
-                    if(webcam_flg == 1):
-                        eel.object_change("complete.html", True)
-                        eel.sleep(1)
-                    print("【通知】WebCamera検知")
-                    #cap.release()
-                    break
-                else:
-                    if(webcam_flg == 0):
-                        print("【通知】WebCameraが接続されていません。")
-                        cap.release()
-                        eel.object_change("connect.html", True)
+            cap = cv.VideoCapture(cap_device)
+            #cap.set(cv.CAP_PROP_FRAME_WIDTH, cap_width)
+            #cap.set(cv.CAP_PROP_FRAME_HEIGHT, cap_height)
+            ret, frame = cap.read()
+            if(ret is True):
+                cap.release()
+                eel.overlay_controll(True)
+                eel.object_change("demo1.html", True)
+                #eel.sleep(1)
+                sel_cam_before = 999
+
+                while(True):
+                    if(decideFlg == 1):
+                        if(sel_cam != sel_cam_before):
+                            cap = cv.VideoCapture(sel_cam)
+                            cap.set(cv.CAP_PROP_FRAME_WIDTH, cap_width)
+                            cap.set(cv.CAP_PROP_FRAME_HEIGHT, cap_height)
+                            ret, frame = cap.read(sel_cam)
+                            if(ret is False):
+                                eel.alert_mess()
+                                cap.release()
+                                decide_cam_py(999)
+                                decide_flg_py(0)
+                                sel_cam_before = sel_cam
+                                continue
+                            else:
+                                decide_flg_py(0)
+                                break
+                        decide_flg_py(0)
+                        break
+                    if(sel_cam != 999):
                         eel.sleep(0.01)
-                        time.sleep(0.01)
-                        webcam_flg = 1
+                        if(sel_cam != sel_cam_before):
+                            if(sel_cam_before != 999):
+                                cap.release()
+                            cap = cv.VideoCapture(sel_cam)
+                            cap.set(cv.CAP_PROP_FRAME_WIDTH, cap_width)
+                            cap.set(cv.CAP_PROP_FRAME_HEIGHT, cap_height)
+                            sel_cam_before = sel_cam
+                        ret, frame = cap.read()
+                        if(ret is True):
+                            # UI側へ転送(画像) #####################################################
+                            _, imencode_image = cv.imencode('.jpg', frame)
+                            base64_image = base64.b64encode(imencode_image)
+                            eel.set_base64image("data:image/jpg;base64," + base64_image.decode("ascii"))
+                            continue
+                        else:
+                            eel.alert_mess()
+                            cap.release()
+                            decide_cam_py(999)
+                            sel_cam_before = sel_cam
+                            if(decideFlg == 1):
+                                decide_flg_py(0)
+                            continue
                     else:
                         eel.sleep(0.01)
-                        time.sleep(0.01)
+
+            else:
+                cap.release()
+                if(webcam_flg == 0):
+                    print("【通知】WebCameraが接続されていません。")
+                    eel.object_change("connect.html", True)
+                    eel.sleep(0.01)
+                    time.sleep(0.01)
+                    webcam_flg = 1
+                    continue
+                else:
+                    eel.sleep(0.01)
+                    time.sleep(0.01)
+                    continue
+            eel.overlay_controll(True)
+            eel.object_change("complete.html", True)
+            eel.sleep(1)
+            webcam_flg = 0  #connect.html が起動中か判別、「1」で起動中
 
             print("【実行】HandTracking.py")
             HandTracking.HandTracking(cap, width, height,)    #HandTracking.py が終了するまで、 Main.py の以降の処理を行わない
             eel.focusSwitch(width, height, focus_flg)
             cap.release()
             start_flg = 0
+            decide_cam_py(999)
+            decide_flg_py(0)
         elif(end_flg == 1):
             #「終了」を押下時の処理
             cap.release()

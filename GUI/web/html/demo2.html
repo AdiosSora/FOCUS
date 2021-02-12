@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <title>FOCUS</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/javascript" src="/eel.js"></script>
+  <link rel="stylesheet" type="text/css" href="../css/style.min.css">
+  <!-- <link rel="stylesheet" type="text/css" href="../css/loaders.min.css"> -->
+  <script>
+    eel.expose(set_base64image);
+    function set_base64image(base64image) {
+        document.getElementById("python_video").src = base64image;
+    }
+
+    function selectCam_Btn(){
+      const selectcam = document.selCam.get_cam1;
+
+      // 値(数値)を取得
+      const num = get_cam.selectedIndex;
+      //const num = document.form1.color1.selectedIndex;
+
+      // 値(数値)から値(value値)を取得
+      const str = get_cam.options[num].value;
+      //const str = document.form1.color1.options[num].value;
+
+      console.log("num=", num)
+      console.log("str=", str)
+
+      eel.decide_camHT(num)
+    }
+
+    function decide_Btn(){
+      const selectcam = document.selCam.get_cam1;
+
+      // 値(数値)を取得
+      const num = get_cam.selectedIndex;
+      //const num = document.form1.color1.selectedIndex;
+
+      // 値(数値)から値(value値)を取得
+      const str = get_cam.options[num].value;
+      //const str = document.form1.color1.options[num].value;
+
+      console.log("d_num=", num);
+      console.log("d_str=", str);
+
+      eel.decide_camHT(num);
+      eel.decide_flgHT();
+    }
+
+    eel.expose(alert_mess)
+    function alert_mess(){
+      alert("選択した番号のカメラはありません。再度選択してください。")
+    }
+
+  </script>
+</head>
+<body>
+  カメラが切断されたため、再度選択してください<br>
+  デフォルトでは1で、昇順でカメラが割り振られます
+  <form name="selCam">
+    <select id="get_cam" name="get_cam1">
+      <option value="0">1</option>
+      <option value="1">2</option>
+      <option value="2">3</option>
+      <option value="3">4</option>
+    </select>
+  </form>
+  <input type="button" value="デモを見る" onclick="selectCam_Btn()"/>　　
+  <input type="button" value="選択したものに決定" onclick="decide_Btn()"/>
+  <br>
+  デモ映像
+  <br>
+  <img id="python_video" width="400" height="300" src="../images/sample.png">
+</body>
+<footer></footer>
+</html>

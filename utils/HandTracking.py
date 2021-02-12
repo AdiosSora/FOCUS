@@ -27,6 +27,9 @@ import traceback
 import time
 import xml.etree.ElementTree as ET
 ShortCutList = []
+sel_camHT = 999
+decideFlgHT = 0
+
 def get_args():
     parser = argparse.ArgumentParser()
 
@@ -106,6 +109,22 @@ def config_sys_set():
     eel.set_shortcutname(set_poseshortcut(),set_poseshortcut2(),set_poseshortcut3(),set_poseshortcut4()) #ショートカットコマンド名をUIに受け渡し
     return ShortCutList
 
+@eel.expose
+def decide_camHT(num):
+    decide_camHT_py(num)
+
+def decide_camHT_py(decNum):
+    global sel_camHT
+    sel_camHT = decNum
+
+@eel.expose
+def decide_flgHT():
+    decide_flgHT_py(1)
+
+def decide_flgHT_py(flg):
+    global decideFlgHT
+    decideFlgHT = flg
+
 def HandTracking(cap, width, height, conf_flg = 0):
     # ×ボタンが押されたかのフラグ(hand_gui.py内の変数、flg_closePush)の初期化
     hand_gui.close_switch_py(0)
@@ -140,19 +159,62 @@ def HandTracking(cap, width, height, conf_flg = 0):
             cap.set(cv.CAP_PROP_FRAME_HEIGHT, cap_height)
             ret, frame = cap.read()
             if(ret is True):
-                #カメラが接続されている場合
+                flg_video = 0
                 name_pose = "Unknown"
                 focus_flg = 1
                 namePose_flg = 1
-                #cap.release()
-                eel.object_change("complete.html", True)
-                eel.sleep(1)
-                flg_video = 0
-                print("【通知】WebCamera検知")
-                #×ボタンフラグの初期化
-                hand_gui.close_switch_py(0)
-                #complete_html(width, height)
-                continue    #最初の while に戻る
+                cap.release()
+                eel.overlay_controll(True)
+                eel.object_change("demo2.html", True)
+                #eel.sleep(1)
+                sel_cam_before = 999
+
+                while(True):
+                    if(decideFlgHT == 1):
+                        if(sel_camHT != sel_cam_before):
+                            cap = cv.VideoCapture(sel_camHT)
+                            cap.set(cv.CAP_PROP_FRAME_WIDTH, cap_width)
+                            cap.set(cv.CAP_PROP_FRAME_HEIGHT, cap_height)
+                            ret, frame = cap.read(sel_camHT)
+                            if(ret is False):
+                                eel.alert_mess()
+                                cap.release()
+                                decide_camHT_py(999)
+                                decide_flgHT_py(0)
+                                sel_cam_before = sel_camHT
+                                continue
+                            else:
+                                decide_flgHT_py(0)
+                                break
+                        decide_flgHT_py(0)
+                        break
+                    if(sel_camHT != 999):
+                        eel.sleep(0.01)
+                        if(sel_camHT != sel_cam_before):
+                            if(sel_cam_before != 999):
+                                cap.release()
+                            cap = cv.VideoCapture(sel_camHT)
+                            cap.set(cv.CAP_PROP_FRAME_WIDTH, cap_width)
+                            cap.set(cv.CAP_PROP_FRAME_HEIGHT, cap_height)
+                            sel_cam_before = sel_camHT
+                        ret, frame = cap.read()
+                        if(ret is True):
+                            # UI側へ転送(画像) #####################################################
+                            _, imencode_image = cv.imencode('.jpg', frame)
+                            base64_image = base64.b64encode(imencode_image)
+                            eel.set_base64image("data:image/jpg;base64," + base64_image.decode("ascii"))
+                            continue
+                        else:
+                            eel.alert_mess()
+                            cap.release()
+                            decide_camHT_py(999)
+                            sel_cam_before = sel_camHT
+                            if(decideFlgHT == 1):
+                                decide_flgHT_py(0)
+                            continue
+                    else:
+                        eel.sleep(0.01)
+                        continue    #最初の while に戻る
             else:
             #カメラが接続されていない場合
             #print("webcamないよ！！！")
@@ -160,6 +222,8 @@ def HandTracking(cap, width, height, conf_flg = 0):
                 time.sleep(0.01)
                 continue    #最初の while に戻る
         elif(flg_break == 1):
+            decide_camHT_py(999)
+            decide_flgHT_py(0)
             break   #最初の while を抜けて正常終了
 
         # カメラ準備 ###############################################################
