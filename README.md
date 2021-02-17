@@ -25,7 +25,6 @@ Windwosショートカットなどを手の操作のみで実行が可能にな�
 # Reference
 * [MediaPipe](https://mediapipe.dev/)
 * [Kazuhito00/mediapipe-python-sample](https://github.com/Kazuhito00/mediapipe-python-sample)
-* [Kazuhito00/hand-gesture-recognition-using-mediapipe](https://github.com/Kazuhito00/hand-gesture-recognition-using-mediapipe)
 # Author
 * そらまん(https://twitter.com/AdiosSora)
 * バター風味<br>
