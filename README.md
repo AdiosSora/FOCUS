@@ -26,7 +26,7 @@ Windwosショートカットなどを手の操作のみで実行が可能にな�
 * [MediaPipe](https://mediapipe.dev/)
 * [Kazuhito00/mediapipe-python-sample](https://github.com/Kazuhito00/mediapipe-python-sample)
 # Author
-* そらまん(https://twitter.com/AdiosSora)
+* そらまん
 * バター風味<br>
 * kiba_shin<br>
 * GABA<br>
